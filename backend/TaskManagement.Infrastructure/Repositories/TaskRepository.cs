@@ -11,6 +11,7 @@ namespace TaskManagement.Infrastructure.Repositories
 
         public TaskRepository(ApplicationDbContext context)
         {
+            ArgumentNullException.ThrowIfNull(context);
             _context = context;
         }
 

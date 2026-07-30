@@ -7,7 +7,7 @@ namespace TaskManagement.Core.Interfaces
         /// <summary>
         /// Registers a new user
         /// </summary>
-        Task<User?> Register(string username, string email, string password, string role = "RegularUser");
+        Task<User?> Register(string username, string email, string password);
 
         /// <summary>
         /// Logs in a user

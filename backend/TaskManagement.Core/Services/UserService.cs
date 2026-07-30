@@ -14,6 +14,7 @@ namespace TaskManagement.Core.Services
 
         public async System.Threading.Tasks.Task<User> CreateAsync(User user)
         {
+            ArgumentNullException.ThrowIfNull(user);
             return await _userRepository.CreateAsync(user);
         }
 
@@ -24,6 +25,9 @@ namespace TaskManagement.Core.Services
 
         public async System.Threading.Tasks.Task<User?> GetByEmailAsync(string email)
         {
+            ArgumentNullException.ThrowIfNull(email);
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email must not be empty.", nameof(email));
             return await _userRepository.GetByEmailAsync(email);
         }
 
@@ -34,6 +38,7 @@ namespace TaskManagement.Core.Services
 
         public async System.Threading.Tasks.Task<User> UpdateAsync(User user)
         {
+            ArgumentNullException.ThrowIfNull(user);
             return await _userRepository.UpdateAsync(user);
         }
 

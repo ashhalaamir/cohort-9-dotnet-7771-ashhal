@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskManagement.API.DTOs;
 using TaskManagement.Core.Interfaces;
+using TaskManagement.Core.Models;
 
 namespace TaskManagement.API.Controllers
 {
@@ -10,11 +11,13 @@ namespace TaskManagement.API.Controllers
     {
         private readonly IAuthService _authService;
         private readonly ILogger<AuthController> _logger;
+        private readonly JwtSettings _jwtSettings;
 
-        public AuthController(IAuthService authService, ILogger<AuthController> logger)
+        public AuthController(IAuthService authService, ILogger<AuthController> logger, JwtSettings jwtSettings)
         {
             _authService = authService;
             _logger = logger;
+            _jwtSettings = jwtSettings;
         }
 
         /// <summary>
@@ -30,8 +33,7 @@ namespace TaskManagement.API.Controllers
                 var user = await _authService.Register(
                     request.Username,
                     request.Email,
-                    request.Password,
-                    request.Role ?? "RegularUser"
+                    request.Password
                 );
 
                 if (user == null)
@@ -49,7 +51,7 @@ namespace TaskManagement.API.Controllers
                     Email = user.Email,
                     Role = user.Role,
                     Token = token,
-                    TokenExpiry = DateTime.UtcNow.AddDays(7)
+                    TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
                 };
 
                 _logger.LogInformation($"User registered successfully: {user.Email}");
@@ -89,7 +91,7 @@ namespace TaskManagement.API.Controllers
                     Email = user.Email,
                     Role = user.Role,
                     Token = token,
-                    TokenExpiry = DateTime.UtcNow.AddDays(7)
+                    TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
                 };
 
                 _logger.LogInformation($"User logged in successfully: {user.Email}");

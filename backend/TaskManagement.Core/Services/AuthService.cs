@@ -1,7 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using TaskManagement.Core.Helpers;
 using TaskManagement.Core.Interfaces;
@@ -12,28 +11,38 @@ namespace TaskManagement.Core.Services
     public class AuthService : IAuthService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IConfiguration _configuration;
+        private readonly JwtSettings _jwtSettings;
 
-        public AuthService(IUserRepository userRepository, IConfiguration configuration)
+        public AuthService(IUserRepository userRepository, JwtSettings jwtSettings)
         {
             _userRepository = userRepository;
-            _configuration = configuration;
+            _jwtSettings = jwtSettings;
         }
 
-        public async Task<User?> Register(string username, string email, string password, string role = "RegularUser")
+        public async Task<User?> Register(string username, string email, string password)
         {
+            ArgumentNullException.ThrowIfNull(username);
+            ArgumentNullException.ThrowIfNull(email);
+            ArgumentNullException.ThrowIfNull(password);
+            if (string.IsNullOrWhiteSpace(username))
+                throw new ArgumentException("Username must not be empty.", nameof(username));
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email must not be empty.", nameof(email));
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password must not be empty.", nameof(password));
+
             // Check if user already exists
             var existingUser = await _userRepository.GetByEmailAsync(email);
             if (existingUser != null)
                 return null;
 
-            // Hash password and create user
+            // Hash password and create user with fixed role
             var user = new User
             {
                 Username = username,
                 Email = email,
                 PasswordHash = PasswordHasher.HashPassword(password),
-                Role = role
+                Role = "RegularUser"
             };
 
             return await _userRepository.CreateAsync(user);
@@ -41,6 +50,13 @@ namespace TaskManagement.Core.Services
 
         public async Task<User?> Login(string email, string password)
         {
+            ArgumentNullException.ThrowIfNull(email);
+            ArgumentNullException.ThrowIfNull(password);
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email must not be empty.", nameof(email));
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentException("Password must not be empty.", nameof(password));
+
             var user = await _userRepository.GetByEmailAsync(email);
             if (user == null)
                 return null;
@@ -54,6 +70,10 @@ namespace TaskManagement.Core.Services
 
         public string GenerateJwtToken(User user)
         {
+            ArgumentNullException.ThrowIfNull(user);
+
+            _jwtSettings.Validate();
+
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
@@ -62,14 +82,14 @@ namespace TaskManagement.Core.Services
                 new Claim(ClaimTypes.Role, user.Role)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
+                issuer: _jwtSettings.Issuer,
+                audience: _jwtSettings.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddDays(7),
+                expires: DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays),
                 signingCredentials: creds
             );
 

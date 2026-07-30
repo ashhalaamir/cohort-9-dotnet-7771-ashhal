@@ -14,6 +14,7 @@ namespace TaskManagement.Core.Services
 
         public async System.Threading.Tasks.Task<TaskEntity> CreateAsync(TaskEntity task)
         {
+            ArgumentNullException.ThrowIfNull(task);
             return await _taskRepository.CreateAsync(task);
         }
 
@@ -34,6 +35,7 @@ namespace TaskManagement.Core.Services
 
         public async System.Threading.Tasks.Task<TaskEntity> UpdateAsync(TaskEntity task)
         {
+            ArgumentNullException.ThrowIfNull(task);
             return await _taskRepository.UpdateAsync(task);
         }
 

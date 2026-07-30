@@ -14,6 +14,6 @@ namespace TaskManagement.Core.Models
         public DateTime? UpdatedAt { get; set; }
 
         // Navigation property - A user can have many tasks
-        public ICollection<Task>? Tasks { get; set; }
+        public ICollection<Task> Tasks { get; set; } = new List<Task>();
     }
 }
