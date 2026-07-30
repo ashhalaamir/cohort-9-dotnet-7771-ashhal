@@ -2,7 +2,7 @@ using TaskManagement.Core.Models;
 
 namespace TaskManagement.Core.Interfaces
 {
-    public interface IUserService
+    public interface IUserRepository
     {
         System.Threading.Tasks.Task<User> CreateAsync(User user);
         System.Threading.Tasks.Task<User?> GetByIdAsync(int id);

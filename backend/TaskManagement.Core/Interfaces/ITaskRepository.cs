@@ -2,7 +2,7 @@ using TaskEntity = TaskManagement.Core.Models.Task;
 
 namespace TaskManagement.Core.Interfaces
 {
-    public interface ITaskService
+    public interface ITaskRepository
     {
         System.Threading.Tasks.Task<TaskEntity> CreateAsync(TaskEntity task);
         System.Threading.Tasks.Task<TaskEntity?> GetByIdAsync(int id);

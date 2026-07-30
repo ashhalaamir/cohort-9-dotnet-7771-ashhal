@@ -1,6 +1,7 @@
 C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Core\bin\Debug\net8.0\TaskManagement.Core.deps.json
 C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Core\bin\Debug\net8.0\TaskManagement.Core.dll
 C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Core\bin\Debug\net8.0\TaskManagement.Core.pdb
+C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Core\obj\Debug\net8.0\TaskManagement.Core.csproj.AssemblyReference.cache
 C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Core\obj\Debug\net8.0\TaskManagement.Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Core\obj\Debug\net8.0\TaskManagement.Core.AssemblyInfoInputs.cache
 C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Core\obj\Debug\net8.0\TaskManagement.Core.AssemblyInfo.cs
