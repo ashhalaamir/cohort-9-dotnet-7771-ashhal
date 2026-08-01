@@ -9,6 +9,7 @@ namespace TaskManagement.Core.Services
 
         public UserService(IUserRepository userRepository)
         {
+            ArgumentNullException.ThrowIfNull(userRepository);
             _userRepository = userRepository;
         }
 

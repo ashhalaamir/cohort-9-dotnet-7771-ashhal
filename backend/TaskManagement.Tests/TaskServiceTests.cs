@@ -10,12 +10,14 @@ namespace TaskManagement.Tests;
 public class TaskServiceTests
 {
     private readonly Mock<ITaskRepository> _taskRepository;
+    private readonly Mock<IUserRepository> _userRepository;
     private readonly TaskService _taskService;
 
     public TaskServiceTests()
     {
         _taskRepository = new Mock<ITaskRepository>();
-        _taskService = new TaskService(_taskRepository.Object);
+        _userRepository = new Mock<IUserRepository>();
+        _taskService = new TaskService(_taskRepository.Object, _userRepository.Object);
     }
 
     [Fact]

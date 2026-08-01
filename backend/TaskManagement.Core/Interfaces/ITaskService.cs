@@ -20,6 +20,6 @@ namespace TaskManagement.Core.Interfaces
         System.Threading.Tasks.Task<bool> DeleteAsync(int id, int userId, bool isAdmin);
         
         // 🔥 NEW: Admin only - assign task to another user
-        System.Threading.Tasks.Task<TaskEntity?> AssignTaskAsync(int taskId, int assignToUserId, int adminUserId);
+        System.Threading.Tasks.Task<TaskEntity?> AssignTaskAsync(int taskId, int assignToUserId, int adminUserId, bool isAdmin);
     }
 }

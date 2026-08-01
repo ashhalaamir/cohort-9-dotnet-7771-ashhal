@@ -6,10 +6,15 @@ namespace TaskManagement.Core.Services
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IUserRepository _userRepository;
 
-        public TaskService(ITaskRepository taskRepository)
+        public TaskService(ITaskRepository taskRepository, IUserRepository userRepository)
         {
+            ArgumentNullException.ThrowIfNull(taskRepository);
+            ArgumentNullException.ThrowIfNull(userRepository);
+
             _taskRepository = taskRepository;
+            _userRepository = userRepository;
         }
 
         // ============================================================
@@ -115,15 +120,22 @@ namespace TaskManagement.Core.Services
             return true;
         }
 
-        public async System.Threading.Tasks.Task<TaskEntity?> AssignTaskAsync(int taskId, int assignToUserId, int adminUserId)
+        public async System.Threading.Tasks.Task<TaskEntity?> AssignTaskAsync(int taskId, int assignToUserId, int adminUserId, bool isAdmin)
         {
+            if (!isAdmin)
+                return null;
+
             var task = await _taskRepository.GetByIdAsync(taskId);
-            if (task == null) return null;
-            
-            // Only admin can assign tasks to others (checked in controller)
+            if (task == null)
+                return null;
+
+            var assignToUser = await _userRepository.GetByIdAsync(assignToUserId);
+            if (assignToUser == null)
+                return null;
+
             task.UserId = assignToUserId;
             task.UpdatedAt = DateTime.UtcNow;
-            
+
             return await _taskRepository.UpdateAsync(task);
         }
     }

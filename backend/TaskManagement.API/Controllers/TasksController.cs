@@ -78,7 +78,7 @@ namespace TaskManagement.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Assign(int id, [FromBody] TaskDto request)
         {
-            var assigned = await _taskService.AssignTaskAsync(id, request.UserId, GetUserId());
+            var assigned = await _taskService.AssignTaskAsync(id, request.UserId, GetUserId(), IsAdmin());
             if (assigned == null)
                 return NotFound();
 
