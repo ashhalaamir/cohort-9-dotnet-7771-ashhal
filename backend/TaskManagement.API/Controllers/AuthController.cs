@@ -26,6 +26,9 @@ namespace TaskManagement.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
                 _logger.LogInformation("Attempting to register a new user account.");
@@ -57,6 +60,11 @@ namespace TaskManagement.API.Controllers
                 _logger.LogInformation("User registered successfully with userId {UserId}.", user.Id);
                 return Ok(response);
             }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex, "Validation error during registration.");
+                return BadRequest(new { message = ex.Message });
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error registering user.");
@@ -70,6 +78,9 @@ namespace TaskManagement.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto request)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
                 _logger.LogInformation("Attempting login.");
@@ -96,6 +107,11 @@ namespace TaskManagement.API.Controllers
 
                 _logger.LogInformation("User logged in successfully with userId {UserId}.", user.Id);
                 return Ok(response);
+            }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex, "Validation error during login.");
+                return BadRequest(new { message = ex.Message });
             }
             catch (Exception ex)
             {

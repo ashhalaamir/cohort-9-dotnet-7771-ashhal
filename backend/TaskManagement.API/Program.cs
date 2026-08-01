@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -49,15 +50,29 @@ if (string.IsNullOrWhiteSpace(connectionString))
 
 if (!builder.Environment.IsDevelopment())
 {
-    var normalized = connectionString.Replace(" ", string.Empty, StringComparison.OrdinalIgnoreCase);
-    if (normalized.Contains("LocalDB", StringComparison.OrdinalIgnoreCase) || normalized.Contains("(localdb)", StringComparison.OrdinalIgnoreCase))
+    var builderOptions = new SqlConnectionStringBuilder(connectionString);
+
+    if (!string.IsNullOrWhiteSpace(builderOptions.DataSource) &&
+        (builderOptions.DataSource.Contains("LocalDB", StringComparison.OrdinalIgnoreCase) ||
+         builderOptions.DataSource.Contains("(localdb)", StringComparison.OrdinalIgnoreCase)))
+    {
         throw new InvalidOperationException("LocalDB is not supported in production. Provide a production-ready SQL Server connection string via secure configuration.");
+    }
 
-    if (normalized.Contains("TrustServerCertificate=True", StringComparison.OrdinalIgnoreCase))
+    if (builderOptions.TrustServerCertificate)
+    {
         throw new InvalidOperationException("TrustServerCertificate=True is not allowed in production. Use a properly validated SQL Server certificate.");
+    }
 
-    if (normalized.Contains("Trusted_Connection=True", StringComparison.OrdinalIgnoreCase) || normalized.Contains("Integrated Security=True", StringComparison.OrdinalIgnoreCase))
+    if (builderOptions.IntegratedSecurity)
+    {
         throw new InvalidOperationException("Trusted connection / Windows authentication is not portable for production. Supply a production-ready SQL Server connection string.");
+    }
+
+    if (!builderOptions.Encrypt)
+    {
+        throw new InvalidOperationException("Encrypt=False is not allowed in production. Use an encrypted SQL Server connection string.");
+    }
 }
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

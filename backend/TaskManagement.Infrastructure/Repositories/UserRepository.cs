@@ -31,6 +31,9 @@ namespace TaskManagement.Infrastructure.Repositories
 
         public async System.Threading.Tasks.Task<User?> GetByEmailAsync(string email)
         {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email must not be null or empty.", nameof(email));
+
             return await _context.Users
                 .FirstOrDefaultAsync(u => u.Email == email);
         }

@@ -30,8 +30,8 @@ namespace TaskManagement.Core.Models
             if (string.IsNullOrWhiteSpace(Audience))
                 throw new InvalidOperationException("JWT audience is required and cannot be empty.");
 
-            if (ExpiryInDays <= 0)
-                throw new InvalidOperationException("JWT expiry must be set to a positive number of days.");
+            if (ExpiryInDays <= 0 || ExpiryInDays > 365)
+                throw new InvalidOperationException("JWT expiry must be set between 1 and 365 days.");
         }
     }
 }
