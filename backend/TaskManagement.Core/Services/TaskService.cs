@@ -24,6 +24,7 @@ namespace TaskManagement.Core.Services
         public async System.Threading.Tasks.Task<TaskEntity> CreateAsync(TaskEntity task)
         {
             ArgumentNullException.ThrowIfNull(task);
+            ValidateTask(task);
             return await _taskRepository.CreateAsync(task);
         }
 
@@ -45,6 +46,7 @@ namespace TaskManagement.Core.Services
         public async System.Threading.Tasks.Task<TaskEntity> UpdateAsync(TaskEntity task)
         {
             ArgumentNullException.ThrowIfNull(task);
+            ValidateTask(task);
             return await _taskRepository.UpdateAsync(task);
         }
 
@@ -60,6 +62,7 @@ namespace TaskManagement.Core.Services
         public async System.Threading.Tasks.Task<TaskEntity> CreateAsync(TaskEntity task, int userId)
         {
             ArgumentNullException.ThrowIfNull(task);
+            ValidateTask(task);
             task.UserId = userId;
             return await _taskRepository.CreateAsync(task);
         }
@@ -87,7 +90,8 @@ namespace TaskManagement.Core.Services
         public async System.Threading.Tasks.Task<TaskEntity?> UpdateAsync(int id, TaskEntity updatedTask, int userId, bool isAdmin)
         {
             ArgumentNullException.ThrowIfNull(updatedTask);
-            
+            ValidateTask(updatedTask);
+
             var existingTask = await _taskRepository.GetByIdAsync(id);
             if (existingTask == null) return null;
             
@@ -137,6 +141,18 @@ namespace TaskManagement.Core.Services
             task.UpdatedAt = DateTime.UtcNow;
 
             return await _taskRepository.UpdateAsync(task);
+        }
+
+        private static void ValidateTask(TaskEntity task)
+        {
+            if (string.IsNullOrWhiteSpace(task.Title))
+                throw new System.ComponentModel.DataAnnotations.ValidationException("Title is required.");
+
+            if (task.Description?.Length > 1000)
+                throw new System.ComponentModel.DataAnnotations.ValidationException("Description cannot exceed 1000 characters.");
+
+            if (task.DueDate.Date < DateTime.UtcNow.Date)
+                throw new System.ComponentModel.DataAnnotations.ValidationException("Due date cannot be in the past.");
         }
     }
 }

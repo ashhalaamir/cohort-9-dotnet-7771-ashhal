@@ -28,7 +28,7 @@ namespace TaskManagement.API.Controllers
         {
             try
             {
-                _logger.LogInformation($"Attempting to register user: {request.Email}");
+                _logger.LogInformation("Attempting to register a new user account.");
 
                 var user = await _authService.Register(
                     request.Username,
@@ -38,7 +38,7 @@ namespace TaskManagement.API.Controllers
 
                 if (user == null)
                 {
-                    _logger.LogWarning($"Registration failed: User already exists with email {request.Email}");
+                    _logger.LogWarning("Registration failed: user already exists.");
                     return BadRequest(new { message = "User with this email already exists" });
                 }
 
@@ -54,12 +54,12 @@ namespace TaskManagement.API.Controllers
                     TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
                 };
 
-                _logger.LogInformation($"User registered successfully: {user.Email}");
+                _logger.LogInformation("User registered successfully with userId {UserId}.", user.Id);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error registering user: {request.Email}");
+                _logger.LogError(ex, "Error registering user.");
                 return StatusCode(500, new { message = "An error occurred during registration" });
             }
         }
@@ -72,13 +72,13 @@ namespace TaskManagement.API.Controllers
         {
             try
             {
-                _logger.LogInformation($"Attempting login for user: {request.Email}");
+                _logger.LogInformation("Attempting login.");
 
                 var user = await _authService.Login(request.Email, request.Password);
 
                 if (user == null)
                 {
-                    _logger.LogWarning($"Login failed for user: {request.Email} - Invalid credentials");
+                    _logger.LogWarning("Login failed: invalid credentials.");
                     return Unauthorized(new { message = "Invalid email or password" });
                 }
 
@@ -94,12 +94,12 @@ namespace TaskManagement.API.Controllers
                     TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
                 };
 
-                _logger.LogInformation($"User logged in successfully: {user.Email}");
+                _logger.LogInformation("User logged in successfully with userId {UserId}.", user.Id);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error logging in user: {request.Email}");
+                _logger.LogError(ex, "Error logging in user.");
                 return StatusCode(500, new { message = "An error occurred during login" });
             }
         }

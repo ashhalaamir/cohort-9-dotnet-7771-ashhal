@@ -14,11 +14,13 @@ namespace TaskManagement.API.Controllers
     public class TasksController : ControllerBase
     {
         private readonly ITaskService _taskService;
+        private readonly IUserRepository _userRepository;
         private readonly ILogger<TasksController> _logger;
 
-        public TasksController(ITaskService taskService, ILogger<TasksController> logger)
+        public TasksController(ITaskService taskService, IUserRepository userRepository, ILogger<TasksController> logger)
         {
             _taskService = taskService;
+            _userRepository = userRepository;
             _logger = logger;
         }
 
@@ -33,56 +35,146 @@ namespace TaskManagement.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var tasks = await _taskService.GetAllAsync(GetUserId(), IsAdmin());
-            return Ok(tasks.Select(ToDto));
+            try
+            {
+                _logger.LogInformation("Fetching task list for userId {UserId}, isAdmin {IsAdmin}.", GetUserId(), IsAdmin());
+                var tasks = await _taskService.GetAllAsync(GetUserId(), IsAdmin());
+                return Ok(tasks.Select(ToDto));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching task list for userId {UserId}.", GetUserId());
+                return StatusCode(500, new { message = "An error occurred while fetching tasks." });
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var task = await _taskService.GetByIdAsync(id, GetUserId(), IsAdmin());
-            if (task == null)
-                return NotFound();
+            try
+            {
+                _logger.LogInformation("Fetching task {TaskId} for userId {UserId}.", id, GetUserId());
+                var task = await _taskService.GetByIdAsync(id, GetUserId(), IsAdmin());
+                if (task == null)
+                {
+                    _logger.LogWarning("Task {TaskId} not found or access denied for userId {UserId}.", id, GetUserId());
+                    return NotFound();
+                }
 
-            return Ok(ToDto(task));
+                return Ok(ToDto(task));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching task {TaskId} for userId {UserId}.", id, GetUserId());
+                return StatusCode(500, new { message = "An error occurred while fetching the task." });
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTaskDto request)
         {
-            var created = await _taskService.CreateAsync(ToEntity(request), GetUserId());
-            return CreatedAtAction(nameof(GetById), new { id = created.Id }, ToDto(created));
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                _logger.LogInformation("Creating new task for userId {UserId}.", GetUserId());
+                var created = await _taskService.CreateAsync(ToEntity(request), GetUserId());
+                return CreatedAtAction(nameof(GetById), new { id = created.Id }, ToDto(created));
+            }
+            catch (System.ComponentModel.DataAnnotations.ValidationException ex)
+            {
+                _logger.LogWarning(ex, "Validation error creating task for userId {UserId}.", GetUserId());
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating task for userId {UserId}.", GetUserId());
+                return StatusCode(500, new { message = "An error occurred while creating the task." });
+            }
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateTaskDto request)
         {
-            var updated = await _taskService.UpdateAsync(id, ToEntity(request), GetUserId(), IsAdmin());
-            if (updated == null)
-                return NotFound();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            return Ok(ToDto(updated));
+            try
+            {
+                _logger.LogInformation("Updating task {TaskId} for userId {UserId}.", id, GetUserId());
+                var updated = await _taskService.UpdateAsync(id, ToEntity(request), GetUserId(), IsAdmin());
+                if (updated == null)
+                {
+                    _logger.LogWarning("Task {TaskId} not found or access denied for update by userId {UserId}.", id, GetUserId());
+                    return NotFound();
+                }
+
+                return Ok(ToDto(updated));
+            }
+            catch (System.ComponentModel.DataAnnotations.ValidationException ex)
+            {
+                _logger.LogWarning(ex, "Validation error updating task {TaskId} for userId {UserId}.", id, GetUserId());
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error updating task {TaskId} for userId {UserId}.", id, GetUserId());
+                return StatusCode(500, new { message = "An error occurred while updating the task." });
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var deleted = await _taskService.DeleteAsync(id, GetUserId(), IsAdmin());
-            if (!deleted)
-                return NotFound();
+            try
+            {
+                _logger.LogInformation("Deleting task {TaskId} for userId {UserId}.", id, GetUserId());
+                var deleted = await _taskService.DeleteAsync(id, GetUserId(), IsAdmin());
+                if (!deleted)
+                {
+                    _logger.LogWarning("Task {TaskId} not found or access denied for delete by userId {UserId}.", id, GetUserId());
+                    return NotFound();
+                }
 
-            return NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error deleting task {TaskId} for userId {UserId}.", id, GetUserId());
+                return StatusCode(500, new { message = "An error occurred while deleting the task." });
+            }
         }
 
         [HttpPost("{id}/assign")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Assign(int id, [FromBody] TaskDto request)
         {
-            var assigned = await _taskService.AssignTaskAsync(id, request.UserId, GetUserId(), IsAdmin());
-            if (assigned == null)
-                return NotFound();
+            try
+            {
+                _logger.LogInformation("Assigning task {TaskId} to userId {AssignToUserId} by adminUserId {AdminUserId}.", id, request.UserId, GetUserId());
 
-            return Ok(ToDto(assigned));
+                var assignToUser = await _userRepository.GetByIdAsync(request.UserId);
+                if (assignToUser == null)
+                {
+                    _logger.LogWarning("Assign failed: target userId {AssignToUserId} does not exist.", request.UserId);
+                    return BadRequest(new { message = "Target user does not exist." });
+                }
+
+                var assigned = await _taskService.AssignTaskAsync(id, request.UserId, GetUserId(), IsAdmin());
+                if (assigned == null)
+                {
+                    _logger.LogWarning("Task {TaskId} not found or invalid state for adminUserId {AdminUserId}.", id, GetUserId());
+                    return NotFound();
+                }
+
+                return Ok(ToDto(assigned));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error assigning task {TaskId} to userId {AssignToUserId} by adminUserId {AdminUserId}.", id, request.UserId, GetUserId());
+                return StatusCode(500, new { message = "An error occurred while assigning the task." });
+            }
         }
 
         private static TaskDto ToDto(TaskEntity task) => new()
