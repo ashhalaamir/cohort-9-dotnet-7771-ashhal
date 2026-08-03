@@ -12,6 +12,7 @@ The API requires a runtime JWT signing key and does not commit a production secr
   cd backend/TaskManagement.API
   dotnet user-secrets set "Jwt:Key" "<your-strong-secret>"
   ```
+  - The JWT signing key must be at least 32 characters long and should be generated from a secure random source.
 
 - Alternatively, set an environment variable before starting the API:
   - Windows PowerShell:

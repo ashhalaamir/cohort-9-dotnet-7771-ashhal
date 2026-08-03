@@ -57,7 +57,7 @@ namespace TaskManagement.API.Controllers
                     TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
                 };
 
-                _logger.LogInformation("User registered successfully with userId {UserId}.", user.Id);
+                _logger.LogInformation("User registered successfully.");
                 return Ok(response);
             }
             catch (ArgumentException ex)
@@ -105,7 +105,7 @@ namespace TaskManagement.API.Controllers
                     TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
                 };
 
-                _logger.LogInformation("User logged in successfully with userId {UserId}.", user.Id);
+                _logger.LogInformation("User logged in successfully.");
                 return Ok(response);
             }
             catch (ArgumentException ex)

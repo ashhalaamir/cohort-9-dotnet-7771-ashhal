@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagement.Infrastructure.Data;
 
-#nullable disable
+#nullable enable
 
 namespace TaskManagement.Infrastructure.Migrations
 {
@@ -40,7 +40,7 @@ namespace TaskManagement.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETUTCDATE()");
 
-                    b.Property<string>("Description")
+                    b.Property<string?>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
