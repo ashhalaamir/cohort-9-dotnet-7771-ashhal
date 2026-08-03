@@ -31,7 +31,7 @@ namespace TaskManagement.API.Controllers
 
             try
             {
-                _logger.LogInformation("Attempting to register a new user account.");
+                _logger.LogInformation("Attempting user registration.");
 
                 var user = await _authService.Register(
                     request.Username,
@@ -83,7 +83,7 @@ namespace TaskManagement.API.Controllers
 
             try
             {
-                _logger.LogInformation("Attempting login.");
+                _logger.LogInformation("Attempting user login.");
 
                 var user = await _authService.Login(request.Email, request.Password);
 

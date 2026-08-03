@@ -5,12 +5,14 @@ Cohort 9 — .NET Fullstack (.NET+ReactJS) assignment for Ashhal Aamir
 
 The API requires a runtime JWT signing key and does not commit a production secret to source control.
 
+- The API project already has a `UserSecretsId` configured, so you can set development secrets without modifying checked-in files.
+
 - In development, set the key with `dotnet user-secrets`:
   ```powershell
   cd backend/TaskManagement.API
-  dotnet user-secrets init
   dotnet user-secrets set "Jwt:Key" "<your-strong-secret>"
   ```
+
 - Alternatively, set an environment variable before starting the API:
   - Windows PowerShell:
     ```powershell

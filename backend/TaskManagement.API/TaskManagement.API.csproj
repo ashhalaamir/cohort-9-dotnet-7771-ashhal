@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>TaskManagement.API-0cf6d58c-145f-4e95-8a2a-3cd47db1e8a6</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
