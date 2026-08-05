@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Moq;
+using TaskManagement.Core.DTOs;
 using TaskManagement.Core.Interfaces;
 using TaskManagement.Core.Services;
 using TaskEntity = TaskManagement.Core.Models.Task;
@@ -109,7 +110,7 @@ public class TaskServiceTests
     [Fact]
     public async Task CreateAsync_AssignsCurrentUserId()
     {
-        var task = new TaskEntity { Title = "New", Description = "Task" };
+        var task = new TaskEntity { Title = "New", Description = "Task", DueDate = DateTime.UtcNow.AddDays(1) };
         _taskRepository.Setup(x => x.CreateAsync(It.IsAny<TaskEntity>())).ReturnsAsync((TaskEntity t) =>
         {
             t.Id = 50;
@@ -120,5 +121,22 @@ public class TaskServiceTests
 
         result.UserId.Should().Be(42);
         result.Id.Should().Be(50);
+    }
+
+    [Fact]
+    public async Task GetFilteredAsync_DelegatesToRepository()
+    {
+        var filter = new TaskFilterDto { Status = "Pending", Search = "foo" };
+        var tasks = new[]
+        {
+            new TaskEntity { Id = 1, UserId = 42, Title = "Foo Task", Status = "Pending", DueDate = DateTime.UtcNow.AddDays(1) }
+        };
+
+        _taskRepository.Setup(x => x.GetFilteredAsync(filter, 42, false)).ReturnsAsync(tasks);
+
+        var result = await _taskService.GetFilteredAsync(filter, userId: 42, isAdmin: false);
+
+        result.Should().BeEquivalentTo(tasks);
+        _taskRepository.Verify(x => x.GetFilteredAsync(filter, 42, false), Times.Once);
     }
 }

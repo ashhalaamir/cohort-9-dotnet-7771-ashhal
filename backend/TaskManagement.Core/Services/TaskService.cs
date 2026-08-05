@@ -1,4 +1,7 @@
+using System.Linq;
+using TaskManagement.Core.DTOs;
 using TaskManagement.Core.Interfaces;
+using TaskManagement.Core.Models;
 using TaskEntity = TaskManagement.Core.Models.Task;
 
 namespace TaskManagement.Core.Services
@@ -112,6 +115,11 @@ namespace TaskManagement.Core.Services
             task.UpdatedAt = DateTime.UtcNow;
 
             return await _taskRepository.UpdateAsync(task);
+        }
+
+        public async System.Threading.Tasks.Task<IEnumerable<TaskEntity>> GetFilteredAsync(TaskFilterDto filter, int userId, bool isAdmin)
+        {
+            return await _taskRepository.GetFilteredAsync(filter, userId, isAdmin);
         }
 
         private static void ValidateTask(TaskEntity task)

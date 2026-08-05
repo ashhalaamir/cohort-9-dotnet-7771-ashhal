@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagement.API.DTOs;
+using TaskManagement.Core.DTOs;
 using TaskManagement.Core.Interfaces;
 using TaskManagement.Core.Models;
 using TaskEntity = TaskManagement.Core.Models.Task;
+using ApiTaskFilterDto = TaskManagement.API.DTOs.TaskFilterDto;
+using CoreTaskFilterDto = TaskManagement.Core.DTOs.TaskFilterDto;
 
 namespace TaskManagement.API.Controllers
 {
@@ -36,19 +39,56 @@ namespace TaskManagement.API.Controllers
 
         private bool IsAdmin() => User.IsInRole("Admin");
 
+        private (int userId, bool isAdmin) GetCurrentUser()
+        {
+            return (GetUserId(), IsAdmin());
+        }
+
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] ApiTaskFilterDto filter)
         {
             try
             {
-                _logger.LogInformation("Fetching task list for userId {UserId}, isAdmin {IsAdmin}.", GetUserId(), IsAdmin());
-                var tasks = await _taskService.GetAllAsync(GetUserId(), IsAdmin());
-                return Ok(tasks.Select(ToDto));
+                filter ??= new ApiTaskFilterDto();
+                var (userId, isAdmin) = GetCurrentUser();
+                _logger.LogInformation("User {UserId} (IsAdmin: {IsAdmin}) fetching tasks with filters.", userId, isAdmin);
+
+                var coreFilter = new CoreTaskFilterDto
+                {
+                    Status = filter.Status,
+                    Priority = filter.Priority,
+                    Category = filter.Category,
+                    Search = filter.Search,
+                    DueDateFrom = filter.DueDateFrom,
+                    DueDateTo = filter.DueDateTo,
+                    SortBy = filter.SortBy,
+                    SortOrder = filter.SortOrder
+                };
+
+                var tasks = await _taskService.GetFilteredAsync(coreFilter, userId, isAdmin);
+
+                var response = tasks.Select(t => new TaskResponseDto
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Description = t.Description,
+                    Status = t.Status,
+                    Priority = t.Priority,
+                    Category = t.Category,
+                    DueDate = t.DueDate,
+                    CreatedAt = t.CreatedAt,
+                    UpdatedAt = t.UpdatedAt,
+                    UserId = t.UserId,
+                    UserName = t.User?.Username ?? "Unknown"
+                });
+
+                _logger.LogInformation("User {UserId} fetched {TaskCount} tasks.", userId, response.Count());
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error fetching task list for userId {UserId}.", GetUserId());
-                return StatusCode(500, new { message = "An error occurred while fetching tasks." });
+                _logger.LogError(ex, "Error getting tasks with filters");
+                return StatusCode(500, new { message = "An error occurred while retrieving tasks" });
             }
         }
 
