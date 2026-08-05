@@ -16,6 +16,9 @@ namespace TaskManagement.API.Controllers
 
         public DashboardController(ITaskService taskService, ILogger<DashboardController> logger)
         {
+            ArgumentNullException.ThrowIfNull(taskService);
+            ArgumentNullException.ThrowIfNull(logger);
+
             _taskService = taskService;
             _logger = logger;
         }
@@ -118,9 +121,9 @@ namespace TaskManagement.API.Controllers
                 _logger.LogInformation($"Admin {adminUserId} fetching stats for user {userId}");
                 
                 // Get tasks for specific user
-                var userTasks = await _taskService.GetByUserIdAsync(userId);
+                var userTasks = await _taskService.GetByUserIdAsync(userId, adminUserId, true);
                 
-                if (userTasks == null || !userTasks.Any())
+                if (!userTasks.Any())
                 {
                     return Ok(new DashboardStatsDto
                     {

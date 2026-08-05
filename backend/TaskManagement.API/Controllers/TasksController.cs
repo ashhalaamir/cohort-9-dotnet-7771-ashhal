@@ -19,6 +19,10 @@ namespace TaskManagement.API.Controllers
 
         public TasksController(ITaskService taskService, IUserRepository userRepository, ILogger<TasksController> logger)
         {
+            ArgumentNullException.ThrowIfNull(taskService);
+            ArgumentNullException.ThrowIfNull(userRepository);
+            ArgumentNullException.ThrowIfNull(logger);
+
             _taskService = taskService;
             _userRepository = userRepository;
             _logger = logger;
@@ -150,6 +154,12 @@ namespace TaskManagement.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Assign(int id, [FromBody] TaskDto request)
         {
+            if (request == null)
+                return BadRequest(new { message = "Request body is required." });
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
                 _logger.LogInformation("Assigning task {TaskId} to userId {AssignToUserId} by adminUserId {AdminUserId}.", id, request.UserId, GetUserId());

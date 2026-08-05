@@ -11,8 +11,14 @@ namespace TaskManagement.API.DTOs
         [StringLength(1000)]
         public string? Description { get; set; }
 
+        [Required]
+        [RegularExpression("^(Pending|InProgress|Completed)$", ErrorMessage = "Status must be Pending, InProgress, or Completed.")]
         public string Status { get; set; } = "Pending";
+
+        [Required]
+        [RegularExpression("^(Medium|High|Low)$", ErrorMessage = "Priority must be Medium, High, or Low.")]
         public string Priority { get; set; } = "Medium";
+
         public string Category { get; set; } = string.Empty;
 
         [NotInPast]

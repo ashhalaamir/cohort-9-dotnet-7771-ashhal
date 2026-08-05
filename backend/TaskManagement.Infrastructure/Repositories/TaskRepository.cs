@@ -17,6 +17,7 @@ namespace TaskManagement.Infrastructure.Repositories
 
         public async System.Threading.Tasks.Task<TaskEntity> CreateAsync(TaskEntity task)
         {
+            ArgumentNullException.ThrowIfNull(task);
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
             return task;
@@ -46,6 +47,7 @@ namespace TaskManagement.Infrastructure.Repositories
 
         public async System.Threading.Tasks.Task<TaskEntity> UpdateAsync(TaskEntity task)
         {
+            ArgumentNullException.ThrowIfNull(task);
             _context.Tasks.Update(task);
             await _context.SaveChangesAsync();
             return task;

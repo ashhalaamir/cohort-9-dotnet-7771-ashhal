@@ -18,45 +18,7 @@ namespace TaskManagement.Core.Services
         }
 
         // ============================================================
-        // Original methods (keep for backward compatibility)
-        // ============================================================
-
-        public async System.Threading.Tasks.Task<TaskEntity> CreateAsync(TaskEntity task)
-        {
-            ArgumentNullException.ThrowIfNull(task);
-            ValidateTask(task);
-            return await _taskRepository.CreateAsync(task);
-        }
-
-        public async System.Threading.Tasks.Task<TaskEntity?> GetByIdAsync(int id)
-        {
-            return await _taskRepository.GetByIdAsync(id);
-        }
-
-        public async System.Threading.Tasks.Task<IEnumerable<TaskEntity>> GetAllAsync()
-        {
-            return await _taskRepository.GetAllAsync();
-        }
-
-        public async System.Threading.Tasks.Task<IEnumerable<TaskEntity>> GetByUserIdAsync(int userId)
-        {
-            return await _taskRepository.GetByUserIdAsync(userId);
-        }
-
-        public async System.Threading.Tasks.Task<TaskEntity> UpdateAsync(TaskEntity task)
-        {
-            ArgumentNullException.ThrowIfNull(task);
-            ValidateTask(task);
-            return await _taskRepository.UpdateAsync(task);
-        }
-
-        public async System.Threading.Tasks.Task DeleteAsync(int id)
-        {
-            await _taskRepository.DeleteAsync(id);
-        }
-
-        // ============================================================
-        // 🔥 NEW: Extended methods with authorization
+        // Authorization-aware task service methods
         // ============================================================
 
         public async System.Threading.Tasks.Task<TaskEntity> CreateAsync(TaskEntity task, int userId)
@@ -87,10 +49,17 @@ namespace TaskManagement.Core.Services
                 return await _taskRepository.GetByUserIdAsync(userId);
         }
 
+        public async System.Threading.Tasks.Task<IEnumerable<TaskEntity>> GetByUserIdAsync(int targetUserId, int requesterUserId, bool isAdmin)
+        {
+            if (!isAdmin && targetUserId != requesterUserId)
+                return Enumerable.Empty<TaskEntity>();
+
+            return await _taskRepository.GetByUserIdAsync(targetUserId);
+        }
+
         public async System.Threading.Tasks.Task<TaskEntity?> UpdateAsync(int id, TaskEntity updatedTask, int userId, bool isAdmin)
         {
             ArgumentNullException.ThrowIfNull(updatedTask);
-            ValidateTask(updatedTask);
 
             var existingTask = await _taskRepository.GetByIdAsync(id);
             if (existingTask == null) return null;
@@ -98,6 +67,8 @@ namespace TaskManagement.Core.Services
             // Check access: Admin can update any, regular users only their own
             if (!isAdmin && existingTask.UserId != userId)
                 return null;
+
+            ValidateTask(updatedTask);
             
             // Update fields
             existingTask.Title = updatedTask.Title;
