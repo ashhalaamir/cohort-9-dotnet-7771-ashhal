@@ -15,6 +15,10 @@ namespace TaskManagement.API.Controllers
 
         public AuthController(IAuthService authService, ILogger<AuthController> logger, JwtSettings jwtSettings)
         {
+            ArgumentNullException.ThrowIfNull(authService);
+            ArgumentNullException.ThrowIfNull(logger);
+            ArgumentNullException.ThrowIfNull(jwtSettings);
+
             _authService = authService;
             _logger = logger;
             _jwtSettings = jwtSettings;

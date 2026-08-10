@@ -8,7 +8,7 @@ namespace TaskManagement.Core.Helpers
         private const string Pbkdf2Identifier = "pbkdf2-sha256";
         private const int SaltSize = 16; // 128-bit salt
         private const int KeySize = 32; // 256-bit key
-        private const int Iterations = 100_000;
+        private const int Iterations = 600_000; // OWASP guidance for PBKDF2-HMAC-SHA-256 recommends a higher work factor; benchmark on target hardware.
 
         /// <summary>
         /// Hashes a password using PBKDF2 with a per-password salt.
@@ -63,7 +63,9 @@ namespace TaskManagement.Core.Helpers
                 using var sha256 = SHA256.Create();
                 var computedHash = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 var computedBase64 = Convert.ToBase64String(computedHash);
-                return CryptographicOperations.FixedTimeEquals(Encoding.UTF8.GetBytes(computedBase64), Encoding.UTF8.GetBytes(hashedPassword));
+                return CryptographicOperations.FixedTimeEquals(
+                    Encoding.UTF8.GetBytes(computedBase64),
+                    Encoding.UTF8.GetBytes(hashedPassword));
             }
             catch
             {
