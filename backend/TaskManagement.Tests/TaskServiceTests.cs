@@ -124,6 +124,13 @@ public class TaskServiceTests
     }
 
     [Fact]
+    public async Task GetFilteredAsync_WithNullFilter_ThrowsArgumentNullException()
+    {
+        await Assert.ThrowsAsync<ArgumentNullException>(() => _taskService.GetFilteredAsync(null!, userId: 42, isAdmin: false));
+        _taskRepository.Verify(x => x.GetFilteredAsync(It.IsAny<TaskFilterDto>(), It.IsAny<int>(), It.IsAny<bool>()), Times.Never);
+    }
+
+    [Fact]
     public async Task GetFilteredAsync_DelegatesToRepository()
     {
         var filter = new TaskFilterDto { Status = "Pending", Search = "foo" };

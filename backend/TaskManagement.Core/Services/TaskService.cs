@@ -119,6 +119,7 @@ namespace TaskManagement.Core.Services
 
         public async System.Threading.Tasks.Task<IEnumerable<TaskEntity>> GetFilteredAsync(TaskFilterDto filter, int userId, bool isAdmin)
         {
+            ArgumentNullException.ThrowIfNull(filter);
             return await _taskRepository.GetFilteredAsync(filter, userId, isAdmin);
         }
 
