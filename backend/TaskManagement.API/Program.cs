@@ -2,13 +2,34 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
+using Serilog.Events;
 using System.Text;
+using TaskManagement.API.Middleware;
 using TaskManagement.Infrastructure.Data;
 using TaskManagement.Core.Interfaces;
 using TaskManagement.Core.Services;
 using InfrastructureRepositories = TaskManagement.Infrastructure.Repositories;
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+    .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+    .Enrich.FromLogContext()
+    .Enrich.WithProperty("Application", "TaskManagementAPI")
+    .WriteTo.Console()
+    .WriteTo.File(
+        path: "logs/log-.txt",
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 7,
+        outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+    )
+    .CreateLogger();
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Use Serilog as the logger
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -100,6 +121,9 @@ if (app.Urls.Any(url => url.StartsWith("https://", StringComparison.OrdinalIgnor
 {
     app.UseHttpsRedirection();
 }
+
+app.UseSerilogRequestLogging();
+app.UseMiddleware<ExceptionMiddleware>();
 
 // 🔥 IMPORTANT: Authentication must come before Authorization
 app.UseAuthentication();
