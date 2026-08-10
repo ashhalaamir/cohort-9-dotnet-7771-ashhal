@@ -33,47 +33,34 @@ namespace TaskManagement.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            try
+            _logger.LogInformation("Attempting user registration.");
+
+            var user = await _authService.Register(
+                request.Username,
+                request.Email,
+                request.Password
+            );
+
+            if (user == null)
             {
-                _logger.LogInformation("Attempting user registration.");
-
-                var user = await _authService.Register(
-                    request.Username,
-                    request.Email,
-                    request.Password
-                );
-
-                if (user == null)
-                {
-                    _logger.LogWarning("Registration failed: user already exists.");
-                    return BadRequest(new { message = "User with this email already exists" });
-                }
-
-                var token = _authService.GenerateJwtToken(user);
-
-                var response = new AuthResponseDto
-                {
-                    Id = user.Id,
-                    Username = user.Username,
-                    Email = user.Email,
-                    Role = user.Role,
-                    Token = token,
-                    TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
-                };
-
-                _logger.LogInformation("User registered successfully.");
-                return Ok(response);
+                _logger.LogWarning("Registration failed: user already exists.");
+                return BadRequest(new { message = "User with this email already exists" });
             }
-            catch (ArgumentException ex)
+
+            var token = _authService.GenerateJwtToken(user);
+
+            var response = new AuthResponseDto
             {
-                _logger.LogWarning(ex, "Validation error during registration.");
-                return BadRequest(new { message = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error registering user.");
-                return StatusCode(500, new { message = "An error occurred during registration" });
-            }
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                Role = user.Role,
+                Token = token,
+                TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
+            };
+
+            _logger.LogInformation("User registered successfully.");
+            return Ok(response);
         }
 
         /// <summary>
@@ -85,43 +72,30 @@ namespace TaskManagement.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            try
+            _logger.LogInformation("Attempting user login.");
+
+            var user = await _authService.Login(request.Email, request.Password);
+
+            if (user == null)
             {
-                _logger.LogInformation("Attempting user login.");
-
-                var user = await _authService.Login(request.Email, request.Password);
-
-                if (user == null)
-                {
-                    _logger.LogWarning("Login failed: invalid credentials.");
-                    return Unauthorized(new { message = "Invalid email or password" });
-                }
-
-                var token = _authService.GenerateJwtToken(user);
-
-                var response = new AuthResponseDto
-                {
-                    Id = user.Id,
-                    Username = user.Username,
-                    Email = user.Email,
-                    Role = user.Role,
-                    Token = token,
-                    TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
-                };
-
-                _logger.LogInformation("User logged in successfully.");
-                return Ok(response);
+                _logger.LogWarning("Login failed: invalid credentials.");
+                return Unauthorized(new { message = "Invalid email or password" });
             }
-            catch (ArgumentException ex)
+
+            var token = _authService.GenerateJwtToken(user);
+
+            var response = new AuthResponseDto
             {
-                _logger.LogWarning(ex, "Validation error during login.");
-                return BadRequest(new { message = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error logging in user.");
-                return StatusCode(500, new { message = "An error occurred during login" });
-            }
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+                Role = user.Role,
+                Token = token,
+                TokenExpiry = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays)
+            };
+
+            _logger.LogInformation("User logged in successfully.");
+            return Ok(response);
         }
     }
 }
