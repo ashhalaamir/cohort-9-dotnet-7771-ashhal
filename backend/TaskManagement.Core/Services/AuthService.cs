@@ -15,6 +15,9 @@ namespace TaskManagement.Core.Services
 
         public AuthService(IUserRepository userRepository, JwtSettings jwtSettings)
         {
+            ArgumentNullException.ThrowIfNull(userRepository);
+            ArgumentNullException.ThrowIfNull(jwtSettings);
+
             _userRepository = userRepository;
             _jwtSettings = jwtSettings;
         }
