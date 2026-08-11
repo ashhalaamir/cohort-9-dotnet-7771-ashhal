@@ -3,3 +3,9 @@
 **/obj/
 **/out/
 **/publish/
+# SonarQube / SonarCloud
+.sonarqube/
+.sonar/
+sonar-project.properties
+coverage/
+*.sonarqube/
