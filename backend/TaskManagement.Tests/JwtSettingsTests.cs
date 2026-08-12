@@ -1,38 +1,48 @@
 using FluentAssertions;
 using TaskManagement.Core.Models;
+using Xunit;
 
-namespace TaskManagement.Tests;
-
-public class JwtSettingsTests
+namespace TaskManagement.Tests
 {
-    [Fact]
-    public void Validate_ThrowsWhenSigningKeyIsShorterThan32Utf8Bytes()
+    public class JwtSettingsTests
     {
-        var settings = new JwtSettings
+        [Fact]
+        public void Validate_ThrowsWhenSigningKeyIsShorterThan32Utf8Bytes()
         {
-            Key = "short-key",
-            Issuer = "issuer",
-            Audience = "audience"
-        };
+            // Arrange
+            var settings = new JwtSettings
+            {
+                Key = "short",
+                Issuer = "TestIssuer",
+                Audience = "TestAudience",
+                ExpiryInDays = 7
+            };
 
-        Action act = () => settings.Validate();
+            // Act
+            var act = () => settings.Validate();
 
-        act.Should().Throw<InvalidOperationException>()
-            .WithMessage("*at least 32 UTF-8 bytes*");
-    }
+            // Assert
+            act.Should().Throw<InvalidOperationException>()
+                .WithMessage("JWT signing key must be at least 32 characters long.");
+        }
 
-    [Fact]
-    public void Validate_AllowsSigningKeyWithAtLeast32Utf8Bytes()
-    {
-        var settings = new JwtSettings
+        [Fact]
+        public void Validate_DoesNotThrowWhenSigningKeyIsLongEnough()
         {
-            Key = "0123456789abcdef0123456789abcdef",
-            Issuer = "issuer",
-            Audience = "audience"
-        };
+            // Arrange
+            var settings = new JwtSettings
+            {
+                Key = "01234567890123456789012345678901", // 32 characters
+                Issuer = "TestIssuer",
+                Audience = "TestAudience",
+                ExpiryInDays = 7
+            };
 
-        var act = () => settings.Validate();
+            // Act
+            var act = () => settings.Validate();
 
-        act.Should().NotThrow();
+            // Assert
+            act.Should().NotThrow();
+        }
     }
 }
