@@ -1,0 +1,8 @@
+﻿C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Infrastructure\Class1.cs
+C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Infrastructure\Data\ApplicationDbContext.cs
+C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Infrastructure\Data\DesignTimeDbContextFactory.cs
+C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Infrastructure\Migrations\20260803105138_InitialCreate.cs
+C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Infrastructure\Migrations\20260803105138_InitialCreate.Designer.cs
+C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Infrastructure\Migrations\ApplicationDbContextModelSnapshot.cs
+C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Infrastructure\Repositories\TaskRepository.cs
+C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.Infrastructure\Repositories\UserRepository.cs
