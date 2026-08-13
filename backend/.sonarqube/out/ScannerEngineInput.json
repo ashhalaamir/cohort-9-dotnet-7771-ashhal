@@ -1,0 +1,220 @@
+{
+  "scannerProperties": [
+    {
+      "key": "sonar.scanner.app",
+      "value": "ScannerMSBuild"
+    },
+    {
+      "key": "sonar.scanner.appVersion",
+      "value": "11.2.1"
+    },
+    {
+      "key": "sonar.scanner.bootstrapStartTime",
+      "value": "1786447732000"
+    },
+    {
+      "key": "sonar.projectKey",
+      "value": "cohort-9-dotnet-7771-ashhal"
+    },
+    {
+      "key": "sonar.working.directory",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\.sonar"
+    },
+    {
+      "key": "sonar.projectBaseDir",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend"
+    },
+    {
+      "key": "sonar.pullrequest.cache.basepath",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend"
+    },
+    {
+      "key": "sonar.sources",
+      "value": ""
+    },
+    {
+      "key": "sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "sonar.modules",
+      "value": "7170C0A0-6AAB-4B8C-A024-518EA66C5392,1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B,32D16B6A-8F69-4456-9647-E4C290E8AE8B,164C7683-78EF-4485-A1BF-C8ABC46005EA"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.projectKey",
+      "value": "cohort-9-dotnet-7771-ashhal:7170C0A0-6AAB-4B8C-A024-518EA66C5392"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.projectName",
+      "value": "TaskManagement.Core"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.projectBaseDir",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.working.directory",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\.sonar\\mod0"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.sources",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Class1.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\DTOs\\TaskFilterDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Helpers\\PasswordHasher.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Interfaces\\IAuthService.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Interfaces\\IDashboardService.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Interfaces\\ITaskRepository.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Interfaces\\ITaskService.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Interfaces\\IUserRepository.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Interfaces\\IUserService.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Models\\JwtSettings.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Models\\Task.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Models\\User.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Services\\AuthService.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Services\\DashboardService.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Services\\TaskService.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\Services\\UserService.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\obj\\project.assets.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\obj\\TaskManagement.Core.csproj.nuget.dgspec.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\bin\\Debug\\net8.0\\TaskManagement.Core.deps.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Core\\obj\\Debug\\net8.0\\TaskManagement.Core.sourcelink.json"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\0"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\0\\Issues.json"
+    },
+    {
+      "key": "7170C0A0-6AAB-4B8C-A024-518EA66C5392.sonar.cs.scanner.telemetry",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\0\\Telemetry.json"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.projectKey",
+      "value": "cohort-9-dotnet-7771-ashhal:1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.projectName",
+      "value": "TaskManagement.Infrastructure"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.projectBaseDir",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.working.directory",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\.sonar\\mod1"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.sources",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\obj\\project.assets.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\obj\\TaskManagement.Infrastructure.csproj.nuget.dgspec.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\bin\\Debug\\net8.0\\TaskManagement.Infrastructure.deps.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\bin\\Debug\\net8.0\\TaskManagement.Infrastructure.runtimeconfig.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\obj\\Debug\\net8.0\\TaskManagement.Infrastructure.sourcelink.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\Class1.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\Data\\ApplicationDbContext.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\Data\\DesignTimeDbContextFactory.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\Migrations\\20260803105138_InitialCreate.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\Migrations\\20260803105138_InitialCreate.Designer.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\Migrations\\ApplicationDbContextModelSnapshot.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\Repositories\\TaskRepository.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\Repositories\\UserRepository.cs"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\1"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\1\\Issues.json"
+    },
+    {
+      "key": "1ED1BA99-642E-4485-BDB6-A0BB8BE49B7B.sonar.cs.scanner.telemetry",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\1\\Telemetry.json"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.projectKey",
+      "value": "cohort-9-dotnet-7771-ashhal:32D16B6A-8F69-4456-9647-E4C290E8AE8B"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.projectName",
+      "value": "TaskManagement.API"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.projectBaseDir",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.working.directory",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\.sonar\\mod2"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.tests",
+      "value": ""
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.sources",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\appsettings.Development.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\appsettings.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\obj\\project.assets.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\obj\\TaskManagement.API.csproj.nuget.dgspec.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\Properties\\launchSettings.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\bin\\Debug\\net8.0\\appsettings.Development.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\bin\\Debug\\net8.0\\appsettings.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\bin\\Debug\\net8.0\\TaskManagement.API.deps.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\bin\\Debug\\net8.0\\TaskManagement.API.runtimeconfig.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\obj\\Debug\\net8.0\\staticwebassets.build.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\obj\\Debug\\net8.0\\TaskManagement.API.sourcelink.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\Controllers\\AuthController.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\Controllers\\DashboardController.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\Controllers\\TasksController.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\Controllers\\UsersController.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\AuthResponseDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\CreateTaskDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\DashboardStatsDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\LoginDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\RegisterDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\TaskDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\TaskFilterDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\TaskResponseDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\UpdateProfileDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\UpdateTaskDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\DTOs\\UserProfileDto.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\Middleware\\ExceptionMiddleware.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\Program.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\Validation\\NotInPastAttribute.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\obj\\Debug\\net8.0\\TaskManagement.API.GlobalUsings.g.cs,\"C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\obj\\Debug\\net8.0\\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs\",C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\obj\\Debug\\net8.0\\TaskManagement.API.AssemblyInfo.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\obj\\Debug\\net8.0\\TaskManagement.API.MvcApplicationPartsAssemblyInfo.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.API\\TaskManagement.API.http"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\2"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\2\\Issues.json"
+    },
+    {
+      "key": "32D16B6A-8F69-4456-9647-E4C290E8AE8B.sonar.cs.scanner.telemetry",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\2\\Telemetry.json"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.projectKey",
+      "value": "cohort-9-dotnet-7771-ashhal:164C7683-78EF-4485-A1BF-C8ABC46005EA"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.projectName",
+      "value": "TaskManagement.Tests"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.projectBaseDir",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.working.directory",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\.sonar\\mod3"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.sourceEncoding",
+      "value": "utf-8"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.sources",
+      "value": ""
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.tests",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\obj\\project.assets.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\obj\\TaskManagement.Tests.csproj.nuget.dgspec.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\bin\\Debug\\net8.0\\appsettings.Development.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\bin\\Debug\\net8.0\\appsettings.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\bin\\Debug\\net8.0\\TaskManagement.API.deps.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\bin\\Debug\\net8.0\\TaskManagement.API.runtimeconfig.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\bin\\Debug\\net8.0\\TaskManagement.Tests.deps.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\bin\\Debug\\net8.0\\TaskManagement.Tests.runtimeconfig.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\obj\\Debug\\net8.0\\TaskManagement.Tests.sourcelink.json,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\JwtSettingsTests.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\PasswordHasherTests.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\TaskServiceTests.cs,C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Tests\\UnitTest1.cs"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.cs.analyzer.projectOutPaths",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\3"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.cs.roslyn.reportFilePaths",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\3\\Issues.json"
+    },
+    {
+      "key": "164C7683-78EF-4485-A1BF-C8ABC46005EA.sonar.cs.scanner.telemetry",
+      "value": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\.sonarqube\\out\\3\\Telemetry.json"
+    },
+    {
+      "key": "sonar.host.url",
+      "value": "https://sonarcloud.io"
+    },
+    {
+      "key": "sonar.exclusions",
+      "value": "**/obj/**,**/bin/**,**/Migrations/**,**/*.Designer.cs"
+    },
+    {
+      "key": "sonar.organization",
+      "value": "ashhalaamir"
+    },
+    {
+      "key": "sonar.visualstudio.enable",
+      "value": "false"
+    }
+  ]
+}

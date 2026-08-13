@@ -1,0 +1,117 @@
+U
+TaskManagement.Core.Class1object/
+Class1()#TaskManagement.Core.Class1.Class1()-
++TaskManagement.Core.Interfaces.IAuthService«	
+&TaskManagement.Core.DTOs.TaskFilterDtoobjectI
+TaskFilterDto()6TaskManagement.Core.DTOs.TaskFilterDto.TaskFilterDto()?
+
+Status.get1TaskManagement.Core.DTOs.TaskFilterDto.Status.get?
+
+Status.set1TaskManagement.Core.DTOs.TaskFilterDto.Status.setC
+Priority.get3TaskManagement.Core.DTOs.TaskFilterDto.Priority.getC
+Priority.set3TaskManagement.Core.DTOs.TaskFilterDto.Priority.setC
+Category.get3TaskManagement.Core.DTOs.TaskFilterDto.Category.getC
+Category.set3TaskManagement.Core.DTOs.TaskFilterDto.Category.set?
+
+Search.get1TaskManagement.Core.DTOs.TaskFilterDto.Search.get?
+
+Search.set1TaskManagement.Core.DTOs.TaskFilterDto.Search.setI
+DueDateFrom.get6TaskManagement.Core.DTOs.TaskFilterDto.DueDateFrom.getI
+DueDateFrom.set6TaskManagement.Core.DTOs.TaskFilterDto.DueDateFrom.setE
+DueDateTo.get4TaskManagement.Core.DTOs.TaskFilterDto.DueDateTo.getE
+DueDateTo.set4TaskManagement.Core.DTOs.TaskFilterDto.DueDateTo.set?
+
+SortBy.get1TaskManagement.Core.DTOs.TaskFilterDto.SortBy.get?
+
+SortBy.set1TaskManagement.Core.DTOs.TaskFilterDto.SortBy.setE
+SortOrder.get4TaskManagement.Core.DTOs.TaskFilterDto.SortOrder.getE
+SortOrder.set4TaskManagement.Core.DTOs.TaskFilterDto.SortOrder.set0
+.TaskManagement.Core.Interfaces.ITaskRepository0
+.TaskManagement.Core.Interfaces.IUserRepository-
++TaskManagement.Core.Interfaces.ITaskService‘
+&TaskManagement.Core.Models.JwtSettingsobject?
+
+Validate()1TaskManagement.Core.Models.JwtSettings.Validate()E
+JwtSettings()4TaskManagement.Core.Models.JwtSettings.JwtSettings()9
+Key.get.TaskManagement.Core.Models.JwtSettings.Key.get9
+Key.set.TaskManagement.Core.Models.JwtSettings.Key.set?
+
+Issuer.get1TaskManagement.Core.Models.JwtSettings.Issuer.get?
+
+Issuer.set1TaskManagement.Core.Models.JwtSettings.Issuer.setC
+Audience.get3TaskManagement.Core.Models.JwtSettings.Audience.getC
+Audience.set3TaskManagement.Core.Models.JwtSettings.Audience.setK
+ExpiryInDays.get7TaskManagement.Core.Models.JwtSettings.ExpiryInDays.getK
+ExpiryInDays.set7TaskManagement.Core.Models.JwtSettings.ExpiryInDays.set˚
+
+TaskManagement.Core.Models.Taskobject0
+Task()&TaskManagement.Core.Models.Task.Task()0
+Id.get&TaskManagement.Core.Models.Task.Id.get0
+Id.set&TaskManagement.Core.Models.Task.Id.set6
+	Title.get)TaskManagement.Core.Models.Task.Title.get6
+	Title.set)TaskManagement.Core.Models.Task.Title.setB
+Description.get/TaskManagement.Core.Models.Task.Description.getB
+Description.set/TaskManagement.Core.Models.Task.Description.set8
+
+Status.get*TaskManagement.Core.Models.Task.Status.get8
+
+Status.set*TaskManagement.Core.Models.Task.Status.set<
+Priority.get,TaskManagement.Core.Models.Task.Priority.get<
+Priority.set,TaskManagement.Core.Models.Task.Priority.set<
+Category.get,TaskManagement.Core.Models.Task.Category.get<
+Category.set,TaskManagement.Core.Models.Task.Category.set:
+DueDate.get+TaskManagement.Core.Models.Task.DueDate.get:
+DueDate.set+TaskManagement.Core.Models.Task.DueDate.set>
+CreatedAt.get-TaskManagement.Core.Models.Task.CreatedAt.get>
+CreatedAt.set-TaskManagement.Core.Models.Task.CreatedAt.set>
+UpdatedAt.get-TaskManagement.Core.Models.Task.UpdatedAt.get>
+UpdatedAt.set-TaskManagement.Core.Models.Task.UpdatedAt.set8
+
+UserId.get*TaskManagement.Core.Models.Task.UserId.get8
+
+UserId.set*TaskManagement.Core.Models.Task.UserId.set4
+User.get(TaskManagement.Core.Models.Task.User.get4
+User.set(TaskManagement.Core.Models.Task.User.set-
++TaskManagement.Core.Interfaces.IUserService∞
+(TaskManagement.Core.Services.AuthServiceobject+TaskManagement.Core.Interfaces.IAuthServiceÙ
+cAuthService(TaskManagement.Core.Interfaces.IUserRepository, TaskManagement.Core.Models.JwtSettings)åTaskManagement.Core.Services.AuthService.AuthService(TaskManagement.Core.Interfaces.IUserRepository, TaskManagement.Core.Models.JwtSettings)m
+ Register(string, string, string)ITaskManagement.Core.Services.AuthService.Register(string, string, string)W
+Login(string, string)>TaskManagement.Core.Services.AuthService.Login(string, string)è
+1GenerateJwtToken(TaskManagement.Core.Models.User)ZTaskManagement.Core.Services.AuthService.GenerateJwtToken(TaskManagement.Core.Models.User)ì
+TaskManagement.Core.Models.Userobject0
+User()&TaskManagement.Core.Models.User.User()0
+Id.get&TaskManagement.Core.Models.User.Id.get0
+Id.set&TaskManagement.Core.Models.User.Id.set<
+Username.get,TaskManagement.Core.Models.User.Username.get<
+Username.set,TaskManagement.Core.Models.User.Username.set6
+	Email.get)TaskManagement.Core.Models.User.Email.get6
+	Email.set)TaskManagement.Core.Models.User.Email.setD
+PasswordHash.get0TaskManagement.Core.Models.User.PasswordHash.getD
+PasswordHash.set0TaskManagement.Core.Models.User.PasswordHash.set4
+Role.get(TaskManagement.Core.Models.User.Role.get4
+Role.set(TaskManagement.Core.Models.User.Role.set>
+CreatedAt.get-TaskManagement.Core.Models.User.CreatedAt.get>
+CreatedAt.set-TaskManagement.Core.Models.User.CreatedAt.set>
+UpdatedAt.get-TaskManagement.Core.Models.User.UpdatedAt.get>
+UpdatedAt.set-TaskManagement.Core.Models.User.UpdatedAt.set6
+	Tasks.get)TaskManagement.Core.Models.User.Tasks.get6
+	Tasks.set)TaskManagement.Core.Models.User.Tasks.set„
+
+(TaskManagement.Core.Services.TaskServiceobject+TaskManagement.Core.Interfaces.ITaskServiceÑ
+kTaskService(TaskManagement.Core.Interfaces.ITaskRepository, TaskManagement.Core.Interfaces.IUserRepository)îTaskManagement.Core.Services.TaskService.TaskService(TaskManagement.Core.Interfaces.ITaskRepository, TaskManagement.Core.Interfaces.IUserRepository)è
+1CreateAsync(TaskManagement.Core.Models.Task, int)ZTaskManagement.Core.Services.TaskService.CreateAsync(TaskManagement.Core.Models.Task, int)e
+GetByIdAsync(int, int, bool)ETaskManagement.Core.Services.TaskService.GetByIdAsync(int, int, bool)Y
+GetAllAsync(int, bool)?TaskManagement.Core.Services.TaskService.GetAllAsync(int, bool)m
+ GetByUserIdAsync(int, int, bool)ITaskManagement.Core.Services.TaskService.GetByUserIdAsync(int, int, bool)•
+<UpdateAsync(int, TaskManagement.Core.Models.Task, int, bool)eTaskManagement.Core.Services.TaskService.UpdateAsync(int, TaskManagement.Core.Models.Task, int, bool)c
+DeleteAsync(int, int, bool)DTaskManagement.Core.Services.TaskService.DeleteAsync(int, int, bool)u
+$AssignTaskAsync(int, int, int, bool)MTaskManagement.Core.Services.TaskService.AssignTaskAsync(int, int, int, bool)≥
+CGetFilteredAsync(TaskManagement.Core.DTOs.TaskFilterDto, int, bool)lTaskManagement.Core.Services.TaskService.GetFilteredAsync(TaskManagement.Core.DTOs.TaskFilterDto, int, bool)€
+(TaskManagement.Core.Services.UserServiceobject+TaskManagement.Core.Interfaces.IUserService£
+;UserService(TaskManagement.Core.Interfaces.IUserRepository)dTaskManagement.Core.Services.UserService.UserService(TaskManagement.Core.Interfaces.IUserRepository)Ö
+,CreateAsync(TaskManagement.Core.Models.User)UTaskManagement.Core.Services.UserService.CreateAsync(TaskManagement.Core.Models.User)O
+GetByIdAsync(int):TaskManagement.Core.Services.UserService.GetByIdAsync(int)[
+GetByEmailAsync(string)@TaskManagement.Core.Services.UserService.GetByEmailAsync(string)G
+GetAllAsync()6TaskManagement.Core.Services.UserService.GetAllAsync()Ö
+,UpdateAsync(TaskManagement.Core.Models.User)UTaskManagement.Core.Services.UserService.UpdateAsync(TaskManagement.Core.Models.User)M
+DeleteAsync(int)9TaskManagement.Core.Services.UserService.DeleteAsync(int)

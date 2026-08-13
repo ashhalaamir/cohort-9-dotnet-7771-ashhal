@@ -1,0 +1,7 @@
+organization=ashhalaamir
+projectKey=cohort-9-dotnet-7771-ashhal
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.101232
+dashboardUrl=https://sonarcloud.io/dashboard?id=cohort-9-dotnet-7771-ashhal
+ceTaskId=AZ_wlicPvIVvQDdHfUXa
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZ_wlicPvIVvQDdHfUXa

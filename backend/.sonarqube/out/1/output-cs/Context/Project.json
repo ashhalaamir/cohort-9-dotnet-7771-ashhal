@@ -1,0 +1,7 @@
+{
+  "language": "C#",
+  "targetFramework": "net8.0",
+  "assemblyName": "TaskManagement.Infrastructure",
+  "projectType": "Product",
+  "projectPath": "C:\\IBA\\10Pearls Internship\\cohort-9-dotnet-7771-ashhal\\backend\\TaskManagement.Infrastructure\\TaskManagement.Infrastructure.csproj"
+}

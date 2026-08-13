@@ -1,0 +1,216 @@
+1
+Programobject
+	Program()Program.Program()ï
+'TaskManagement.API.DTOs.AuthResponseDtoobjectN
+AuthResponseDto()9TaskManagement.API.DTOs.AuthResponseDto.AuthResponseDto()8
+Id.get.TaskManagement.API.DTOs.AuthResponseDto.Id.get8
+Id.set.TaskManagement.API.DTOs.AuthResponseDto.Id.setD
+Username.get4TaskManagement.API.DTOs.AuthResponseDto.Username.getD
+Username.set4TaskManagement.API.DTOs.AuthResponseDto.Username.set>
+	Email.get1TaskManagement.API.DTOs.AuthResponseDto.Email.get>
+	Email.set1TaskManagement.API.DTOs.AuthResponseDto.Email.set<
+Role.get0TaskManagement.API.DTOs.AuthResponseDto.Role.get<
+Role.set0TaskManagement.API.DTOs.AuthResponseDto.Role.set>
+	Token.get1TaskManagement.API.DTOs.AuthResponseDto.Token.get>
+	Token.set1TaskManagement.API.DTOs.AuthResponseDto.Token.setJ
+TokenExpiry.get7TaskManagement.API.DTOs.AuthResponseDto.TokenExpiry.getJ
+TokenExpiry.set7TaskManagement.API.DTOs.AuthResponseDto.TokenExpiry.setù
+%TaskManagement.API.DTOs.CreateTaskDtoobjectH
+CreateTaskDto()5TaskManagement.API.DTOs.CreateTaskDto.CreateTaskDto()<
+	Title.get/TaskManagement.API.DTOs.CreateTaskDto.Title.get<
+	Title.set/TaskManagement.API.DTOs.CreateTaskDto.Title.setH
+Description.get5TaskManagement.API.DTOs.CreateTaskDto.Description.getH
+Description.set5TaskManagement.API.DTOs.CreateTaskDto.Description.set>
+
+Status.get0TaskManagement.API.DTOs.CreateTaskDto.Status.get>
+
+Status.set0TaskManagement.API.DTOs.CreateTaskDto.Status.setB
+Priority.get2TaskManagement.API.DTOs.CreateTaskDto.Priority.getB
+Priority.set2TaskManagement.API.DTOs.CreateTaskDto.Priority.setB
+Category.get2TaskManagement.API.DTOs.CreateTaskDto.Category.getB
+Category.set2TaskManagement.API.DTOs.CreateTaskDto.Category.set@
+DueDate.get1TaskManagement.API.DTOs.CreateTaskDto.DueDate.get@
+DueDate.set1TaskManagement.API.DTOs.CreateTaskDto.DueDate.set≠
+2TaskManagement.API.Controllers.DashboardController'Microsoft.AspNetCore.Mvc.ControllerBaseobjectÌ
+öDashboardController(TaskManagement.Core.Interfaces.ITaskService, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Controllers.DashboardController>)ÕTaskManagement.API.Controllers.DashboardController.DashboardController(TaskManagement.Core.Interfaces.ITaskService, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Controllers.DashboardController>)W
+GetCurrentUser()CTaskManagement.API.Controllers.DashboardController.GetCurrentUser()K
+
+GetStats()=TaskManagement.API.Controllers.DashboardController.GetStats()U
+GetAdminStats()BTaskManagement.API.Controllers.DashboardController.GetAdminStats()Y
+GetUserStats(int)DTaskManagement.API.Controllers.DashboardController.GetUserStats(int)ô
+-TaskManagement.API.Controllers.AuthController'Microsoft.AspNetCore.Mvc.ControllerBaseobject§
+∏AuthController(TaskManagement.Core.Interfaces.IAuthService, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Controllers.AuthController>, TaskManagement.Core.Models.JwtSettings)ÊTaskManagement.API.Controllers.AuthController.AuthController(TaskManagement.Core.Interfaces.IAuthService, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Controllers.AuthController>, TaskManagement.Core.Models.JwtSettings)å
+-Register(TaskManagement.API.DTOs.RegisterDto)[TaskManagement.API.Controllers.AuthController.Register(TaskManagement.API.DTOs.RegisterDto)Ä
+'Login(TaskManagement.API.DTOs.LoginDto)UTaskManagement.API.Controllers.AuthController.Login(TaskManagement.API.DTOs.LoginDto)Ÿ
+)TaskManagement.API.DTOs.DashboardStatsDtoobjectT
+DashboardStatsDto()=TaskManagement.API.DTOs.DashboardStatsDto.DashboardStatsDto()J
+TotalTasks.get8TaskManagement.API.DTOs.DashboardStatsDto.TotalTasks.getJ
+TotalTasks.set8TaskManagement.API.DTOs.DashboardStatsDto.TotalTasks.setH
+Completed.get7TaskManagement.API.DTOs.DashboardStatsDto.Completed.getH
+Completed.set7TaskManagement.API.DTOs.DashboardStatsDto.Completed.setJ
+InProgress.get8TaskManagement.API.DTOs.DashboardStatsDto.InProgress.getJ
+InProgress.set8TaskManagement.API.DTOs.DashboardStatsDto.InProgress.setD
+Pending.get5TaskManagement.API.DTOs.DashboardStatsDto.Pending.getD
+Pending.set5TaskManagement.API.DTOs.DashboardStatsDto.Pending.set‰
+.TaskManagement.API.Controllers.TasksController'Microsoft.AspNetCore.Mvc.ControllerBaseobjectπ
+¬TasksController(TaskManagement.Core.Interfaces.ITaskService, TaskManagement.Core.Interfaces.IUserRepository, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Controllers.TasksController>)ÒTaskManagement.API.Controllers.TasksController.TasksController(TaskManagement.Core.Interfaces.ITaskService, TaskManagement.Core.Interfaces.IUserRepository, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Controllers.TasksController>)I
+GetUserId():TaskManagement.API.Controllers.TasksController.GetUserId()E
+	IsAdmin()8TaskManagement.API.Controllers.TasksController.IsAdmin()S
+GetCurrentUser()?TaskManagement.API.Controllers.TasksController.GetCurrentUser()ç
+-GetAll(TaskManagement.API.DTOs.TaskFilterDto)\TaskManagement.API.Controllers.TasksController.GetAll(TaskManagement.API.DTOs.TaskFilterDto)K
+GetById(int);TaskManagement.API.Controllers.TasksController.GetById(int)ç
+-Create(TaskManagement.API.DTOs.CreateTaskDto)\TaskManagement.API.Controllers.TasksController.Create(TaskManagement.API.DTOs.CreateTaskDto)ó
+2Update(int, TaskManagement.API.DTOs.UpdateTaskDto)aTaskManagement.API.Controllers.TasksController.Update(int, TaskManagement.API.DTOs.UpdateTaskDto)I
+Delete(int):TaskManagement.API.Controllers.TasksController.Delete(int)ã
+,Assign(int, TaskManagement.API.DTOs.TaskDto)[TaskManagement.API.Controllers.TasksController.Assign(int, TaskManagement.API.DTOs.TaskDto)’
+ TaskManagement.API.DTOs.LoginDtoobject9
+
+LoginDto()+TaskManagement.API.DTOs.LoginDto.LoginDto()7
+	Email.get*TaskManagement.API.DTOs.LoginDto.Email.get7
+	Email.set*TaskManagement.API.DTOs.LoginDto.Email.set=
+Password.get-TaskManagement.API.DTOs.LoginDto.Password.get=
+Password.set-TaskManagement.API.DTOs.LoginDto.Password.setÏ
+1TaskManagement.API.Middleware.ExceptionMiddlewareobject 
+…ExceptionMiddleware(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Middleware.ExceptionMiddleware>, Microsoft.AspNetCore.Hosting.IWebHostEnvironment)˚TaskManagement.API.Middleware.ExceptionMiddleware.ExceptionMiddleware(Microsoft.AspNetCore.Http.RequestDelegate, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Middleware.ExceptionMiddleware>, Microsoft.AspNetCore.Hosting.IWebHostEnvironment)ö
+2InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)dTaskManagement.API.Middleware.ExceptionMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext)–
+MHandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext, System.Exception)TaskManagement.API.Middleware.ExceptionMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext, System.Exception)r
+MapException(System.Exception)PTaskManagement.API.Middleware.ExceptionMiddleware.MapException(System.Exception)Ÿ
++TaskManagement.API.Middleware.ErrorResponseobjectN
+ErrorResponse();TaskManagement.API.Middleware.ErrorResponse.ErrorResponse()L
+StatusCode.get:TaskManagement.API.Middleware.ErrorResponse.StatusCode.getL
+StatusCode.set:TaskManagement.API.Middleware.ErrorResponse.StatusCode.setF
+Message.get7TaskManagement.API.Middleware.ErrorResponse.Message.getF
+Message.set7TaskManagement.API.Middleware.ErrorResponse.Message.setJ
+Timestamp.get9TaskManagement.API.Middleware.ErrorResponse.Timestamp.getJ
+Timestamp.set9TaskManagement.API.Middleware.ErrorResponse.Timestamp.setF
+Details.get7TaskManagement.API.Middleware.ErrorResponse.Details.getF
+Details.set7TaskManagement.API.Middleware.ErrorResponse.Details.setΩ
+0TaskManagement.API.Validation.NotInPastAttribute9System.ComponentModel.DataAnnotations.ValidationAttributeSystem.Attributeobject]
+NotInPastAttribute()ETaskManagement.API.Validation.NotInPastAttribute.NotInPastAttribute()U
+IsValid(object?)ATaskManagement.API.Validation.NotInPastAttribute.IsValid(object?)Ò
+#TaskManagement.API.DTOs.RegisterDtoobjectB
+RegisterDto()1TaskManagement.API.DTOs.RegisterDto.RegisterDto()@
+Username.get0TaskManagement.API.DTOs.RegisterDto.Username.get@
+Username.set0TaskManagement.API.DTOs.RegisterDto.Username.set:
+	Email.get-TaskManagement.API.DTOs.RegisterDto.Email.get:
+	Email.set-TaskManagement.API.DTOs.RegisterDto.Email.set@
+Password.get0TaskManagement.API.DTOs.RegisterDto.Password.get@
+Password.set0TaskManagement.API.DTOs.RegisterDto.Password.setï
+
+TaskManagement.API.DTOs.TaskDtoobject6
+	TaskDto())TaskManagement.API.DTOs.TaskDto.TaskDto()0
+Id.get&TaskManagement.API.DTOs.TaskDto.Id.get0
+Id.set&TaskManagement.API.DTOs.TaskDto.Id.set6
+	Title.get)TaskManagement.API.DTOs.TaskDto.Title.get6
+	Title.set)TaskManagement.API.DTOs.TaskDto.Title.setB
+Description.get/TaskManagement.API.DTOs.TaskDto.Description.getB
+Description.set/TaskManagement.API.DTOs.TaskDto.Description.set8
+
+Status.get*TaskManagement.API.DTOs.TaskDto.Status.get8
+
+Status.set*TaskManagement.API.DTOs.TaskDto.Status.set<
+Priority.get,TaskManagement.API.DTOs.TaskDto.Priority.get<
+Priority.set,TaskManagement.API.DTOs.TaskDto.Priority.set<
+Category.get,TaskManagement.API.DTOs.TaskDto.Category.get<
+Category.set,TaskManagement.API.DTOs.TaskDto.Category.set:
+DueDate.get+TaskManagement.API.DTOs.TaskDto.DueDate.get:
+DueDate.set+TaskManagement.API.DTOs.TaskDto.DueDate.set8
+
+UserId.get*TaskManagement.API.DTOs.TaskDto.UserId.get8
+
+UserId.set*TaskManagement.API.DTOs.TaskDto.UserId.set>
+CreatedAt.get-TaskManagement.API.DTOs.TaskDto.CreatedAt.get>
+CreatedAt.set-TaskManagement.API.DTOs.TaskDto.CreatedAt.set>
+UpdatedAt.get-TaskManagement.API.DTOs.TaskDto.UpdatedAt.get>
+UpdatedAt.set-TaskManagement.API.DTOs.TaskDto.UpdatedAt.setµ	
+%TaskManagement.API.DTOs.TaskFilterDtoobjectH
+TaskFilterDto()5TaskManagement.API.DTOs.TaskFilterDto.TaskFilterDto()>
+
+Status.get0TaskManagement.API.DTOs.TaskFilterDto.Status.get>
+
+Status.set0TaskManagement.API.DTOs.TaskFilterDto.Status.setB
+Priority.get2TaskManagement.API.DTOs.TaskFilterDto.Priority.getB
+Priority.set2TaskManagement.API.DTOs.TaskFilterDto.Priority.setB
+Category.get2TaskManagement.API.DTOs.TaskFilterDto.Category.getB
+Category.set2TaskManagement.API.DTOs.TaskFilterDto.Category.set>
+
+Search.get0TaskManagement.API.DTOs.TaskFilterDto.Search.get>
+
+Search.set0TaskManagement.API.DTOs.TaskFilterDto.Search.setH
+DueDateFrom.get5TaskManagement.API.DTOs.TaskFilterDto.DueDateFrom.getH
+DueDateFrom.set5TaskManagement.API.DTOs.TaskFilterDto.DueDateFrom.setD
+DueDateTo.get3TaskManagement.API.DTOs.TaskFilterDto.DueDateTo.getD
+DueDateTo.set3TaskManagement.API.DTOs.TaskFilterDto.DueDateTo.set>
+
+SortBy.get0TaskManagement.API.DTOs.TaskFilterDto.SortBy.get>
+
+SortBy.set0TaskManagement.API.DTOs.TaskFilterDto.SortBy.setD
+SortOrder.get3TaskManagement.API.DTOs.TaskFilterDto.SortOrder.getD
+SortOrder.set3TaskManagement.API.DTOs.TaskFilterDto.SortOrder.setï
+(TaskManagement.API.DTOs.UpdateProfileDtoobjectQ
+UpdateProfileDto();TaskManagement.API.DTOs.UpdateProfileDto.UpdateProfileDto()E
+Username.get5TaskManagement.API.DTOs.UpdateProfileDto.Username.getE
+Username.set5TaskManagement.API.DTOs.UpdateProfileDto.Username.set?
+	Email.get2TaskManagement.API.DTOs.UpdateProfileDto.Email.get?
+	Email.set2TaskManagement.API.DTOs.UpdateProfileDto.Email.set·
+'TaskManagement.API.DTOs.TaskResponseDtoobjectN
+TaskResponseDto()9TaskManagement.API.DTOs.TaskResponseDto.TaskResponseDto()8
+Id.get.TaskManagement.API.DTOs.TaskResponseDto.Id.get8
+Id.set.TaskManagement.API.DTOs.TaskResponseDto.Id.set>
+	Title.get1TaskManagement.API.DTOs.TaskResponseDto.Title.get>
+	Title.set1TaskManagement.API.DTOs.TaskResponseDto.Title.setJ
+Description.get7TaskManagement.API.DTOs.TaskResponseDto.Description.getJ
+Description.set7TaskManagement.API.DTOs.TaskResponseDto.Description.set@
+
+Status.get2TaskManagement.API.DTOs.TaskResponseDto.Status.get@
+
+Status.set2TaskManagement.API.DTOs.TaskResponseDto.Status.setD
+Priority.get4TaskManagement.API.DTOs.TaskResponseDto.Priority.getD
+Priority.set4TaskManagement.API.DTOs.TaskResponseDto.Priority.setD
+Category.get4TaskManagement.API.DTOs.TaskResponseDto.Category.getD
+Category.set4TaskManagement.API.DTOs.TaskResponseDto.Category.setB
+DueDate.get3TaskManagement.API.DTOs.TaskResponseDto.DueDate.getB
+DueDate.set3TaskManagement.API.DTOs.TaskResponseDto.DueDate.set@
+
+UserId.get2TaskManagement.API.DTOs.TaskResponseDto.UserId.get@
+
+UserId.set2TaskManagement.API.DTOs.TaskResponseDto.UserId.setD
+UserName.get4TaskManagement.API.DTOs.TaskResponseDto.UserName.getD
+UserName.set4TaskManagement.API.DTOs.TaskResponseDto.UserName.setF
+CreatedAt.get5TaskManagement.API.DTOs.TaskResponseDto.CreatedAt.getF
+CreatedAt.set5TaskManagement.API.DTOs.TaskResponseDto.CreatedAt.setF
+UpdatedAt.get5TaskManagement.API.DTOs.TaskResponseDto.UpdatedAt.getF
+UpdatedAt.set5TaskManagement.API.DTOs.TaskResponseDto.UpdatedAt.setù
+%TaskManagement.API.DTOs.UpdateTaskDtoobjectH
+UpdateTaskDto()5TaskManagement.API.DTOs.UpdateTaskDto.UpdateTaskDto()<
+	Title.get/TaskManagement.API.DTOs.UpdateTaskDto.Title.get<
+	Title.set/TaskManagement.API.DTOs.UpdateTaskDto.Title.setH
+Description.get5TaskManagement.API.DTOs.UpdateTaskDto.Description.getH
+Description.set5TaskManagement.API.DTOs.UpdateTaskDto.Description.set>
+
+Status.get0TaskManagement.API.DTOs.UpdateTaskDto.Status.get>
+
+Status.set0TaskManagement.API.DTOs.UpdateTaskDto.Status.setB
+Priority.get2TaskManagement.API.DTOs.UpdateTaskDto.Priority.getB
+Priority.set2TaskManagement.API.DTOs.UpdateTaskDto.Priority.setB
+Category.get2TaskManagement.API.DTOs.UpdateTaskDto.Category.getB
+Category.set2TaskManagement.API.DTOs.UpdateTaskDto.Category.set@
+DueDate.get1TaskManagement.API.DTOs.UpdateTaskDto.DueDate.get@
+DueDate.set1TaskManagement.API.DTOs.UpdateTaskDto.DueDate.setˇ
+&TaskManagement.API.DTOs.UserProfileDtoobjectK
+UserProfileDto()7TaskManagement.API.DTOs.UserProfileDto.UserProfileDto()7
+Id.get-TaskManagement.API.DTOs.UserProfileDto.Id.get7
+Id.set-TaskManagement.API.DTOs.UserProfileDto.Id.setC
+Username.get3TaskManagement.API.DTOs.UserProfileDto.Username.getC
+Username.set3TaskManagement.API.DTOs.UserProfileDto.Username.set=
+	Email.get0TaskManagement.API.DTOs.UserProfileDto.Email.get=
+	Email.set0TaskManagement.API.DTOs.UserProfileDto.Email.set;
+Role.get/TaskManagement.API.DTOs.UserProfileDto.Role.get;
+Role.set/TaskManagement.API.DTOs.UserProfileDto.Role.setE
+CreatedAt.get4TaskManagement.API.DTOs.UserProfileDto.CreatedAt.getE
+CreatedAt.set4TaskManagement.API.DTOs.UserProfileDto.CreatedAt.setá
+.TaskManagement.API.Controllers.UsersController'Microsoft.AspNetCore.Mvc.ControllerBaseobjectŸ
+íUsersController(TaskManagement.Core.Interfaces.IUserService, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Controllers.UsersController>)¡TaskManagement.API.Controllers.UsersController.UsersController(TaskManagement.Core.Interfaces.IUserService, Microsoft.Extensions.Logging.ILogger<TaskManagement.API.Controllers.UsersController>)W
+GetCurrentUserId()ATaskManagement.API.Controllers.UsersController.GetCurrentUserId()K
+GetProfile();TaskManagement.API.Controllers.UsersController.GetProfile()°
+7UpdateProfile(TaskManagement.API.DTOs.UpdateProfileDto)fTaskManagement.API.Controllers.UsersController.UpdateProfile(TaskManagement.API.DTOs.UpdateProfileDto)

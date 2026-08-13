@@ -1,0 +1,23 @@
+§
+òC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\obj\Debug\net8.0\TaskManagement.API.MvcApplicationPartsAssemblyInfo.csutf-8ë
+ÖC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\obj\Debug\net8.0\TaskManagement.API.AssemblyInfo.csutf-8{
+rC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\Validation\NotInPastAttribute.csutf-8ù
+ëC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.csutf-8ì
+áC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\obj\Debug\net8.0\TaskManagement.API.GlobalUsings.g.csutf-8e
+\C:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\Program.csutf-8|
+sC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\Middleware\ExceptionMiddleware.csutf-8q
+hC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\UserProfileDto.csutf-8p
+gC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\UpdateTaskDto.csutf-8s
+jC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\UpdateProfileDto.csutf-8r
+iC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\TaskResponseDto.csutf-8p
+gC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\TaskFilterDto.csutf-8j
+aC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\TaskDto.csutf-8n
+eC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\RegisterDto.csutf-8k
+bC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\LoginDto.csutf-8t
+kC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\DashboardStatsDto.csutf-8p
+gC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\CreateTaskDto.csutf-8r
+iC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\DTOs\AuthResponseDto.csutf-8y
+pC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\Controllers\UsersController.csutf-8y
+pC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\Controllers\TasksController.csutf-8}
+tC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\Controllers\DashboardController.csutf-8x
+oC:\IBA\10Pearls Internship\cohort-9-dotnet-7771-ashhal\backend\TaskManagement.API\Controllers\AuthController.csutf-8

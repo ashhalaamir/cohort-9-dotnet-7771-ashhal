@@ -1,0 +1,38 @@
+i
+$TaskManagement.Infrastructure.Class1object9
+Class1()-TaskManagement.Infrastructure.Class1.Class1()Ö
+=TaskManagement.Infrastructure.Data.DesignTimeDbContextFactoryobjectJMicrosoft.EntityFrameworkCore.Design.IDesignTimeDbContextFactory<TContext>t
+CreateDbContext(string[])WTaskManagement.Infrastructure.Data.DesignTimeDbContextFactory.CreateDbContext(string[])z
+DesignTimeDbContextFactory()ZTaskManagement.Infrastructure.Data.DesignTimeDbContextFactory.DesignTimeDbContextFactory()ˇ
+9TaskManagement.Infrastructure.Repositories.UserRepositoryobject.TaskManagement.Core.Interfaces.IUserRepositoryÕ
+GUserRepository(TaskManagement.Infrastructure.Data.ApplicationDbContext)ÅTaskManagement.Infrastructure.Repositories.UserRepository.UserRepository(TaskManagement.Infrastructure.Data.ApplicationDbContext)ñ
+,CreateAsync(TaskManagement.Core.Models.User)fTaskManagement.Infrastructure.Repositories.UserRepository.CreateAsync(TaskManagement.Core.Models.User)`
+GetByIdAsync(int)KTaskManagement.Infrastructure.Repositories.UserRepository.GetByIdAsync(int)l
+GetByEmailAsync(string)QTaskManagement.Infrastructure.Repositories.UserRepository.GetByEmailAsync(string)X
+GetAllAsync()GTaskManagement.Infrastructure.Repositories.UserRepository.GetAllAsync()ñ
+,UpdateAsync(TaskManagement.Core.Models.User)fTaskManagement.Infrastructure.Repositories.UserRepository.UpdateAsync(TaskManagement.Core.Models.User)^
+DeleteAsync(int)JTaskManagement.Infrastructure.Repositories.UserRepository.DeleteAsync(int)Á
+JTaskManagement.Infrastructure.Migrations.ApplicationDbContextModelSnapshot:Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshotobjectº
+6BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)ÅTaskManagement.Infrastructure.Migrations.ApplicationDbContextModelSnapshot.BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)ï
+#ApplicationDbContextModelSnapshot()nTaskManagement.Infrastructure.Migrations.ApplicationDbContextModelSnapshot.ApplicationDbContextModelSnapshot()¬	
+9TaskManagement.Infrastructure.Repositories.TaskRepositoryobject.TaskManagement.Core.Interfaces.ITaskRepositoryÕ
+GTaskRepository(TaskManagement.Infrastructure.Data.ApplicationDbContext)ÅTaskManagement.Infrastructure.Repositories.TaskRepository.TaskRepository(TaskManagement.Infrastructure.Data.ApplicationDbContext)ñ
+,CreateAsync(TaskManagement.Core.Models.Task)fTaskManagement.Infrastructure.Repositories.TaskRepository.CreateAsync(TaskManagement.Core.Models.Task)`
+GetByIdAsync(int)KTaskManagement.Infrastructure.Repositories.TaskRepository.GetByIdAsync(int)X
+GetAllAsync()GTaskManagement.Infrastructure.Repositories.TaskRepository.GetAllAsync()h
+GetByUserIdAsync(int)OTaskManagement.Infrastructure.Repositories.TaskRepository.GetByUserIdAsync(int)ñ
+,UpdateAsync(TaskManagement.Core.Models.Task)fTaskManagement.Infrastructure.Repositories.TaskRepository.UpdateAsync(TaskManagement.Core.Models.Task)^
+DeleteAsync(int)JTaskManagement.Infrastructure.Repositories.TaskRepository.DeleteAsync(int)ƒ
+CGetFilteredAsync(TaskManagement.Core.DTOs.TaskFilterDto, int, bool)}TaskManagement.Infrastructure.Repositories.TaskRepository.GetFilteredAsync(TaskManagement.Core.DTOs.TaskFilterDto, int, bool)˘
+6TaskManagement.Infrastructure.Migrations.InitialCreate2Microsoft.EntityFrameworkCore.Migrations.Migrationobjectµ
+=Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)tTaskManagement.Infrastructure.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)π
+?Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)vTaskManagement.Infrastructure.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)≥
+<BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)sTaskManagement.Infrastructure.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)Y
+InitialCreate()FTaskManagement.Infrastructure.Migrations.InitialCreate.InitialCreate()ô
+7TaskManagement.Infrastructure.Data.ApplicationDbContext'Microsoft.EntityFrameworkCore.DbContextobject∑
+}ApplicationDbContext(Microsoft.EntityFrameworkCore.DbContextOptions<TaskManagement.Infrastructure.Data.ApplicationDbContext>)µTaskManagement.Infrastructure.Data.ApplicationDbContext.ApplicationDbContext(Microsoft.EntityFrameworkCore.DbContextOptions<TaskManagement.Infrastructure.Data.ApplicationDbContext>)≤
+;OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)sTaskManagement.Infrastructure.Data.ApplicationDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)N
+	Users.getATaskManagement.Infrastructure.Data.ApplicationDbContext.Users.getN
+	Users.setATaskManagement.Infrastructure.Data.ApplicationDbContext.Users.setN
+	Tasks.getATaskManagement.Infrastructure.Data.ApplicationDbContext.Tasks.getN
+	Tasks.setATaskManagement.Infrastructure.Data.ApplicationDbContext.Tasks.set
