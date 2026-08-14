@@ -8,7 +8,7 @@ namespace TaskManagement.Infrastructure.Data
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+            : base(options ?? throw new ArgumentNullException(nameof(options)))
         {
         }
 
