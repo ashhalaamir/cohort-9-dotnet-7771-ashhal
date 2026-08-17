@@ -311,3 +311,85 @@ Error Number:208,State:1,Class:16
 2026-08-17 20:15:49.441 +05:00 [INF] Attempting user login.
 2026-08-17 20:15:50.300 +05:00 [INF] User logged in successfully.
 2026-08-17 20:15:50.308 +05:00 [INF] HTTP POST /api/auth/login responded 200 in 900.7794 ms
+2026-08-17 20:35:46.457 +05:00 [WRN] Failed to determine the https port for redirect.
+2026-08-17 20:35:47.756 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:35:47.803 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:35:53.106 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:35:53.109 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:35:56.205 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:35:56.205 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:35:56.206 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:35:56.207 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:35:56.357 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 9260.8824 ms
+2026-08-17 20:35:56.359 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 3258.2615 ms
+2026-08-17 20:35:56.359 +05:00 [INF] HTTP GET /api/tasks responded 200 in 3245.3533 ms
+2026-08-17 20:35:56.359 +05:00 [INF] HTTP GET /api/tasks responded 200 in 9260.8786 ms
+2026-08-17 20:35:56.362 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:35:56.363 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:35:56.430 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:35:56.430 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:35:56.437 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 78.2089 ms
+2026-08-17 20:35:56.446 +05:00 [INF] HTTP GET /api/tasks responded 200 in 85.1441 ms
+2026-08-17 20:36:36.841 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:36:36.855 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:36:36.888 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:36:36.917 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 76.9701 ms
+2026-08-17 20:36:36.935 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:36:36.950 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:36:36.973 +05:00 [INF] HTTP GET /api/tasks responded 200 in 119.5386 ms
+2026-08-17 20:36:36.976 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:36:36.984 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:36:37.007 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 73.1582 ms
+2026-08-17 20:36:37.030 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:36:37.049 +05:00 [INF] HTTP GET /api/tasks responded 200 in 65.9387 ms
+2026-08-17 20:42:09.632 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:42:09.657 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:42:09.665 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:42:09.695 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 65.6252 ms
+2026-08-17 20:42:09.716 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:42:09.723 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:42:09.743 +05:00 [INF] HTTP GET /api/tasks responded 200 in 87.2854 ms
+2026-08-17 20:42:09.756 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:42:09.779 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:42:09.789 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 73.0435 ms
+2026-08-17 20:42:09.810 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:42:09.820 +05:00 [INF] HTTP GET /api/tasks responded 200 in 65.8164 ms
+2026-08-17 20:44:01.644 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:44:01.669 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:44:01.742 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:44:01.798 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 155.1734 ms
+2026-08-17 20:44:01.818 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:44:01.837 +05:00 [INF] HTTP GET /api/tasks responded 200 in 168.3298 ms
+2026-08-17 20:44:05.995 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:44:06.024 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:44:06.035 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:44:06.054 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 59.6570 ms
+2026-08-17 20:44:06.086 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:44:06.095 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:44:06.132 +05:00 [INF] HTTP GET /api/tasks responded 200 in 100.7111 ms
+2026-08-17 20:44:06.145 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:44:06.179 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:44:06.180 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:44:06.198 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 117.1789 ms
+2026-08-17 20:44:06.207 +05:00 [INF] HTTP GET /api/tasks responded 200 in 67.1776 ms
+2026-08-17 20:47:56.062 +05:00 [INF] Attempting user login.
+2026-08-17 20:47:57.391 +05:00 [INF] User logged in successfully.
+2026-08-17 20:47:57.405 +05:00 [INF] HTTP POST /api/auth/login responded 200 in 1467.9608 ms
+2026-08-17 20:47:57.544 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:47:57.570 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:47:57.587 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:47:57.876 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 332.2966 ms
+2026-08-17 20:47:57.943 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:47:57.973 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:47:57.976 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:47:57.980 +05:00 [INF] HTTP GET /api/tasks responded 200 in 410.9436 ms
+2026-08-17 20:47:57.991 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 50.0225 ms
+2026-08-17 20:47:57.999 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:47:58.027 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:47:58.039 +05:00 [INF] HTTP GET /api/tasks responded 200 in 40.4635 ms
+2026-08-17 20:52:45.078 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-17 20:52:45.147 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-17 20:52:45.305 +05:00 [INF] User 1 fetched 0 tasks.
+2026-08-17 20:52:45.305 +05:00 [INF] User 1 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-17 20:52:45.310 +05:00 [INF] HTTP GET /api/tasks responded 200 in 164.1705 ms
+2026-08-17 20:52:45.313 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 234.9043 ms
