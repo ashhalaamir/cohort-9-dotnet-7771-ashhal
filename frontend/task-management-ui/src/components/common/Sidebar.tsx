@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { tasksApi } from '../../api/tasksApi';
 import { 
   LayoutDashboard, 
   ListTodo, 
@@ -8,8 +9,6 @@ import {
   LogOut, 
   Plus,
   Users,
-  Bell,
-  Settings
 } from 'lucide-react';
 
 interface NavItem {
@@ -23,19 +22,36 @@ const Sidebar: React.FC = () => {
   const { user, isAdmin, logout } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const [taskCount, setTaskCount] = useState(0);
+
+  useEffect(() => {
+    fetchTaskCount();
+  }, []);
+
+  const fetchTaskCount = async () => {
+    try {
+      const tasks = await tasksApi.getTasks();
+      setTaskCount(tasks.length);
+    } catch (error) {
+      console.error('Error fetching task count:', error);
+    }
+  };
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
+  const handleNewTask = () => {
+    navigate('/tasks/new');
+  };
+
   const navItems: NavItem[] = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
-    { icon: ListTodo, label: 'Tasks', path: '/tasks', count: 24 },
+    { icon: ListTodo, label: 'Tasks', path: '/tasks', count: taskCount },
     { icon: User, label: 'Profile', path: '/profile' },
   ];
 
-  // Add admin-only nav items
   if (isAdmin) {
     navItems.splice(2, 0, { icon: Users, label: 'Team', path: '/team' });
   }
@@ -74,7 +90,7 @@ const Sidebar: React.FC = () => {
           >
             <item.icon className="w-[17px] h-[17px] opacity-85 flex-shrink-0" />
             <span>{item.label}</span>
-            {item.count && (
+            {item.count !== undefined && item.count > 0 && (
               <span className={`ml-auto font-mono text-[10.5px] px-1.5 py-0.5 rounded-full ${
                 isActive(item.path)
                   ? 'bg-white/20 text-white'
@@ -102,7 +118,10 @@ const Sidebar: React.FC = () => {
       </nav>
 
       {/* New Task CTA */}
-      <button className="mt-4 mx-1 flex items-center justify-center gap-2 bg-white text-[#372F9E] font-semibold text-[13px] py-2.5 rounded-lg shadow-lg shadow-black/30 hover:bg-gray-100 transition">
+      <button 
+        onClick={handleNewTask}
+        className="mt-4 mx-1 flex items-center justify-center gap-2 bg-white text-[#372F9E] font-semibold text-[13px] py-2.5 rounded-lg shadow-lg shadow-black/30 hover:bg-gray-100 transition"
+      >
         <Plus className="w-[15px] h-[15px]" />
         <span>New task</span>
       </button>

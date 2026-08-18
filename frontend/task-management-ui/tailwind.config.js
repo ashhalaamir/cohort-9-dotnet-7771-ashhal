@@ -6,6 +6,14 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        // 🔥 Base font - Inter
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        // 🔥 Display font - Sora
+        display: ['Sora', 'sans-serif'],
+        // 🔥 Mono font - JetBrains Mono
+        mono: ['JetBrains Mono', 'monospace'],
+      },
       colors: {
         primary: {
           50: '#eff6ff',
@@ -22,5 +30,7 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }

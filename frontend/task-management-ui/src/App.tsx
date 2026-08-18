@@ -6,6 +6,10 @@ import MainLayout from './components/layout/MainLayout';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
+import TaskList from './components/tasks/TaskList';
+import TaskDetail from './components/tasks/TaskDetail';
+import TaskForm from './components/tasks/TaskForm';
+import UserProfile from './components/profile/UserProfile';
 import './index.css';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -28,9 +32,11 @@ function AppRoutes() {
   return (
     <Router>
       <Routes>
+        {/* Auth Routes - No Layout */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         
+        {/* Protected Routes - With MainLayout */}
         <Route path="/" element={
           <ProtectedRoute>
             <Navigate to="/dashboard" replace />
@@ -48,10 +54,31 @@ function AppRoutes() {
         <Route path="/tasks" element={
           <ProtectedRoute>
             <MainLayout>
-              <div className="text-center py-20">
-                <h2 className="text-2xl font-bold">Tasks Page</h2>
-                <p className="text-gray-500 mt-2">Coming soon...</p>
-              </div>
+              <TaskList />
+            </MainLayout>
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/tasks/new" element={
+          <ProtectedRoute>
+            <MainLayout>
+              <TaskForm />
+            </MainLayout>
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/tasks/:id" element={
+          <ProtectedRoute>
+            <MainLayout>
+              <TaskDetail />
+            </MainLayout>
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/tasks/:id/edit" element={
+          <ProtectedRoute>
+            <MainLayout>
+              <TaskForm />
             </MainLayout>
           </ProtectedRoute>
         } />
@@ -59,10 +86,7 @@ function AppRoutes() {
         <Route path="/profile" element={
           <ProtectedRoute>
             <MainLayout>
-              <div className="text-center py-20">
-                <h2 className="text-2xl font-bold">Profile Page</h2>
-                <p className="text-gray-500 mt-2">Coming soon...</p>
-              </div>
+              <UserProfile />
             </MainLayout>
           </ProtectedRoute>
         } />
