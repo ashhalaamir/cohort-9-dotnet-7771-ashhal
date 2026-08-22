@@ -10,6 +10,7 @@ import TaskList from './components/tasks/TaskList';
 import TaskDetail from './components/tasks/TaskDetail';
 import TaskForm from './components/tasks/TaskForm';
 import UserProfile from './components/profile/UserProfile';
+import Team from './components/team/Team';
 import './index.css';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -87,6 +88,14 @@ function AppRoutes() {
           <ProtectedRoute>
             <MainLayout>
               <UserProfile />
+            </MainLayout>
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/team" element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Team />
             </MainLayout>
           </ProtectedRoute>
         } />

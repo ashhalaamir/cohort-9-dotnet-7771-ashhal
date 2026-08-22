@@ -12,14 +12,17 @@ namespace TaskManagement.API.Controllers
     public class DashboardController : ControllerBase
     {
         private readonly ITaskService _taskService;
+        private readonly IUserService _userService;
         private readonly ILogger<DashboardController> _logger;
 
-        public DashboardController(ITaskService taskService, ILogger<DashboardController> logger)
+        public DashboardController(ITaskService taskService, IUserService userService, ILogger<DashboardController> logger)
         {
             ArgumentNullException.ThrowIfNull(taskService);
+            ArgumentNullException.ThrowIfNull(userService);
             ArgumentNullException.ThrowIfNull(logger);
 
             _taskService = taskService;
+            _userService = userService;
             _logger = logger;
         }
 
@@ -31,7 +34,6 @@ namespace TaskManagement.API.Controllers
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             var roleClaim = User.FindFirst(ClaimTypes.Role);
             
-            // 🔥 Reject missing or invalid identity claims
             if (userIdClaim == null || string.IsNullOrEmpty(userIdClaim.Value))
             {
                 _logger.LogWarning("User ID claim is missing or empty.");
@@ -53,7 +55,6 @@ namespace TaskManagement.API.Controllers
         // GET: api/dashboard/stats
         // Regular User: Gets stats for their own tasks
         // Admin: Gets stats for ALL tasks in the system
-        // 🔥 REMOVED: local catch block - ExceptionMiddleware handles it
         // ============================================================
         [HttpGet("stats")]
         public async Task<IActionResult> GetStats()
@@ -61,8 +62,8 @@ namespace TaskManagement.API.Controllers
             var (userId, isAdmin) = GetCurrentUser();
             _logger.LogInformation("User {UserId} (IsAdmin: {IsAdmin}) fetching dashboard stats", userId, isAdmin);
             
-            // Get tasks based on user role
-            var tasks = await _taskService.GetAllAsync(userId, isAdmin);
+            // 🔥 FIXED: If Admin, get ALL tasks (pass 0 as userId with isAdmin=true)
+            var tasks = await _taskService.GetAllAsync(isAdmin ? 0 : userId, isAdmin);
             
             var stats = new DashboardStatsDto
             {
@@ -81,7 +82,6 @@ namespace TaskManagement.API.Controllers
         // ============================================================
         // GET: api/dashboard/stats/admin
         // 🔥 ADMIN ONLY - Gets stats for ALL tasks
-        // 🔥 REMOVED: local catch block - ExceptionMiddleware handles it
         // ============================================================
         [Authorize(Roles = "Admin")]
         [HttpGet("stats/admin")]
@@ -90,7 +90,6 @@ namespace TaskManagement.API.Controllers
             var (adminUserId, _) = GetCurrentUser();
             _logger.LogInformation("Admin {AdminUserId} fetching full system stats", adminUserId);
             
-            // Get ALL tasks (admin view)
             var allTasks = await _taskService.GetAllAsync(0, true);
             
             var stats = new DashboardStatsDto
@@ -110,13 +109,11 @@ namespace TaskManagement.API.Controllers
         // ============================================================
         // GET: api/dashboard/stats/user/{userId}
         // 🔥 ADMIN ONLY - Get stats for a specific user
-        // 🔥 REMOVED: local catch block - ExceptionMiddleware handles it
         // ============================================================
         [Authorize(Roles = "Admin")]
         [HttpGet("stats/user/{userId}")]
         public async Task<IActionResult> GetUserStats(int userId)
         {
-            // 🔥 Validate userId parameter
             if (userId <= 0)
             {
                 _logger.LogWarning("Invalid userId parameter: {UserId}", userId);
@@ -126,7 +123,6 @@ namespace TaskManagement.API.Controllers
             var (adminUserId, _) = GetCurrentUser();
             _logger.LogInformation("Admin {AdminUserId} fetching stats for user {TargetUserId}", adminUserId, userId);
             
-            // Get tasks for specific user
             var userTasks = await _taskService.GetByUserIdAsync(userId, adminUserId, true);
             
             if (!userTasks.Any())
@@ -152,6 +148,38 @@ namespace TaskManagement.API.Controllers
                 userId, stats.TotalTasks, stats.Completed, stats.InProgress, stats.Pending);
             
             return Ok(stats);
+        }
+
+        // ============================================================
+        // 🔥 NEW: GET: api/dashboard/team
+        // ADMIN ONLY - Get team statistics for all users
+        // ============================================================
+        [Authorize(Roles = "Admin")]
+        [HttpGet("team")]
+        public async Task<IActionResult> GetTeamStats()
+        {
+            var (adminUserId, _) = GetCurrentUser();
+            _logger.LogInformation("Admin {AdminUserId} fetching team stats", adminUserId);
+            
+            var allUsers = await _userService.GetAllAsync();
+            var allTasks = await _taskService.GetAllAsync(0, true);
+            
+            var teamStats = allUsers.Select(u => new
+            {
+                UserId = u.Id,
+                Username = u.Username,
+                Email = u.Email,
+                TotalTasks = allTasks.Count(t => t.UserId == u.Id),
+                Completed = allTasks.Count(t => t.UserId == u.Id && t.Status == "Completed"),
+                Overdue = allTasks.Count(t => t.UserId == u.Id && t.DueDate < DateTime.UtcNow && t.Status != "Completed"),
+                CompletionRate = allTasks.Count(t => t.UserId == u.Id) > 0 
+                    ? Math.Round((double)allTasks.Count(t => t.UserId == u.Id && t.Status == "Completed") / allTasks.Count(t => t.UserId == u.Id) * 100, 1)
+                    : 0
+            });
+            
+            _logger.LogInformation("Admin {AdminUserId} fetched team stats for {UserCount} users", adminUserId, allUsers.Count());
+            
+            return Ok(teamStats);
         }
     }
 }

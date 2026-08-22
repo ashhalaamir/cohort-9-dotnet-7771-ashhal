@@ -7,7 +7,11 @@ namespace TaskManagement.Core.Interfaces
         /// <summary>
         /// Registers a new user
         /// </summary>
-        Task<User?> Register(string username, string email, string password);
+        /// <param name="username">The username</param>
+        /// <param name="email">The email address</param>
+        /// <param name="password">The password</param>
+        /// <param name="role">The role (Admin or RegularUser). Defaults to RegularUser.</param>
+        Task<User?> Register(string username, string email, string password, string role = "RegularUser");
 
         /// <summary>
         /// Logs in a user

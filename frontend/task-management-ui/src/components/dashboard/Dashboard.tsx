@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { dashboardApi } from '../../api/dashboardApi';
 import { tasksApi } from '../../api/tasksApi';
@@ -13,9 +14,9 @@ import {
   CheckCircle2, 
   Circle, 
   Plus,
+  AlertCircle
 } from 'lucide-react';
 
-// 🔥 Define the trend type
 type TrendDirection = 'up' | 'down' | 'flat';
 
 interface Trend {
@@ -24,6 +25,7 @@ interface Trend {
 }
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
   const { user, isAdmin } = useAuth();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [allTasks, setAllTasks] = useState<Task[]>([]);
@@ -38,7 +40,7 @@ const Dashboard: React.FC = () => {
   const fetchDashboardData = async () => {
     try {
       const [statsData, tasksData] = await Promise.all([
-        isAdmin ? dashboardApi.getAdminStats() : dashboardApi.getStats(),
+        dashboardApi.getStats(),
         tasksApi.getTasks(),
       ]);
       setStats(statsData);
@@ -52,7 +54,7 @@ const Dashboard: React.FC = () => {
   };
 
   // ============================================================
-  // 🔥 DYNAMIC CALCULATIONS WITH PROPER TYPES
+  // 🔥 DYNAMIC CALCULATIONS
   // ============================================================
 
   const getWeeklyChange = (tasks: Task[]): Trend => {
@@ -90,54 +92,6 @@ const Dashboard: React.FC = () => {
     const previousWeek = tasks.filter(t => {
       const date = new Date(t.updatedAt || t.createdAt);
       return t.status === 'Completed' && date >= fourteenDaysAgo && date < sevenDaysAgo;
-    }).length;
-
-    const change = recentWeek - previousWeek;
-    const direction: TrendDirection = change > 0 ? 'up' : change < 0 ? 'down' : 'flat';
-    const text = change === 0 
-      ? 'no change' 
-      : `${Math.abs(change)} since last week`;
-
-    return { direction, text };
-  };
-
-  const getInProgressWeeklyChange = (tasks: Task[]): Trend => {
-    const now = new Date();
-    const sevenDaysAgo = new Date(now);
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    const fourteenDaysAgo = new Date(now);
-    fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
-
-    const recentWeek = tasks.filter(t => 
-      t.status === 'InProgress' && new Date(t.updatedAt || t.createdAt) >= sevenDaysAgo
-    ).length;
-    const previousWeek = tasks.filter(t => {
-      const date = new Date(t.updatedAt || t.createdAt);
-      return t.status === 'InProgress' && date >= fourteenDaysAgo && date < sevenDaysAgo;
-    }).length;
-
-    const change = recentWeek - previousWeek;
-    const direction: TrendDirection = change > 0 ? 'up' : change < 0 ? 'down' : 'flat';
-    const text = change === 0 
-      ? 'no change' 
-      : `${Math.abs(change)} since last week`;
-
-    return { direction, text };
-  };
-
-  const getPendingWeeklyChange = (tasks: Task[]): Trend => {
-    const now = new Date();
-    const sevenDaysAgo = new Date(now);
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    const fourteenDaysAgo = new Date(now);
-    fourteenDaysAgo.setDate(fourteenDaysAgo.getDate() - 14);
-
-    const recentWeek = tasks.filter(t => 
-      t.status === 'Pending' && new Date(t.updatedAt || t.createdAt) >= sevenDaysAgo
-    ).length;
-    const previousWeek = tasks.filter(t => {
-      const date = new Date(t.updatedAt || t.createdAt);
-      return t.status === 'Pending' && date >= fourteenDaysAgo && date < sevenDaysAgo;
     }).length;
 
     const change = recentWeek - previousWeek;
@@ -192,11 +146,18 @@ const Dashboard: React.FC = () => {
   const priorityData = getPriorityData(allTasks);
   const filteredTasks = getFilteredTasks();
   
-  // 🔥 Dynamic trends
   const totalChange = getWeeklyChange(allTasks);
   const completedChange = getCompletedWeeklyChange(allTasks);
-  const inProgressChange = getInProgressWeeklyChange(allTasks);
-  const pendingChange = getPendingWeeklyChange(allTasks);
+
+  // Count active tasks (InProgress + Pending)
+  const activeTasks = allTasks.filter(t => t.status === 'InProgress' || t.status === 'Pending').length;
+  
+  // Count overdue tasks
+  const overdueTasks = allTasks.filter(t => {
+    const dueDate = new Date(t.dueDate);
+    const today = new Date();
+    return dueDate < today && t.status !== 'Completed';
+  }).length;
 
   return (
     <div className="space-y-5">
@@ -204,22 +165,29 @@ const Dashboard: React.FC = () => {
       <div className="flex items-start justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold font-['Sora'] tracking-tight">
-            Welcome back, {user?.username}
+            {isAdmin ? 'System Overview' : `Welcome back, ${user?.username}`}
           </h1>
           <p className="text-[15px] text-[#666B80] mt-1">
-            Here's what's on your plate today.
+            {isAdmin 
+              ? `${totalTasks} tasks across ${new Set(allTasks.map(t => t.userId)).size} users`
+              : `Here's what's on your plate today.`
+            }
           </p>
         </div>
-        <button className="flex items-center gap-2 bg-[#4F46E5] text-white px-5 py-3 rounded-xl font-semibold text-[14px] shadow-lg shadow-[#4F46E5]/30 hover:bg-[#372F9E] transition">
+        {/* 🔥 FIXED: New task button now navigates to /tasks/new */}
+        <button 
+          onClick={() => navigate('/tasks/new')}
+          className="flex items-center gap-2 bg-[#4F46E5] text-white px-5 py-3 rounded-xl font-semibold text-[14px] shadow-lg shadow-[#4F46E5]/30 hover:bg-[#372F9E] transition"
+        >
           <Plus className="w-4 h-4" />
           New task
         </button>
       </div>
 
-      {/* Stats Grid - Dynamic */}
+      {/* Stats Grid - Admin gets different stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard
-          title="My total tasks"
+          title={isAdmin ? "Total Tasks" : "My total tasks"}
           value={totalTasks}
           icon={LayoutDashboard}
           iconBg="bg-[#EEEDFC]"
@@ -228,22 +196,12 @@ const Dashboard: React.FC = () => {
           trend={totalTasks > 0 ? totalChange : undefined}
         />
         <StatsCard
-          title="Pending"
-          value={stats?.pending || 0}
-          icon={Circle}
-          iconBg="bg-[#FDF1DD]"
-          iconColor="text-[#E38B00]"
-          tag="#PEND"
-          trend={(stats?.pending || 0) > 0 ? pendingChange : undefined}
-        />
-        <StatsCard
-          title="In progress"
-          value={stats?.inProgress || 0}
+          title="Active Tasks"
+          value={activeTasks}
           icon={Clock}
           iconBg="bg-[#EEEDFC]"
           iconColor="text-[#4F46E5]"
-          tag="#PROG"
-          trend={(stats?.inProgress || 0) > 0 ? inProgressChange : undefined}
+          tag="#ACTIVE"
         />
         <StatsCard
           title="Completed"
@@ -253,6 +211,14 @@ const Dashboard: React.FC = () => {
           iconColor="text-[#0EA36B]"
           tag="#DONE"
           trend={(stats?.completed || 0) > 0 ? completedChange : undefined}
+        />
+        <StatsCard
+          title="Overdue"
+          value={overdueTasks}
+          icon={AlertCircle}
+          iconBg="bg-red-50"
+          iconColor="text-[#E5473A]"
+          tag="#OVERDUE"
         />
       </div>
 
@@ -284,9 +250,9 @@ const Dashboard: React.FC = () => {
         <div className="flex items-start justify-between mb-4 flex-wrap gap-2">
           <div>
             <h3 className="font-['Sora'] font-bold text-xl">Recent tasks</h3>
-            <p className="text-[13px] text-[#9A9EB0] font-mono">your latest activity</p>
+            <p className="text-[13px] text-[#9A9EB0] font-mono">latest activity</p>
           </div>
-          <a href="#" className="text-[13px] font-semibold text-[#4F46E5] hover:underline">View all →</a>
+          <a href="/tasks" className="text-[13px] font-semibold text-[#4F46E5] hover:underline">View all →</a>
         </div>
 
         {/* Filter Chips */}

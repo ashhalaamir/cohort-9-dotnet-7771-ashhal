@@ -32,6 +32,17 @@ const TaskForm: React.FC = () => {
 
   const fetchData = async () => {
     try {
+      // Fetch all users if admin
+      let allUsers: User[] = [];
+      if (isAdmin) {
+        try {
+          allUsers = await usersApi.getAllUsers();
+        } catch (err) {
+          console.error('Error fetching users:', err);
+        }
+        setUsers(allUsers);
+      }
+
       if (isEditMode && id) {
         const taskData = await tasksApi.getTaskById(Number(id));
         setTask(taskData);
@@ -47,11 +58,6 @@ const TaskForm: React.FC = () => {
         defaultDate.setDate(defaultDate.getDate() + 7);
         setDueDate(defaultDate.toISOString().split('T')[0]);
         setAssignToUserId(user?.id);
-      }
-
-      if (isAdmin) {
-        const usersData = await usersApi.getProfile();
-        setUsers(Array.isArray(usersData) ? usersData : []);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -275,11 +281,15 @@ const TaskForm: React.FC = () => {
                     paddingRight: '30px',
                   }}
                 >
-                  <option value={user?.id || ''}>Ashhal S. (you)</option>
-                  <option value={2}>Hina K.</option>
-                  <option value={3}>Moiz R.</option>
-                  <option value={4}>Zara B.</option>
-                  <option value={5}>Talha N.</option>
+                  {users.length > 0 ? (
+                    users.map((u) => (
+                      <option key={u.id} value={u.id}>
+                        {u.username} {u.id === user?.id ? '(you)' : ''}
+                      </option>
+                    ))
+                  ) : (
+                    <option value={user?.id || ''}>{user?.username || 'You'} (you)</option>
+                  )}
                 </select>
               ) : (
                 <div className="flex items-center gap-3 px-3 py-2.5 border border-dashed border-[#E4E6F0] rounded-xl bg-[#F5F6FA]">

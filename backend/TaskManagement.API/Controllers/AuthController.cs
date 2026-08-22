@@ -35,10 +35,12 @@ namespace TaskManagement.API.Controllers
 
             _logger.LogInformation("Attempting user registration.");
 
+            // 🔥 FIXED: Pass the role from the request
             var user = await _authService.Register(
                 request.Username,
                 request.Email,
-                request.Password
+                request.Password,
+                request.Role ?? "RegularUser"
             );
 
             if (user == null)

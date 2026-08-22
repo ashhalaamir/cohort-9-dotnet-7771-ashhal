@@ -16,7 +16,6 @@ namespace TaskManagement.API.Controllers
 
         public UsersController(IUserService userService, ILogger<UsersController> logger)
         {
-            // 🔥 FIXED: Validate injected dependencies
             ArgumentNullException.ThrowIfNull(userService);
             ArgumentNullException.ThrowIfNull(logger);
 
@@ -32,14 +31,12 @@ namespace TaskManagement.API.Controllers
         {
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
             
-            // 🔥 Reject missing identity claims
             if (userIdClaim == null || string.IsNullOrEmpty(userIdClaim.Value))
             {
                 _logger.LogWarning("User ID claim is missing or empty.");
                 throw new UnauthorizedAccessException("User identity is invalid.");
             }
 
-            // 🔥 Reject invalid identity claims (malformed or non-positive)
             if (!int.TryParse(userIdClaim.Value, out var userId) || userId <= 0)
             {
                 _logger.LogWarning("User ID claim has invalid value: {UserIdClaim}", userIdClaim.Value);
@@ -51,7 +48,6 @@ namespace TaskManagement.API.Controllers
 
         // ============================================================
         // GET: api/users/profile
-        // 🔥 Generic exception handling removed - Global middleware handles it
         // ============================================================
         [HttpGet("profile")]
         public async Task<IActionResult> GetProfile()
@@ -79,12 +75,10 @@ namespace TaskManagement.API.Controllers
 
         // ============================================================
         // PUT: api/users/profile
-        // 🔥 Generic exception handling removed - Global middleware handles it
         // ============================================================
         [HttpPut("profile")]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto request)
         {
-            // 🔥 Validate request
             if (request == null)
             {
                 _logger.LogWarning("Update profile request body is null");
@@ -102,14 +96,12 @@ namespace TaskManagement.API.Controllers
                 return NotFound(new { message = "User not found" });
             }
             
-            // 🔥 Validate at least one field is being updated
             if (string.IsNullOrEmpty(request.Username) && string.IsNullOrEmpty(request.Email))
             {
                 _logger.LogWarning("User {UserId} attempted update with no changes", userId);
                 return BadRequest(new { message = "At least one field (username or email) must be provided." });
             }
             
-            // Update fields
             if (!string.IsNullOrWhiteSpace(request.Username))
                 user.Username = request.Username;
             
@@ -130,6 +122,30 @@ namespace TaskManagement.API.Controllers
                 Role = updated.Role,
                 CreatedAt = updated.CreatedAt
             });
+        }
+
+        // ============================================================
+        // 🔥 NEW: GET: api/users/all
+        // Admin only - Get all users in the system
+        // ============================================================
+        [Authorize(Roles = "Admin")]
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            _logger.LogInformation("Admin fetching all users");
+            
+            var users = await _userService.GetAllAsync();
+            
+            var response = users.Select(u => new UserProfileDto
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Email = u.Email,
+                Role = u.Role,
+                CreatedAt = u.CreatedAt
+            });
+            
+            return Ok(response);
         }
     }
 }

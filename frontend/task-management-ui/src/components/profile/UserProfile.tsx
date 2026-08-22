@@ -4,15 +4,9 @@ import { usersApi } from '../../api/usersApi';
 import { tasksApi } from '../../api/tasksApi';
 import type { User } from '../../types';
 import { 
-  User as UserIcon, 
-  Mail, 
-  Calendar, 
   Shield, 
   LogOut,
   Edit,
-  CheckCircle2,
-  Clock,
-  Circle
 } from 'lucide-react';
 
 const UserProfile: React.FC = () => {
@@ -88,22 +82,31 @@ const UserProfile: React.FC = () => {
   }
 
   return (
-    <div className="space-y-5 w-full">
-      {/* Hero Section */}
-      <div className="bg-white border border-[#E4E6F0] rounded-xl p-6 relative overflow-hidden">
-        <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-[#7C74F0] opacity-10" />
+    // Profile is narrower than Dashboard/Tasks in the mockup — 1040px, not full width
+    <div className="space-y-5 w-full max-w-[1040px]">
+
+      {/* Hero Section — 20px radius (radius-l), the only screen that uses it;
+          everything else in the app uses 14px panels */}
+      <div className="bg-white border border-[#E4E6F0] rounded-[20px] p-6 relative overflow-hidden">
+        <div 
+          className="absolute -top-16 -right-16 w-56 h-56 rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #7C74F0 0%, transparent 70%)', opacity: 0.15 }}
+        />
         
         <div className="flex items-center gap-5 relative z-10 flex-wrap">
-          <div className="w-[76px] h-[76px] rounded-full bg-gradient-to-br from-[#8A83F5] to-[#4F46E5] flex items-center justify-center font-display font-bold text-[26px] text-white shadow-lg shadow-[#4F46E5]/40 flex-shrink-0">
+          <div 
+            className="w-[76px] h-[76px] rounded-full bg-gradient-to-br from-[#8A83F5] to-[#4F46E5] flex items-center justify-center font-['Sora'] font-bold text-[26px] text-white flex-shrink-0"
+            style={{ boxShadow: '0 12px 24px -10px rgba(79,70,229,0.55)' }}
+          >
             {getInitials(profile?.username || 'U')}
           </div>
           
           <div className="flex-1 min-w-[200px]">
             <div className="flex items-center gap-3 flex-wrap">
-              <span className="font-display text-[22px] font-bold tracking-tight">
+              <span className="font-['Sora'] text-[22px] font-bold tracking-[-0.01em]">
                 {profile?.username}
               </span>
-              <span className={`font-mono text-[10.5px] font-semibold px-2.5 py-1 rounded-full inline-flex items-center gap-1.5 ${
+              <span className={`font-mono text-[10.5px] font-semibold px-2.5 py-1 rounded-full inline-flex items-center gap-1.5 tracking-[0.03em] ${
                 isAdmin 
                   ? 'bg-[#FDEFD8] text-[#8A5300]' 
                   : 'bg-[#EEEDFC] text-[#372F9E]'
@@ -123,7 +126,8 @@ const UserProfile: React.FC = () => {
             {!isEditing ? (
               <button
                 onClick={() => setIsEditing(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-[#4F46E5] text-white rounded-xl font-semibold text-[13px] shadow-lg shadow-[#4F46E5]/30 hover:bg-[#372F9E] transition"
+                className="flex items-center gap-2 px-4 py-2.5 bg-[#4F46E5] text-white rounded-[10px] font-semibold text-[13px] hover:bg-[#372F9E] transition"
+                style={{ boxShadow: '0 10px 20px -8px rgba(79,70,229,0.55)' }}
               >
                 <Edit className="w-4 h-4" />
                 Edit profile
@@ -136,7 +140,7 @@ const UserProfile: React.FC = () => {
                   setEmail(profile?.email || '');
                   setMessage(null);
                 }}
-                className="px-4 py-2 text-[13px] font-semibold text-[#666B80] hover:bg-[#F5F6FA] rounded-xl transition"
+                className="px-4 py-2.5 text-[13px] font-semibold text-[#666B80] hover:bg-[#EFF0F7] rounded-[10px] transition"
               >
                 Cancel
               </button>
@@ -145,24 +149,24 @@ const UserProfile: React.FC = () => {
         </div>
       </div>
 
-      {/* Stats Strip */}
+      {/* Stats Strip — 14px radius (radius-m), not 12px */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white border border-[#E4E6F0] rounded-xl p-4">
-          <div className="font-display text-[24px] font-bold tracking-tight">
+        <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-4">
+          <div className="font-['Sora'] text-[24px] font-bold tracking-[-0.01em]">
             {taskCount}
           </div>
           <div className="text-[12px] text-[#666B80] mt-1">
             {isAdmin ? 'System-wide tasks' : 'My total tasks'}
           </div>
         </div>
-        <div className="bg-white border border-[#E4E6F0] rounded-xl p-4">
-          <div className="font-display text-[24px] font-bold tracking-tight">
+        <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-4">
+          <div className="font-['Sora'] text-[24px] font-bold tracking-[-0.01em]">
             {completedCount}
           </div>
           <div className="text-[12px] text-[#666B80] mt-1">Completed</div>
         </div>
-        <div className="bg-white border border-[#E4E6F0] rounded-xl p-4">
-          <div className="font-display text-[24px] font-bold tracking-tight">
+        <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-4">
+          <div className="font-['Sora'] text-[24px] font-bold tracking-[-0.01em]">
             {taskCount > 0 ? Math.round((completedCount / taskCount) * 100) : 0}%
           </div>
           <div className="text-[12px] text-[#666B80] mt-1">
@@ -174,19 +178,23 @@ const UserProfile: React.FC = () => {
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Account Details */}
-        <div className="bg-white border border-[#E4E6F0] rounded-xl p-5">
+        <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5">
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h3 className="font-['Sora'] font-bold text-[16px]">Account details</h3>
-              <p className="text-[11.5px] text-[#9A9EB0] font-mono">visible to you only</p>
+              {/* Panel headings are 14.5px in the mockup, not 16px —
+                  16px reads closer to a section header than a card title */}
+              <h3 className="font-['Sora'] font-bold text-[14.5px]">Account details</h3>
+              <p className="text-[11.5px] text-[#9A9EB0] font-mono mt-0.5">visible to you only</p>
             </div>
           </div>
 
           {message && (
-            <div className={`p-3 rounded-lg text-sm mb-4 ${
+            // Uses the app's actual danger tokens instead of Tailwind's default red-*,
+            // which reads slightly off next to the custom palette used everywhere else
+            <div className={`p-3 rounded-[10px] text-sm mb-4 ${
               message.type === 'success' 
                 ? 'bg-[#E4F8EE] text-[#086941]' 
-                : 'bg-red-50 text-red-700'
+                : 'bg-[#FCE9E7] text-[#E5473A]'
             }`}>
               {message.text}
             </div>
@@ -195,12 +203,12 @@ const UserProfile: React.FC = () => {
           {isEditing ? (
             <form onSubmit={handleUpdateProfile} className="space-y-4">
               <div>
-                <label className="block text-[13px] font-semibold mb-1.5">Username</label>
+                <label className="block text-[12.8px] font-semibold mb-[7px]">Username</label>
                 <input
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-3 py-2.5 border border-[#E4E6F0] rounded-xl text-[13.5px] focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEEDFC] outline-none transition"
+                  className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEEDFC] outline-none transition"
                   required
                   minLength={3}
                   maxLength={50}
@@ -208,23 +216,26 @@ const UserProfile: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-[13px] font-semibold mb-1.5">Email</label>
+                <label className="block text-[12.8px] font-semibold mb-[7px]">Email</label>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-2.5 border border-[#E4E6F0] rounded-xl text-[13.5px] focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEEDFC] outline-none transition"
+                  className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEEDFC] outline-none transition"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-[13px] font-semibold mb-1.5">Role</label>
+                <label className="block text-[12.8px] font-semibold mb-[7px]">Role</label>
+                {/* Disabled-field background now matches --surface-alt (#EFF0F7),
+                    the token used for every other disabled/readonly input in the app —
+                    #F5F6FA is the page background, not the disabled-input color */}
                 <input
                   type="text"
                   value={isAdmin ? 'Admin' : 'Regular User'}
                   disabled
-                  className="w-full px-3 py-2.5 border border-[#E4E6F0] rounded-xl text-[13.5px] bg-[#F5F6FA] text-[#666B80] cursor-not-allowed"
+                  className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] bg-[#EFF0F7] text-[#666B80] cursor-not-allowed"
                 />
                 <p className="text-[11px] text-[#9A9EB0] mt-1.5 flex items-center gap-1.5">
                   <Shield className="w-3.5 h-3.5" />
@@ -237,7 +248,8 @@ const UserProfile: React.FC = () => {
               <button
                 type="submit"
                 disabled={isSaving}
-                className="w-full flex items-center justify-center gap-2 py-2.5 bg-[#4F46E5] hover:bg-[#372F9E] text-white font-semibold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 py-2.5 bg-[#4F46E5] hover:bg-[#372F9E] text-white font-semibold rounded-[10px] transition disabled:opacity-50 disabled:cursor-not-allowed"
+                style={{ boxShadow: '0 10px 20px -8px rgba(79,70,229,0.55)' }}
               >
                 {isSaving ? 'Saving...' : 'Save changes'}
               </button>
@@ -262,61 +274,61 @@ const UserProfile: React.FC = () => {
 
         {/* Security & Quick Facts */}
         <div className="space-y-4">
-          <div className="bg-white border border-[#E4E6F0] rounded-xl p-5">
+          <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="font-['Sora'] font-bold text-[16px]">Security</h3>
-                <p className="text-[11.5px] text-[#9A9EB0] font-mono">password &amp; access</p>
+                <h3 className="font-['Sora'] font-bold text-[14.5px]">Security</h3>
+                <p className="text-[11.5px] text-[#9A9EB0] font-mono mt-0.5">password &amp; access</p>
               </div>
             </div>
             <div className="space-y-3">
               <div>
-                <label className="block text-[13px] font-semibold mb-1.5">Current password</label>
+                <label className="block text-[12.8px] font-semibold mb-[7px]">Current password</label>
                 <input
                   type="password"
                   value="••••••••••"
                   disabled
-                  className="w-full px-3 py-2.5 border border-[#E4E6F0] rounded-xl text-[13.5px] bg-[#F5F6FA] text-[#666B80] cursor-not-allowed"
+                  className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] bg-[#EFF0F7] text-[#666B80] cursor-not-allowed"
                 />
               </div>
               <div>
-                <label className="block text-[13px] font-semibold mb-1.5">New password</label>
+                <label className="block text-[12.8px] font-semibold mb-[7px]">New password</label>
                 <input
                   type="password"
                   placeholder="Enter a new password"
                   disabled
-                  className="w-full px-3 py-2.5 border border-[#E4E6F0] rounded-xl text-[13.5px] bg-[#F5F6FA] text-[#666B80] cursor-not-allowed"
+                  className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] bg-[#EFF0F7] text-[#666B80] cursor-not-allowed"
                 />
               </div>
               <button
                 disabled
-                className="w-full py-2.5 bg-[#E4E6F0] text-[#9A9EB0] font-semibold rounded-xl cursor-not-allowed"
+                className="w-full py-2.5 bg-[#EFF0F7] text-[#9A9EB0] font-semibold rounded-[10px] cursor-not-allowed text-[13.5px]"
               >
                 Update password (coming soon)
               </button>
             </div>
           </div>
 
-          <div className="bg-white border border-[#E4E6F0] rounded-xl p-5">
+          <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="font-['Sora'] font-bold text-[16px]">
+                <h3 className="font-['Sora'] font-bold text-[14.5px]">
                   {isAdmin ? 'Admin overview' : 'Quick facts'}
                 </h3>
               </div>
             </div>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center py-2 border-b border-[#E4E6F0] last:border-none">
+            <div>
+              <div className="flex justify-between items-center py-[11px] border-b border-[#E4E6F0]">
                 <span className="text-[12.5px] text-[#9A9EB0]">User ID</span>
                 <span className="font-mono text-[12.8px] font-semibold">USR-{String(profile?.id || '').padStart(4, '0')}</span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-[#E4E6F0] last:border-none">
+              <div className="flex justify-between items-center py-[11px] border-b border-[#E4E6F0]">
                 <span className="text-[12.5px] text-[#9A9EB0]">Last login</span>
                 <span className="font-mono text-[12.8px] font-semibold">
                   {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-[#E4E6F0] last:border-none">
+              <div className="flex justify-between items-center pt-[11px] last:border-none">
                 <span className="text-[12.5px] text-[#9A9EB0]">Permissions</span>
                 <span className="font-mono text-[12.8px] font-semibold">
                   {isAdmin ? 'Full system access' : 'Own tasks only'}
@@ -327,12 +339,12 @@ const UserProfile: React.FC = () => {
         </div>
       </div>
 
-      {/* Activity Heatmap */}
-      <div className="bg-white border border-[#E4E6F0] rounded-xl p-5">
+      {/* Activity Heatmap — already a near-exact match to the mockup, untouched */}
+      <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h3 className="font-['Sora'] font-bold text-[16px]">My activity</h3>
-            <p className="text-[11.5px] text-[#9A9EB0] font-mono">tasks completed, last 14 weeks</p>
+            <h3 className="font-['Sora'] font-bold text-[14.5px]">My activity</h3>
+            <p className="text-[11.5px] text-[#9A9EB0] font-mono mt-0.5">tasks completed, last 14 weeks</p>
           </div>
         </div>
         <div className="flex gap-3.5 items-start overflow-x-auto pb-1">
@@ -374,9 +386,11 @@ const UserProfile: React.FC = () => {
       </div>
 
       {/* Session / Logout */}
-      <div className="bg-white border border-[#E4E6F0] rounded-xl p-5 flex items-center justify-between gap-4 flex-wrap">
+      <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5 flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-3">
-          <div className="w-[38px] h-[38px] rounded-lg bg-red-50 text-[#E5473A] flex items-center justify-center flex-shrink-0">
+          {/* bg-[#FCE9E7] (danger-light token) instead of Tailwind's red-50 —
+              the Log out button below already used the correct hex, this just matches it */}
+          <div className="w-[38px] h-[38px] rounded-[10px] bg-[#FCE9E7] text-[#E5473A] flex items-center justify-center flex-shrink-0">
             <LogOut className="w-[18px] h-[18px]" />
           </div>
           <div>
@@ -386,7 +400,7 @@ const UserProfile: React.FC = () => {
         </div>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-2 px-4 py-2 border border-[#F6D3CF] text-[#E5473A] rounded-xl font-semibold text-[13px] hover:bg-[#FCE9E7] transition"
+          className="flex items-center gap-2 px-4 py-2.5 border border-[#F6D3CF] text-[#E5473A] rounded-[10px] font-semibold text-[13px] hover:bg-[#FCE9E7] transition"
         >
           <LogOut className="w-4 h-4" />
           Log out

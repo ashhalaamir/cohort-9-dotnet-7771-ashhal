@@ -16,4 +16,10 @@ export const usersApi = {
     const response = await apiClient.put<User>('/api/users/profile', data);
     return response.data;
   },
+
+  // 🔥 NEW: Get all users (Admin only)
+  getAllUsers: async (): Promise<User[]> => {
+    const response = await apiClient.get<User[]>('/api/users/all');
+    return response.data;
+  },
 };

@@ -22,7 +22,7 @@ namespace TaskManagement.Core.Services
             _jwtSettings = jwtSettings;
         }
 
-        public async Task<User?> Register(string username, string email, string password)
+        public async Task<User?> Register(string username, string email, string password, string role = "RegularUser")
         {
             ArgumentNullException.ThrowIfNull(username);
             ArgumentNullException.ThrowIfNull(email);
@@ -39,13 +39,13 @@ namespace TaskManagement.Core.Services
             if (existingUser != null)
                 return null;
 
-            // Hash password and create user with fixed role
+            // 🔥 FIXED: Use the passed-in role instead of hardcoding "RegularUser"
             var user = new User
             {
                 Username = username,
                 Email = email,
                 PasswordHash = PasswordHasher.HashPassword(password),
-                Role = "RegularUser"
+                Role = role
             };
 
             return await _userRepository.CreateAsync(user);
