@@ -84,3 +84,9 @@ export interface ApiError {
   timestamp: string;
   details?: string;
 }
+
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}

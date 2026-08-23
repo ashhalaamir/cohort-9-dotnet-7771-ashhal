@@ -6,6 +6,12 @@ export interface UpdateProfileRequest {
   email?: string;
 }
 
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 export const usersApi = {
   getProfile: async (): Promise<User> => {
     const response = await apiClient.get<User>('/api/users/profile');
@@ -17,9 +23,14 @@ export const usersApi = {
     return response.data;
   },
 
-  // 🔥 NEW: Get all users (Admin only)
   getAllUsers: async (): Promise<User[]> => {
     const response = await apiClient.get<User[]>('/api/users/all');
+    return response.data;
+  },
+
+  // 🔥 NEW: Change password
+  changePassword: async (data: ChangePasswordRequest): Promise<{ message: string }> => {
+    const response = await apiClient.post<{ message: string }>('/api/auth/change-password', data);
     return response.data;
   },
 };

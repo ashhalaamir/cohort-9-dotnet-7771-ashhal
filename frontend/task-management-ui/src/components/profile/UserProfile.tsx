@@ -2,12 +2,54 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { usersApi } from '../../api/usersApi';
 import { tasksApi } from '../../api/tasksApi';
-import type { User } from '../../types';
+import type { User, Task } from '../../types';
 import { 
   Shield, 
   LogOut,
   Edit,
+  Eye,
+  EyeOff,
+  Lock
 } from 'lucide-react';
+
+// ============================================================
+// 🔥 Helper: Build activity data from tasks
+// ============================================================
+const buildActivityData = (tasks: Task[]): number[][] => {
+  const weeks = 14;
+  const days = 7;
+  const activity: number[][] = Array.from({ length: weeks }, () => Array(days).fill(0));
+
+  const today = new Date();
+  const oneYearAgo = new Date(today);
+  oneYearAgo.setDate(oneYearAgo.getDate() - (weeks * 7));
+
+  tasks.forEach(task => {
+    if (task.status !== 'Completed') return;
+    
+    const completedDate = new Date(task.updatedAt || task.createdAt);
+    if (completedDate < oneYearAgo || completedDate > today) return;
+
+    const diffTime = today.getTime() - completedDate.getTime();
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const weekIndex = Math.floor(diffDays / 7);
+    const dayIndex = diffDays % 7;
+
+    if (weekIndex < weeks && weekIndex >= 0) {
+      const adjustedDay = (dayIndex + 6) % 7;
+      activity[weekIndex][adjustedDay] = (activity[weekIndex][adjustedDay] || 0) + 1;
+    }
+  });
+
+  return activity;
+};
+
+const getActivityColor = (count: number): string => {
+  if (count === 0) return '#EFF0F7';
+  if (count <= 1) return '#C9C4F5';
+  if (count <= 2) return '#8A80EC';
+  return '#4F46E5';
+};
 
 const UserProfile: React.FC = () => {
   const { user, isAdmin, logout } = useAuth();
@@ -20,6 +62,19 @@ const UserProfile: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  // Password change state
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isChangingPw, setIsChangingPw] = useState(false);
+
+  // Activity data state
+  const [activityData, setActivityData] = useState<number[][]>([]);
 
   useEffect(() => {
     fetchProfileData();
@@ -38,6 +93,10 @@ const UserProfile: React.FC = () => {
       const completed = tasksData.filter(t => t.status === 'Completed').length;
       setTaskCount(tasksData.length);
       setCompletedCount(completed);
+
+      // Build activity data from tasks
+      const activity = buildActivityData(tasksData);
+      setActivityData(activity);
     } catch (error) {
       console.error('Error fetching profile data:', error);
     } finally {
@@ -65,6 +124,43 @@ const UserProfile: React.FC = () => {
     }
   };
 
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setMessage(null);
+
+    if (newPassword !== confirmPassword) {
+      setMessage({ type: 'error', text: 'Passwords do not match.' });
+      return;
+    }
+
+    if (newPassword.length < 8) {
+      setMessage({ type: 'error', text: 'Password must be at least 8 characters long.' });
+      return;
+    }
+
+    setIsChangingPw(true);
+
+    try {
+      await usersApi.changePassword({
+        currentPassword,
+        newPassword,
+        confirmPassword,
+      });
+      setMessage({ type: 'success', text: 'Password changed successfully!' });
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+      setIsChangingPassword(false);
+    } catch (error: any) {
+      setMessage({ 
+        type: 'error', 
+        text: error.response?.data?.message || 'Failed to change password.' 
+      });
+    } finally {
+      setIsChangingPw(false);
+    }
+  };
+
   const handleLogout = () => {
     logout();
   };
@@ -72,6 +168,8 @@ const UserProfile: React.FC = () => {
   const getInitials = (name: string) => {
     return name?.charAt(0).toUpperCase() || 'U';
   };
+
+  const totalActivity = activityData.flat().filter(v => v > 0).length;
 
   if (isLoading) {
     return (
@@ -82,11 +180,8 @@ const UserProfile: React.FC = () => {
   }
 
   return (
-    // Profile is narrower than Dashboard/Tasks in the mockup — 1040px, not full width
     <div className="space-y-5 w-full max-w-[1040px]">
-
-      {/* Hero Section — 20px radius (radius-l), the only screen that uses it;
-          everything else in the app uses 14px panels */}
+      {/* Hero Section */}
       <div className="bg-white border border-[#E4E6F0] rounded-[20px] p-6 relative overflow-hidden">
         <div 
           className="absolute -top-16 -right-16 w-56 h-56 rounded-full pointer-events-none"
@@ -149,7 +244,7 @@ const UserProfile: React.FC = () => {
         </div>
       </div>
 
-      {/* Stats Strip — 14px radius (radius-m), not 12px */}
+      {/* Stats Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-4">
           <div className="font-['Sora'] text-[24px] font-bold tracking-[-0.01em]">
@@ -177,20 +272,16 @@ const UserProfile: React.FC = () => {
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {/* Account Details */}
+        {/* Account Details - Same as before */}
         <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5">
           <div className="flex items-start justify-between mb-4">
             <div>
-              {/* Panel headings are 14.5px in the mockup, not 16px —
-                  16px reads closer to a section header than a card title */}
               <h3 className="font-['Sora'] font-bold text-[14.5px]">Account details</h3>
               <p className="text-[11.5px] text-[#9A9EB0] font-mono mt-0.5">visible to you only</p>
             </div>
           </div>
 
           {message && (
-            // Uses the app's actual danger tokens instead of Tailwind's default red-*,
-            // which reads slightly off next to the custom palette used everywhere else
             <div className={`p-3 rounded-[10px] text-sm mb-4 ${
               message.type === 'success' 
                 ? 'bg-[#E4F8EE] text-[#086941]' 
@@ -228,9 +319,6 @@ const UserProfile: React.FC = () => {
 
               <div>
                 <label className="block text-[12.8px] font-semibold mb-[7px]">Role</label>
-                {/* Disabled-field background now matches --surface-alt (#EFF0F7),
-                    the token used for every other disabled/readonly input in the app —
-                    #F5F6FA is the page background, not the disabled-input color */}
                 <input
                   type="text"
                   value={isAdmin ? 'Admin' : 'Regular User'}
@@ -280,33 +368,114 @@ const UserProfile: React.FC = () => {
                 <h3 className="font-['Sora'] font-bold text-[14.5px]">Security</h3>
                 <p className="text-[11.5px] text-[#9A9EB0] font-mono mt-0.5">password &amp; access</p>
               </div>
+              {!isChangingPassword && (
+                <button
+                  onClick={() => setIsChangingPassword(true)}
+                  className="text-[12px] font-semibold text-[#4F46E5] hover:underline"
+                >
+                  Change password
+                </button>
+              )}
             </div>
-            <div className="space-y-3">
-              <div>
-                <label className="block text-[12.8px] font-semibold mb-[7px]">Current password</label>
-                <input
-                  type="password"
-                  value="••••••••••"
-                  disabled
-                  className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] bg-[#EFF0F7] text-[#666B80] cursor-not-allowed"
-                />
+
+            {isChangingPassword ? (
+              <form onSubmit={handleChangePassword} className="space-y-3">
+                <div>
+                  <label className="block text-[12.8px] font-semibold mb-[7px]">Current password</label>
+                  <div className="relative">
+                    <input
+                      type={showCurrentPassword ? 'text' : 'password'}
+                      value={currentPassword}
+                      onChange={(e) => setCurrentPassword(e.target.value)}
+                      className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEEDFC] outline-none transition pr-10"
+                      placeholder="Enter current password"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9A9EB0] hover:text-[#666B80] transition"
+                    >
+                      {showCurrentPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-[12.8px] font-semibold mb-[7px]">New password</label>
+                  <div className="relative">
+                    <input
+                      type={showNewPassword ? 'text' : 'password'}
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEEDFC] outline-none transition pr-10"
+                      placeholder="Enter new password (min 8 chars)"
+                      required
+                      minLength={8}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowNewPassword(!showNewPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9A9EB0] hover:text-[#666B80] transition"
+                    >
+                      {showNewPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-[12.8px] font-semibold mb-[7px]">Confirm password</label>
+                  <div className="relative">
+                    <input
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEEDFC] outline-none transition pr-10"
+                      placeholder="Confirm new password"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9A9EB0] hover:text-[#666B80] transition"
+                    >
+                      {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+                <div className="flex gap-2 pt-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsChangingPassword(false);
+                      setCurrentPassword('');
+                      setNewPassword('');
+                      setConfirmPassword('');
+                      setMessage(null);
+                    }}
+                    className="flex-1 py-2 text-[13px] font-semibold text-[#666B80] hover:bg-[#EFF0F7] rounded-[10px] transition"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isChangingPw}
+                    className="flex-1 py-2 bg-[#4F46E5] hover:bg-[#372F9E] text-white font-semibold text-[13px] rounded-[10px] transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{ boxShadow: '0 10px 20px -8px rgba(79,70,229,0.55)' }}
+                  >
+                    {isChangingPw ? 'Updating...' : 'Update password'}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div className="space-y-3">
+                <div>
+                  <label className="block text-[12.5px] font-semibold text-[#9A9EB0] mb-1">Password</label>
+                  <div className="flex items-center gap-2">
+                    <p className="text-[14px] font-medium">••••••••••</p>
+                    <Lock className="w-4 h-4 text-[#9A9EB0]" />
+                  </div>
+                </div>
               </div>
-              <div>
-                <label className="block text-[12.8px] font-semibold mb-[7px]">New password</label>
-                <input
-                  type="password"
-                  placeholder="Enter a new password"
-                  disabled
-                  className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[13.5px] bg-[#EFF0F7] text-[#666B80] cursor-not-allowed"
-                />
-              </div>
-              <button
-                disabled
-                className="w-full py-2.5 bg-[#EFF0F7] text-[#9A9EB0] font-semibold rounded-[10px] cursor-not-allowed text-[13.5px]"
-              >
-                Update password (coming soon)
-              </button>
-            </div>
+            )}
           </div>
 
           <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5">
@@ -339,42 +508,53 @@ const UserProfile: React.FC = () => {
         </div>
       </div>
 
-      {/* Activity Heatmap — already a near-exact match to the mockup, untouched */}
+      {/* 🔥 Activity Heatmap - Dynamic from real task data */}
       <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5">
         <div className="flex items-start justify-between mb-4">
           <div>
             <h3 className="font-['Sora'] font-bold text-[14.5px]">My activity</h3>
-            <p className="text-[11.5px] text-[#9A9EB0] font-mono mt-0.5">tasks completed, last 14 weeks</p>
+            <p className="text-[11.5px] text-[#9A9EB0] font-mono mt-0.5">
+              tasks completed, last 14 weeks
+              {totalActivity > 0 && (
+                <span className="ml-2 text-[#4F46E5]">
+                  ({totalActivity} completions)
+                </span>
+              )}
+            </p>
           </div>
         </div>
-        <div className="flex gap-3.5 items-start overflow-x-auto pb-1">
-          <div className="flex flex-col gap-0.5 font-mono text-[9px] text-[#9A9EB0] pt-3.5">
-            <div className="h-3.5 flex items-center"></div>
-            <div className="h-3.5 flex items-center">Mon</div>
-            <div className="h-3.5 flex items-center"></div>
-            <div className="h-3.5 flex items-center">Wed</div>
-            <div className="h-3.5 flex items-center"></div>
-            <div className="h-3.5 flex items-center">Fri</div>
-            <div className="h-3.5 flex items-center"></div>
+        
+        {activityData.length > 0 && totalActivity > 0 ? (
+          <div className="flex gap-3.5 items-start overflow-x-auto pb-1">
+            <div className="flex flex-col gap-0.5 font-mono text-[9px] text-[#9A9EB0] pt-3.5">
+              <div className="h-3.5 flex items-center"></div>
+              <div className="h-3.5 flex items-center">Mon</div>
+              <div className="h-3.5 flex items-center"></div>
+              <div className="h-3.5 flex items-center">Wed</div>
+              <div className="h-3.5 flex items-center"></div>
+              <div className="h-3.5 flex items-center">Fri</div>
+              <div className="h-3.5 flex items-center"></div>
+            </div>
+            
+            <div className="grid grid-flow-col grid-rows-7 gap-0.5">
+              {activityData.map((week, weekIndex) => (
+                week.map((count, dayIndex) => (
+                  <div
+                    key={`${weekIndex}-${dayIndex}`}
+                    className="w-3.5 h-3.5 rounded-sm"
+                    style={{ background: getActivityColor(count) }}
+                    title={`Week ${14 - weekIndex}, ${count} task${count !== 1 ? 's' : ''} completed`}
+                  />
+                ))
+              ))}
+            </div>
           </div>
-          <div className="grid grid-flow-col grid-rows-7 gap-0.5">
-            {Array.from({ length: 98 }).map((_, i) => {
-              const rand = (i * 9301 + 49297) % 233280 / 233280;
-              let level = 0;
-              if (rand > 0.78) level = 3;
-              else if (rand > 0.55) level = 2;
-              else if (rand > 0.35) level = 1;
-              const colors = ['#EFF0F7', '#C9C4F5', '#8A80EC', '#4F46E5'];
-              return (
-                <div
-                  key={i}
-                  className="w-3.5 h-3.5 rounded-sm"
-                  style={{ background: colors[level] }}
-                />
-              );
-            })}
+        ) : (
+          <div className="flex items-center justify-center py-8 text-[#9A9EB0]">
+            <p className="text-sm">No completed tasks yet. Start completing tasks to see your activity!</p>
           </div>
-        </div>
+        )}
+        
         <div className="flex items-center gap-1.5 font-mono text-[10.5px] text-[#9A9EB0] justify-end mt-2.5">
           Less
           <span className="w-3 h-3 rounded-sm bg-[#EFF0F7]" />
@@ -388,8 +568,6 @@ const UserProfile: React.FC = () => {
       {/* Session / Logout */}
       <div className="bg-white border border-[#E4E6F0] rounded-[14px] p-5 flex items-center justify-between gap-4 flex-wrap">
         <div className="flex items-center gap-3">
-          {/* bg-[#FCE9E7] (danger-light token) instead of Tailwind's red-50 —
-              the Log out button below already used the correct hex, this just matches it */}
           <div className="w-[38px] h-[38px] rounded-[10px] bg-[#FCE9E7] text-[#E5473A] flex items-center justify-center flex-shrink-0">
             <LogOut className="w-[18px] h-[18px]" />
           </div>
