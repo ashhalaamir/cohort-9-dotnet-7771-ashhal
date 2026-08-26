@@ -32,24 +32,31 @@ const TaskList: React.FC = () => {
     applyFilters();
   }, [tasks, activeTab, searchTerm, priorityFilter, categoryFilter]);
 
-const fetchTasks = async () => {
-  try {
-    const data = await tasksApi.getTasks();
-    
-    // 🔥 Map user names from nested user object
-    const tasksWithUserNames = data.map(task => ({
-      ...task,
-      userName: task.user?.username || 'Unknown'
-    }));
-    
-    setTasks(tasksWithUserNames);
-    setFilteredTasks(tasksWithUserNames);
-  } catch (error) {
-    console.error('Error fetching tasks:', error);
-  } finally {
-    setIsLoading(false);
-  }
-};
+  const fetchTasks = async () => {
+    try {
+      const data = await tasksApi.getTasks();
+      
+      // 🔥 FIXED: Map user names from either userName or nested user object
+      const tasksWithUserNames = data.map(task => ({
+        ...task,
+        // Try userName first (from API), then fallback to user?.username, then 'Unknown'
+        userName: task.userName || task.user?.username || 'Unknown'
+      }));
+      
+      setTasks(tasksWithUserNames);
+      setFilteredTasks(tasksWithUserNames);
+      
+      // 🔥 Debug: Log the first task to see what's coming from the API
+      if (tasksWithUserNames.length > 0) {
+        console.log('First task from API:', tasksWithUserNames[0]);
+        console.log('UserName:', tasksWithUserNames[0].userName);
+      }
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const applyFilters = () => {
     let result = [...tasks];
@@ -87,7 +94,6 @@ const fetchTasks = async () => {
     return status;
   };
 
-  // Matches the .pill.pending / .progress / .completed rules from the mockup
   const getStatusPillClass = (status: string) => {
     switch (status) {
       case 'Pending': return 'bg-[#EFF0F7] text-[#666B80] before:bg-[#9A9EB0]';
@@ -97,9 +103,6 @@ const fetchTasks = async () => {
     }
   };
 
-  // Previously returned bare 'high'/'medium'/'low' — Tailwind has no rule for
-  // those class names, so the priority dots were rendering with no color at all.
-  // This mirrors the same before:bg-[...] pattern the status pill already uses.
   const getPriorityDotClass = (priority: string) => {
     switch (priority) {
       case 'High': return 'before:bg-[#E5473A]';
@@ -132,8 +135,7 @@ const fetchTasks = async () => {
 
   return (
     <div className="space-y-5 max-w-[1240px]">
-      {/* Header — 25px title to match the mockup's page-title/content-header,
-          not text-3xl/4xl which reads more like a marketing hero than a SaaS dashboard */}
+      {/* Header */}
       <div className="flex items-end justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-[25px] font-bold font-['Sora'] tracking-[-0.015em] leading-tight mb-1">
@@ -155,7 +157,7 @@ const fetchTasks = async () => {
         </button>
       </div>
 
-      {/* Status Tabs — 18px right-margin per tab + 9px/4px padding, not a flat gap-6 */}
+      {/* Status Tabs */}
       <div className="flex border-b border-[#E4E6F0] overflow-x-auto">
         {[
           { key: 'all', label: 'All' },
@@ -184,7 +186,7 @@ const fetchTasks = async () => {
         ))}
       </div>
 
-      {/* Filter Bar — 10px radius (radius-s), not rounded-xl's 12px */}
+      {/* Filter Bar */}
       <div className="flex items-center gap-2.5 flex-wrap w-full">
         <div className="flex items-center gap-2 flex-1 min-w-[200px] max-w-[320px] bg-white border-[1.5px] border-[#E4E6F0] rounded-[10px] px-3 py-2.5 focus-within:border-[#4F46E5] focus-within:ring-2 focus-within:ring-[#EEEDFC] transition">
           <Search className="w-4 h-4 text-[#9A9EB0] flex-shrink-0" />
@@ -244,7 +246,7 @@ const fetchTasks = async () => {
         </span>
       </div>
 
-      {/* Task List Table — 14px radius (radius-m) to match panels elsewhere in the app */}
+      {/* Task List Table */}
       <div className="bg-white border border-[#E4E6F0] rounded-[14px] overflow-hidden w-full">
         {/* Table Head */}
         <div className={`grid ${isAdmin ? 'grid-cols-[60px_1fr_140px_100px_100px_120px_28px]' : 'grid-cols-[60px_1fr_100px_100px_120px_28px]'} items-center gap-3 px-5 py-3 bg-[#EFF0F7] border-b border-[#E4E6F0] font-mono text-[10px] uppercase tracking-wide text-[#9A9EB0]`}>
@@ -261,6 +263,8 @@ const fetchTasks = async () => {
         {filteredTasks.length > 0 ? (
           filteredTasks.map((task) => {
             const isOverdue = new Date(task.dueDate) < new Date() && task.status !== 'Completed';
+            // 🔥 Get the display name
+            const displayName = task.userName || task.user?.username || 'Unknown';
             return (
               <div
                 key={task.id}
@@ -275,20 +279,17 @@ const fetchTasks = async () => {
                 {isAdmin && (
                   <div className="flex items-center gap-2 text-[12.5px] min-w-0">
                     <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#8A83F5] to-[#4F46E5] flex items-center justify-center text-[9.5px] font-mono font-semibold text-white flex-shrink-0">
-                      {task.userName?.charAt(0).toUpperCase() || 'U'}
+                      {displayName.charAt(0).toUpperCase()}
                     </div>
-                    <span className="truncate">{task.userName}</span>
+                    <span className="truncate">{displayName}</span>
                   </div>
                 )}
-                {/* Dot-only, no duplicate icon — matches the mockup's .priority-dot (text + color dot, nothing else) */}
                 <span className={`flex items-center gap-1.5 text-[12px] text-[#666B80] before:content-[''] before:w-[7px] before:h-[7px] before:rounded-full before:flex-shrink-0 ${getPriorityDotClass(task.priority)}`}>
                   {task.priority}
                 </span>
                 <span className={`font-mono text-[11.5px] ${isOverdue ? 'text-[#E5473A] font-semibold' : 'text-[#666B80]'}`}>
                   {new Date(task.dueDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                 </span>
-                {/* Dot-only here too — dropped the lucide status icon since the pill already
-                    carries a colored dot; having both reads as redundant next to the mockup */}
                 <span className={`inline-flex items-center gap-1.5 text-[10.5px] font-semibold px-2.5 py-1 rounded-full justify-self-start before:content-[''] before:w-1.5 before:h-1.5 before:rounded-full ${getStatusPillClass(task.status)}`}>
                   {getStatusLabel(task.status)}
                 </span>

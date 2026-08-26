@@ -71,6 +71,17 @@ const TaskForm: React.FC = () => {
     setError(null);
     setIsSaving(true);
 
+    // 🔥 Validate due date is not in the past
+    const selectedDate = new Date(dueDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (selectedDate < today) {
+      setError('Due date cannot be in the past.');
+      setIsSaving(false);
+      return;
+    }
+
     try {
       const payload = {
         title: title.trim(),
@@ -120,7 +131,7 @@ const TaskForm: React.FC = () => {
         <span>{isEditMode ? `#TQ-${String(id).padStart(2, '0')} / Edit` : 'New task'}</span>
       </div>
 
-      {/* Header — 25px to match every other screen's title, not text-3xl/4xl */}
+      {/* Header */}
       <div>
         <h1 className="text-[27px] font-bold font-['Sora'] tracking-[-0.015em]">
           {isEditMode ? 'Edit task' : 'Create a new task'}
@@ -133,10 +144,9 @@ const TaskForm: React.FC = () => {
         </p>
       </div>
 
-      {/* Form — 14px panel radius, not 12px */}
+      {/* Form */}
       <form onSubmit={handleSubmit} className="bg-white border border-[#E4E6F0] rounded-[14px] p-6 space-y-6">
         {error && (
-          // System danger tokens instead of Tailwind's default red-*
           <div className="p-3 bg-[#FCE9E7] border border-[#F6D3CF] rounded-[10px] text-[#E5473A] text-sm">
             {error}
           </div>
@@ -181,10 +191,6 @@ const TaskForm: React.FC = () => {
         <div className="space-y-4 border-t border-[#E4E6F0] pt-5">
           <div className="text-[11.5px] font-mono uppercase tracking-[0.08em] text-[#9A9EB0]">Classification</div>
 
-          {/* Status — segmented control now has explicit type sizing (12.8px/semibold)
-              instead of inheriting the browser's default button text, which is what was
-              making these look like plain unstyled buttons. Radius 12px -> 10px, border
-              bumped to 1.5px, dot sized to match the mockup's 7px exactly. */}
           <div>
             <label className="block text-[13.8px] font-semibold mb-[7px]">Status</label>
             <div className="flex gap-2 flex-wrap">
@@ -210,7 +216,6 @@ const TaskForm: React.FC = () => {
             </div>
           </div>
 
-          {/* Priority — same segmented treatment as Status */}
           <div>
             <label className="block text-[13.8px] font-semibold mb-[7px]">Priority</label>
             <div className="flex gap-2 flex-wrap">
@@ -236,9 +241,6 @@ const TaskForm: React.FC = () => {
             </div>
           </div>
 
-          {/* Category — chip needs the same explicit type sizing (12.5px/medium)
-              and a 1.5px border to match Status/Priority's weight; shape (pill) was
-              already correct, as was the solid-brand "checked" state. */}
           <div>
             <label className="block text-[13.8px] font-semibold mb-[7px]">Category</label>
             <div className="flex gap-2 flex-wrap">
@@ -267,13 +269,21 @@ const TaskForm: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-[13.8px] font-semibold mb-[7px]">Due date</label>
+              {/* 🔥 Added min attribute to prevent past dates in the date picker */}
               <input
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
+                min={new Date().toISOString().split('T')[0]}
                 className="w-full px-3 py-2.5 border-[1.5px] border-[#E4E6F0] rounded-[10px] text-[14.5px] focus:border-[#4F46E5] focus:ring-2 focus:ring-[#EEEDFC] outline-none transition"
                 required
               />
+              {/* 🔥 Show warning if date is in the past */}
+              {dueDate && new Date(dueDate) < new Date(new Date().setHours(0, 0, 0, 0)) && (
+                <p className="text-[11px] text-[#E5473A] mt-1.5">
+                  ⚠️ Due date is in the past
+                </p>
+              )}
             </div>
 
             <div>
@@ -301,8 +311,6 @@ const TaskForm: React.FC = () => {
                   )}
                 </select>
               ) : (
-                // bg-[#EFF0F7] (the app's disabled/readonly token) instead of #F5F6FA,
-                // which is the page background color, not the field-lock color
                 <div className="flex items-center gap-3 px-3 py-2.5 border-[1.5px] border-dashed border-[#E4E6F0] rounded-[10px] bg-[#EFF0F7]">
                   <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#8A83F5] to-[#4F46E5] flex items-center justify-center text-[11.5px] font-mono font-semibold text-white">
                     {user?.username?.charAt(0).toUpperCase() || 'U'}

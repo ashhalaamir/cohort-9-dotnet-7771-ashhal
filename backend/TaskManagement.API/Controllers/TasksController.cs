@@ -45,8 +45,6 @@ namespace TaskManagement.API.Controllers
 
         // ============================================================
         // GET: api/tasks
-        // Regular User: Gets their own tasks with filters
-        // Admin: Gets ALL tasks with filters
         // ============================================================
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] ApiTaskFilterDto filter)
@@ -90,9 +88,6 @@ namespace TaskManagement.API.Controllers
 
         // ============================================================
         // GET: api/tasks/{id}
-        // Regular User: Can only access if they own the task
-        // Admin: Can access ANY task
-        // 🔥 FIXED: Now returns UserName in the response
         // ============================================================
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -106,7 +101,6 @@ namespace TaskManagement.API.Controllers
                 return NotFound();
             }
 
-            // 🔥 FIXED: Use ToDtoWithUser to include UserName
             return Ok(ToDtoWithUser(task));
         }
 
@@ -121,25 +115,45 @@ namespace TaskManagement.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            _logger.LogInformation("Creating new task for userId {UserId}.", GetUserId());
+            var (userId, isAdmin) = GetCurrentUser();
+            _logger.LogInformation("Creating new task for userId {UserId} (IsAdmin: {IsAdmin}).", userId, isAdmin);
             
             try
             {
-                var created = await _taskService.CreateAsync(ToEntity(request), GetUserId());
-                // 🔥 Use ToDtoWithUser to include UserName
+                // Determine which user the task should be assigned to
+                int targetUserId;
+                
+                if (isAdmin && request.AssignToUserId.HasValue)
+                {
+                    // Admin can assign to any user
+                    targetUserId = request.AssignToUserId.Value;
+                    _logger.LogInformation("Admin assigning task to user {TargetUserId}.", targetUserId);
+                    
+                    // Verify the target user exists
+                    var targetUser = await _userRepository.GetByIdAsync(targetUserId);
+                    if (targetUser == null)
+                    {
+                        return BadRequest(new { message = "Target user not found." });
+                    }
+                }
+                else
+                {
+                    // Regular user (or admin without AssignToUserId) assigns to themselves
+                    targetUserId = userId;
+                }
+
+                var created = await _taskService.CreateAsync(ToEntity(request), targetUserId);
                 return CreatedAtAction(nameof(GetById), new { id = created.Id }, ToDtoWithUser(created));
             }
             catch (System.ComponentModel.DataAnnotations.ValidationException ex)
             {
-                _logger.LogWarning(ex, "Validation error creating task for userId {UserId}.", GetUserId());
+                _logger.LogWarning(ex, "Validation error creating task for userId {UserId}.", userId);
                 return BadRequest(new { message = ex.Message });
             }
         }
 
         // ============================================================
         // PUT: api/tasks/{id}
-        // Regular User: Can only update their own tasks
-        // Admin: Can update ANY task
         // ============================================================
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateTaskDto request)
@@ -159,7 +173,6 @@ namespace TaskManagement.API.Controllers
                     return NotFound();
                 }
 
-                // 🔥 Use ToDtoWithUser to include UserName
                 return Ok(ToDtoWithUser(updated));
             }
             catch (System.ComponentModel.DataAnnotations.ValidationException ex)
@@ -171,8 +184,6 @@ namespace TaskManagement.API.Controllers
 
         // ============================================================
         // DELETE: api/tasks/{id}
-        // Regular User: Can only delete their own tasks
-        // Admin: Can delete ANY task
         // ============================================================
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -204,9 +215,11 @@ namespace TaskManagement.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            var (adminUserId, _) = GetCurrentUser();
             _logger.LogInformation("Assigning task {TaskId} to userId {AssignToUserId} by adminUserId {AdminUserId}.", 
-                id, request.UserId, GetUserId());
+                id, request.UserId, adminUserId);
 
+            // Check if the target user exists
             var assignToUser = await _userRepository.GetByIdAsync(request.UserId);
             if (assignToUser == null)
             {
@@ -214,23 +227,36 @@ namespace TaskManagement.API.Controllers
                 return BadRequest(new { message = "Target user does not exist." });
             }
 
-            var assigned = await _taskService.AssignTaskAsync(id, request.UserId, GetUserId(), IsAdmin());
-            
-            if (assigned == null)
+            // Get the task
+            var task = await _taskService.GetByIdAsync(id, adminUserId, true);
+            if (task == null)
             {
-                _logger.LogWarning("Task {TaskId} not found or invalid state for adminUserId {AdminUserId}.", id, GetUserId());
+                _logger.LogWarning("Task {TaskId} not found or invalid state for adminUserId {AdminUserId}.", id, adminUserId);
                 return NotFound();
             }
 
-            // 🔥 Use ToDtoWithUser to include UserName
-            return Ok(ToDtoWithUser(assigned));
+            // 🔥 FIXED: Create updated task entity with new UserId
+            var updatedTask = new TaskEntity
+            {
+                Title = task.Title,
+                Description = task.Description,
+                Status = task.Status,
+                Priority = task.Priority,
+                Category = task.Category,
+                DueDate = task.DueDate,
+                UserId = request.UserId
+            };
+
+            // Update the task
+            var updated = await _taskService.UpdateAsync(id, updatedTask, adminUserId, true);
+
+            return Ok(ToDtoWithUser(updated));
         }
 
         // ============================================================
         // Private Helper Methods
         // ============================================================
 
-        // 🔥 NEW: Helper that includes UserName
         private static TaskDto ToDtoWithUser(TaskEntity task) => new()
         {
             Id = task.Id,
@@ -241,7 +267,7 @@ namespace TaskManagement.API.Controllers
             Category = task.Category,
             DueDate = task.DueDate,
             UserId = task.UserId,
-            UserName = task.User?.Username ?? "Unknown", // 🔥 Include UserName
+            UserName = task.User?.Username ?? "Unknown",
             CreatedAt = task.CreatedAt,
             UpdatedAt = task.UpdatedAt
         };
@@ -263,7 +289,7 @@ namespace TaskManagement.API.Controllers
         private static TaskEntity ToEntity(CreateTaskDto dto) => new()
         {
             Title = dto.Title,
-            Description = dto.Description,
+            Description = dto.Description ?? string.Empty,
             Status = dto.Status,
             Priority = dto.Priority,
             Category = dto.Category,
@@ -273,7 +299,7 @@ namespace TaskManagement.API.Controllers
         private static TaskEntity ToEntity(UpdateTaskDto dto) => new()
         {
             Title = dto.Title,
-            Description = dto.Description,
+            Description = dto.Description ?? string.Empty,
             Status = dto.Status,
             Priority = dto.Priority,
             Category = dto.Category,

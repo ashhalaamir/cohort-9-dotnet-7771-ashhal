@@ -23,5 +23,8 @@ namespace TaskManagement.API.DTOs
 
         [NotInPast]
         public DateTime DueDate { get; set; }
+
+        // 🔥 NEW: Admin can assign task to another user
+        public int? AssignToUserId { get; set; }
     }
 }
