@@ -32,17 +32,24 @@ const TaskList: React.FC = () => {
     applyFilters();
   }, [tasks, activeTab, searchTerm, priorityFilter, categoryFilter]);
 
-  const fetchTasks = async () => {
-    try {
-      const data = await tasksApi.getTasks();
-      setTasks(data);
-      setFilteredTasks(data);
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+const fetchTasks = async () => {
+  try {
+    const data = await tasksApi.getTasks();
+    
+    // 🔥 Map user names from nested user object
+    const tasksWithUserNames = data.map(task => ({
+      ...task,
+      userName: task.user?.username || 'Unknown'
+    }));
+    
+    setTasks(tasksWithUserNames);
+    setFilteredTasks(tasksWithUserNames);
+  } catch (error) {
+    console.error('Error fetching tasks:', error);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const applyFilters = () => {
     let result = [...tasks];

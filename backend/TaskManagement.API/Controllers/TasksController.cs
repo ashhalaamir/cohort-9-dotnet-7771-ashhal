@@ -47,7 +47,6 @@ namespace TaskManagement.API.Controllers
         // GET: api/tasks
         // Regular User: Gets their own tasks with filters
         // Admin: Gets ALL tasks with filters
-        // 🔥 Generic exception handling removed - Global middleware handles it
         // ============================================================
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] ApiTaskFilterDto filter)
@@ -93,7 +92,7 @@ namespace TaskManagement.API.Controllers
         // GET: api/tasks/{id}
         // Regular User: Can only access if they own the task
         // Admin: Can access ANY task
-        // 🔥 Generic exception handling removed - Global middleware handles it
+        // 🔥 FIXED: Now returns UserName in the response
         // ============================================================
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -107,14 +106,14 @@ namespace TaskManagement.API.Controllers
                 return NotFound();
             }
 
-            return Ok(ToDto(task));
+            // 🔥 FIXED: Use ToDtoWithUser to include UserName
+            return Ok(ToDtoWithUser(task));
         }
 
         // ============================================================
         // POST: api/tasks
         // Regular User: Creates task assigned to themselves
         // Admin: Can create task and assign to ANY user
-        // 🔥 Generic exception handling removed - Global middleware handles it
         // ============================================================
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTaskDto request)
@@ -127,22 +126,20 @@ namespace TaskManagement.API.Controllers
             try
             {
                 var created = await _taskService.CreateAsync(ToEntity(request), GetUserId());
-                return CreatedAtAction(nameof(GetById), new { id = created.Id }, ToDto(created));
+                // 🔥 Use ToDtoWithUser to include UserName
+                return CreatedAtAction(nameof(GetById), new { id = created.Id }, ToDtoWithUser(created));
             }
             catch (System.ComponentModel.DataAnnotations.ValidationException ex)
             {
-                // 🔥 Keep this - specific validation exception needs 400 response
                 _logger.LogWarning(ex, "Validation error creating task for userId {UserId}.", GetUserId());
                 return BadRequest(new { message = ex.Message });
             }
-            // 🔥 All other exceptions bubble up to global middleware
         }
 
         // ============================================================
         // PUT: api/tasks/{id}
         // Regular User: Can only update their own tasks
         // Admin: Can update ANY task
-        // 🔥 Generic exception handling removed - Global middleware handles it
         // ============================================================
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] UpdateTaskDto request)
@@ -162,22 +159,20 @@ namespace TaskManagement.API.Controllers
                     return NotFound();
                 }
 
-                return Ok(ToDto(updated));
+                // 🔥 Use ToDtoWithUser to include UserName
+                return Ok(ToDtoWithUser(updated));
             }
             catch (System.ComponentModel.DataAnnotations.ValidationException ex)
             {
-                // 🔥 Keep this - specific validation exception needs 400 response
                 _logger.LogWarning(ex, "Validation error updating task {TaskId} for userId {UserId}.", id, GetUserId());
                 return BadRequest(new { message = ex.Message });
             }
-            // 🔥 All other exceptions bubble up to global middleware
         }
 
         // ============================================================
         // DELETE: api/tasks/{id}
         // Regular User: Can only delete their own tasks
         // Admin: Can delete ANY task
-        // 🔥 Generic exception handling removed - Global middleware handles it
         // ============================================================
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -198,7 +193,6 @@ namespace TaskManagement.API.Controllers
         // ============================================================
         // POST: api/tasks/{id}/assign
         // 🔥 ADMIN ONLY - Assign task to another user
-        // 🔥 Generic exception handling removed - Global middleware handles it
         // ============================================================
         [HttpPost("{id}/assign")]
         [Authorize(Roles = "Admin")]
@@ -228,12 +222,29 @@ namespace TaskManagement.API.Controllers
                 return NotFound();
             }
 
-            return Ok(ToDto(assigned));
+            // 🔥 Use ToDtoWithUser to include UserName
+            return Ok(ToDtoWithUser(assigned));
         }
 
         // ============================================================
         // Private Helper Methods
         // ============================================================
+
+        // 🔥 NEW: Helper that includes UserName
+        private static TaskDto ToDtoWithUser(TaskEntity task) => new()
+        {
+            Id = task.Id,
+            Title = task.Title,
+            Description = task.Description,
+            Status = task.Status,
+            Priority = task.Priority,
+            Category = task.Category,
+            DueDate = task.DueDate,
+            UserId = task.UserId,
+            UserName = task.User?.Username ?? "Unknown", // 🔥 Include UserName
+            CreatedAt = task.CreatedAt,
+            UpdatedAt = task.UpdatedAt
+        };
 
         private static TaskDto ToDto(TaskEntity task) => new()
         {

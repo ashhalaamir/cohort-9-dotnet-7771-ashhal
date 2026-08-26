@@ -39,6 +39,11 @@ export interface Task {
   updatedAt: string | null;
   userId: number;
   userName: string;
+  user?: {  // 🔥 Add this for the nested user object
+    id: number;
+    username: string;
+    email: string;
+  };
 }
 
 export interface TaskCreateRequest {

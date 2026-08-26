@@ -33,13 +33,18 @@ const TaskDetail: React.FC = () => {
 
   const fetchTaskData = async () => {
     try {
-      const [taskData, usersData] = await Promise.all([
-        tasksApi.getTaskById(Number(id)),
-        isAdmin ? usersApi.getProfile() : Promise.resolve([]),
-      ]);
+      const taskData = await tasksApi.getTaskById(Number(id));
+      
+      // 🔥 Ensure userName is properly set from the nested user object
+      if (taskData.user) {
+        taskData.userName = taskData.user.username;
+      }
+      
       setTask(taskData);
-      if (isAdmin && Array.isArray(usersData)) {
-        setUsers(usersData);
+      
+      if (isAdmin) {
+        const usersData = await usersApi.getAllUsers();
+        setUsers(Array.isArray(usersData) ? usersData : []);
       }
     } catch (error) {
       console.error('Error fetching task:', error);
@@ -113,6 +118,10 @@ const TaskDetail: React.FC = () => {
   const isOverdue = task && new Date(task.dueDate) < new Date() && task.status !== 'Completed';
   const canEdit = isAdmin || (user && task && task.userId === user.id);
 
+  // 🔥 Get the display name - use the mapped userName or fallback
+  const displayUserName = task?.userName || task?.user?.username || 'Unknown';
+  const displayUserInitial = displayUserName.charAt(0).toUpperCase();
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -156,7 +165,7 @@ const TaskDetail: React.FC = () => {
             {task.title}
           </h1>
           <p className="text-[14px] text-[#9A9EB0] font-mono">
-            Created by <span className="text-[#666B80] font-semibold">{task.userName || 'Unknown'}</span> · 
+            Created by <span className="text-[#666B80] font-semibold">{displayUserName}</span> · 
             last updated {new Date(task.updatedAt || task.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
           </p>
         </div>
@@ -248,9 +257,9 @@ const TaskDetail: React.FC = () => {
                 </span>
                 <span className="flex items-center gap-2 text-[12.5px]">
                   <div className="w-6 h-6 rounded-full bg-gradient-to-br from-[#8A83F5] to-[#4F46E5] flex items-center justify-center text-[9.5px] font-mono font-semibold text-white">
-                    {task.userName?.charAt(0).toUpperCase() || 'U'}
+                    {displayUserInitial}
                   </div>
-                  {task.userName || 'Unassigned'}
+                  {displayUserName}
                 </span>
               </div>
             </div>

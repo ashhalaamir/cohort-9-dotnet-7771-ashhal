@@ -1,0 +1,348 @@
+2026-08-26 10:21:37.461 +05:00 [WRN] Failed to determine the https port for redirect.
+2026-08-26 10:21:38.041 +05:00 [INF] User 1 fetching profile
+2026-08-26 10:21:38.076 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:21:43.247 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:21:44.616 +05:00 [INF] User 1 stats: Total=2, Completed=2, InProgress=0, Pending=0
+2026-08-26 10:21:44.617 +05:00 [INF] User 1 fetched 2 tasks.
+2026-08-26 10:21:44.662 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 1439.1747 ms
+2026-08-26 10:21:44.671 +05:00 [INF] HTTP GET /api/users/profile responded 200 in 6912.1307 ms
+2026-08-26 10:21:44.675 +05:00 [INF] HTTP GET /api/tasks responded 200 in 6915.6605 ms
+2026-08-26 10:21:44.691 +05:00 [INF] User 1 fetching profile
+2026-08-26 10:21:44.692 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:21:44.695 +05:00 [INF] User 1 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:21:44.730 +05:00 [INF] User 1 fetched 2 tasks.
+2026-08-26 10:21:44.732 +05:00 [INF] User 1 stats: Total=2, Completed=2, InProgress=0, Pending=0
+2026-08-26 10:21:44.733 +05:00 [INF] HTTP GET /api/users/profile responded 200 in 46.8776 ms
+2026-08-26 10:21:44.734 +05:00 [INF] HTTP GET /api/tasks responded 200 in 48.2787 ms
+2026-08-26 10:21:44.746 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:21:44.751 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 56.6514 ms
+2026-08-26 10:21:44.772 +05:00 [INF] User 1 fetched 2 tasks.
+2026-08-26 10:21:44.784 +05:00 [INF] HTTP GET /api/tasks responded 200 in 44.7670 ms
+2026-08-26 10:21:44.788 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:21:44.800 +05:00 [INF] User 1 fetched 2 tasks.
+2026-08-26 10:21:44.823 +05:00 [INF] HTTP GET /api/tasks responded 200 in 36.4972 ms
+2026-08-26 10:21:44.830 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:21:44.867 +05:00 [INF] User 1 fetched 2 tasks.
+2026-08-26 10:21:44.872 +05:00 [INF] HTTP GET /api/tasks responded 200 in 44.0282 ms
+2026-08-26 10:21:44.878 +05:00 [INF] User 1 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:21:44.948 +05:00 [INF] User 1 fetched 2 tasks.
+2026-08-26 10:21:44.972 +05:00 [INF] HTTP GET /api/tasks responded 200 in 95.1591 ms
+2026-08-26 10:23:17.926 +05:00 [INF] Attempting user registration.
+2026-08-26 10:23:18.391 +05:00 [INF] User registered successfully.
+2026-08-26 10:23:18.393 +05:00 [INF] HTTP POST /api/auth/register responded 200 in 498.3266 ms
+2026-08-26 10:23:18.442 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:23:18.459 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:23:18.463 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:23:18.468 +05:00 [INF] HTTP GET /api/tasks responded 200 in 26.1154 ms
+2026-08-26 10:23:18.474 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:23:18.475 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:23:18.480 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 21.4875 ms
+2026-08-26 10:23:18.490 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:23:18.493 +05:00 [INF] HTTP GET /api/tasks responded 200 in 18.7505 ms
+2026-08-26 10:23:18.564 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:23:18.572 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:23:18.595 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:23:18.595 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:23:18.601 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 37.4467 ms
+2026-08-26 10:23:18.603 +05:00 [INF] HTTP GET /api/tasks responded 200 in 31.1102 ms
+2026-08-26 10:23:18.625 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:23:18.630 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:23:18.633 +05:00 [INF] HTTP GET /api/tasks responded 200 in 7.6370 ms
+2026-08-26 10:24:05.400 +05:00 [INF] Attempting user registration.
+2026-08-26 10:24:05.408 +05:00 [WRN] Registration failed: user already exists.
+2026-08-26 10:24:05.412 +05:00 [INF] HTTP POST /api/auth/register responded 400 in 12.4483 ms
+2026-08-26 10:24:42.757 +05:00 [INF] HTTP POST /api/auth/register responded 400 in 25.4417 ms
+2026-08-26 10:24:58.637 +05:00 [INF] HTTP POST /api/auth/register responded 400 in 0.9885 ms
+2026-08-26 10:25:24.151 +05:00 [INF] Attempting user login.
+2026-08-26 10:25:24.364 +05:00 [INF] User logged in successfully.
+2026-08-26 10:25:24.365 +05:00 [INF] HTTP POST /api/auth/login responded 200 in 220.9829 ms
+2026-08-26 10:25:24.409 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:25:24.416 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:25:24.418 +05:00 [INF] HTTP GET /api/tasks responded 200 in 9.0616 ms
+2026-08-26 10:25:24.418 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:25:24.428 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:25:24.429 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 11.3606 ms
+2026-08-26 10:25:24.433 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:25:24.436 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:25:24.440 +05:00 [INF] HTTP GET /api/tasks responded 200 in 8.2407 ms
+2026-08-26 10:25:24.445 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:25:24.447 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:25:24.449 +05:00 [INF] HTTP GET /api/tasks responded 200 in 4.4437 ms
+2026-08-26 10:25:24.457 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:25:24.459 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:25:24.462 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 5.0417 ms
+2026-08-26 10:25:24.472 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:25:24.476 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:25:24.477 +05:00 [INF] HTTP GET /api/tasks responded 200 in 6.5515 ms
+2026-08-26 10:25:51.341 +05:00 [INF] Attempting user login.
+2026-08-26 10:25:51.474 +05:00 [WRN] Login failed: invalid credentials.
+2026-08-26 10:25:51.477 +05:00 [INF] HTTP POST /api/auth/login responded 401 in 136.1236 ms
+2026-08-26 10:26:14.632 +05:00 [INF] Attempting user login.
+2026-08-26 10:26:14.639 +05:00 [WRN] Login failed: invalid credentials.
+2026-08-26 10:26:14.640 +05:00 [INF] HTTP POST /api/auth/login responded 401 in 8.7776 ms
+2026-08-26 10:26:35.805 +05:00 [INF] Attempting user login.
+2026-08-26 10:26:35.811 +05:00 [WRN] Login failed: invalid credentials.
+2026-08-26 10:26:35.812 +05:00 [INF] HTTP POST /api/auth/login responded 401 in 6.5504 ms
+2026-08-26 10:27:05.754 +05:00 [INF] Attempting user login.
+2026-08-26 10:27:05.880 +05:00 [WRN] Login failed: invalid credentials.
+2026-08-26 10:27:05.883 +05:00 [INF] HTTP POST /api/auth/login responded 401 in 129.0836 ms
+2026-08-26 10:27:19.977 +05:00 [INF] Attempting user login.
+2026-08-26 10:27:20.102 +05:00 [INF] User logged in successfully.
+2026-08-26 10:27:20.105 +05:00 [INF] HTTP POST /api/auth/login responded 200 in 127.5845 ms
+2026-08-26 10:27:20.148 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:27:20.153 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:27:20.155 +05:00 [INF] HTTP GET /api/tasks responded 200 in 7.5026 ms
+2026-08-26 10:27:20.157 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:27:20.164 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:27:20.166 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 9.2577 ms
+2026-08-26 10:27:20.171 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:27:20.174 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:27:20.176 +05:00 [INF] HTTP GET /api/tasks responded 200 in 5.1543 ms
+2026-08-26 10:27:20.182 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:27:20.185 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:27:20.186 +05:00 [INF] HTTP GET /api/tasks responded 200 in 4.2588 ms
+2026-08-26 10:27:20.194 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:27:20.197 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:27:20.199 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 5.3442 ms
+2026-08-26 10:27:20.204 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:27:20.207 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:27:20.208 +05:00 [INF] HTTP GET /api/tasks responded 200 in 4.1580 ms
+2026-08-26 10:28:30.907 +05:00 [INF] Attempting user login.
+2026-08-26 10:28:31.031 +05:00 [WRN] Login failed: invalid credentials.
+2026-08-26 10:28:31.033 +05:00 [INF] HTTP POST /api/auth/login responded 401 in 126.6729 ms
+2026-08-26 10:28:45.671 +05:00 [INF] Attempting user login.
+2026-08-26 10:28:45.796 +05:00 [INF] User logged in successfully.
+2026-08-26 10:28:45.799 +05:00 [INF] HTTP POST /api/auth/login responded 200 in 127.5001 ms
+2026-08-26 10:28:45.840 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:28:45.844 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:28:45.845 +05:00 [INF] HTTP GET /api/tasks responded 200 in 4.9321 ms
+2026-08-26 10:28:45.850 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:28:45.855 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:28:45.857 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 6.7121 ms
+2026-08-26 10:28:45.862 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:28:45.865 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:28:45.868 +05:00 [INF] HTTP GET /api/tasks responded 200 in 5.3887 ms
+2026-08-26 10:28:45.877 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:28:45.916 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:28:45.934 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:28:45.936 +05:00 [INF] HTTP GET /api/tasks responded 200 in 59.8144 ms
+2026-08-26 10:28:45.937 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:28:45.940 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:28:45.940 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 24.4834 ms
+2026-08-26 10:28:45.943 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:28:45.945 +05:00 [INF] HTTP GET /api/tasks responded 200 in 5.4542 ms
+2026-08-26 10:29:51.091 +05:00 [INF] Creating new task for userId 7.
+2026-08-26 10:29:51.133 +05:00 [INF] HTTP POST /api/tasks responded 201 in 49.2702 ms
+2026-08-26 10:29:51.170 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:29:51.177 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:29:51.179 +05:00 [INF] HTTP GET /api/tasks responded 200 in 9.5858 ms
+2026-08-26 10:29:51.186 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:29:51.190 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:29:51.192 +05:00 [INF] HTTP GET /api/tasks responded 200 in 6.6988 ms
+2026-08-26 10:30:02.082 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:30:02.086 +05:00 [INF] User 7 stats: Total=1, Completed=0, InProgress=0, Pending=1
+2026-08-26 10:30:02.088 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 6.8459 ms
+2026-08-26 10:30:02.095 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:02.098 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:30:02.100 +05:00 [INF] HTTP GET /api/tasks responded 200 in 5.0270 ms
+2026-08-26 10:30:02.102 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:30:02.106 +05:00 [INF] User 7 stats: Total=1, Completed=0, InProgress=0, Pending=1
+2026-08-26 10:30:02.112 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 10.2280 ms
+2026-08-26 10:30:02.118 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:02.121 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:30:02.123 +05:00 [INF] HTTP GET /api/tasks responded 200 in 5.1123 ms
+2026-08-26 10:30:16.946 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:16.949 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:30:16.952 +05:00 [INF] HTTP GET /api/tasks responded 200 in 5.9709 ms
+2026-08-26 10:30:16.959 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:16.964 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:30:16.967 +05:00 [INF] HTTP GET /api/tasks responded 200 in 8.4091 ms
+2026-08-26 10:30:19.036 +05:00 [INF] Fetching task 3 for userId 7.
+2026-08-26 10:30:19.065 +05:00 [INF] HTTP GET /api/tasks/3 responded 200 in 33.4891 ms
+2026-08-26 10:30:19.066 +05:00 [INF] Fetching task 3 for userId 7.
+2026-08-26 10:30:19.069 +05:00 [INF] HTTP GET /api/tasks/3 responded 200 in 2.4558 ms
+2026-08-26 10:30:25.026 +05:00 [INF] Fetching task 3 for userId 7.
+2026-08-26 10:30:25.029 +05:00 [INF] HTTP GET /api/tasks/3 responded 200 in 3.5336 ms
+2026-08-26 10:30:25.038 +05:00 [INF] Fetching task 3 for userId 7.
+2026-08-26 10:30:25.040 +05:00 [INF] HTTP GET /api/tasks/3 responded 200 in 3.3889 ms
+2026-08-26 10:30:30.339 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:30.347 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:30:30.352 +05:00 [INF] HTTP GET /api/tasks responded 200 in 13.1434 ms
+2026-08-26 10:30:30.357 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:30.361 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:30:30.363 +05:00 [INF] HTTP GET /api/tasks responded 200 in 6.1375 ms
+2026-08-26 10:30:32.242 +05:00 [INF] Fetching task 3 for userId 7.
+2026-08-26 10:30:32.245 +05:00 [INF] HTTP GET /api/tasks/3 responded 200 in 3.9427 ms
+2026-08-26 10:30:32.253 +05:00 [INF] Fetching task 3 for userId 7.
+2026-08-26 10:30:32.256 +05:00 [INF] HTTP GET /api/tasks/3 responded 200 in 3.5490 ms
+2026-08-26 10:30:35.977 +05:00 [INF] Deleting task 3 for userId 7.
+2026-08-26 10:30:36.024 +05:00 [INF] HTTP DELETE /api/tasks/3 responded 204 in 49.6769 ms
+2026-08-26 10:30:36.065 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:36.069 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:30:36.070 +05:00 [INF] HTTP GET /api/tasks responded 200 in 6.0574 ms
+2026-08-26 10:30:36.077 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:36.080 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:30:36.084 +05:00 [INF] HTTP GET /api/tasks responded 200 in 7.7481 ms
+2026-08-26 10:30:42.407 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:30:42.410 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:30:42.412 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 5.5504 ms
+2026-08-26 10:30:42.458 +05:00 [INF] User 7 (IsAdmin: false) fetching dashboard stats
+2026-08-26 10:30:42.458 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:42.462 +05:00 [INF] User 7 stats: Total=0, Completed=0, InProgress=0, Pending=0
+2026-08-26 10:30:42.465 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:30:42.468 +05:00 [INF] HTTP GET /api/dashboard/stats responded 200 in 10.3213 ms
+2026-08-26 10:30:42.469 +05:00 [INF] HTTP GET /api/tasks responded 200 in 11.1237 ms
+2026-08-26 10:30:42.471 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:30:42.473 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:30:42.475 +05:00 [INF] HTTP GET /api/tasks responded 200 in 3.9092 ms
+2026-08-26 10:31:25.033 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:31:25.045 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:31:25.047 +05:00 [INF] HTTP GET /api/tasks responded 200 in 13.7246 ms
+2026-08-26 10:31:25.051 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:31:25.069 +05:00 [INF] User 7 fetched 0 tasks.
+2026-08-26 10:31:25.072 +05:00 [INF] HTTP GET /api/tasks responded 200 in 21.4453 ms
+2026-08-26 10:32:07.877 +05:00 [INF] Creating new task for userId 7.
+2026-08-26 10:32:07.885 +05:00 [INF] HTTP POST /api/tasks responded 201 in 8.2109 ms
+2026-08-26 10:32:07.924 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:32:07.930 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:32:07.931 +05:00 [INF] HTTP GET /api/tasks responded 200 in 7.3122 ms
+2026-08-26 10:32:07.933 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:32:07.944 +05:00 [INF] User 7 fetched 1 tasks.
+2026-08-26 10:32:07.945 +05:00 [INF] HTTP GET /api/tasks responded 200 in 12.4233 ms
+2026-08-26 10:32:25.214 +05:00 [INF] Creating new task for userId 7.
+2026-08-26 10:32:25.220 +05:00 [INF] HTTP POST /api/tasks responded 201 in 8.5144 ms
+2026-08-26 10:32:25.266 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:32:25.275 +05:00 [INF] User 7 fetched 2 tasks.
+2026-08-26 10:32:25.277 +05:00 [INF] HTTP GET /api/tasks responded 200 in 10.5967 ms
+2026-08-26 10:32:25.279 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:32:25.285 +05:00 [INF] User 7 fetched 2 tasks.
+2026-08-26 10:32:25.288 +05:00 [INF] HTTP GET /api/tasks responded 200 in 9.0616 ms
+2026-08-26 10:32:44.666 +05:00 [INF] Creating new task for userId 7.
+2026-08-26 10:32:44.671 +05:00 [INF] HTTP POST /api/tasks responded 201 in 5.7580 ms
+2026-08-26 10:32:44.712 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:32:44.736 +05:00 [INF] User 7 fetched 3 tasks.
+2026-08-26 10:32:44.741 +05:00 [INF] HTTP GET /api/tasks responded 200 in 29.2170 ms
+2026-08-26 10:32:44.743 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:32:44.759 +05:00 [INF] User 7 fetched 3 tasks.
+2026-08-26 10:32:44.761 +05:00 [INF] HTTP GET /api/tasks responded 200 in 17.7514 ms
+2026-08-26 10:33:01.337 +05:00 [INF] Creating new task for userId 7.
+2026-08-26 10:33:01.343 +05:00 [INF] HTTP POST /api/tasks responded 201 in 6.1225 ms
+2026-08-26 10:33:01.387 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:33:01.394 +05:00 [INF] User 7 fetched 4 tasks.
+2026-08-26 10:33:01.397 +05:00 [INF] HTTP GET /api/tasks responded 200 in 9.7836 ms
+2026-08-26 10:33:01.407 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:33:01.417 +05:00 [INF] User 7 fetched 4 tasks.
+2026-08-26 10:33:01.424 +05:00 [INF] HTTP GET /api/tasks responded 200 in 17.5517 ms
+2026-08-26 10:33:17.717 +05:00 [INF] Creating new task for userId 7.
+2026-08-26 10:33:17.724 +05:00 [INF] HTTP POST /api/tasks responded 201 in 6.9299 ms
+2026-08-26 10:33:17.770 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:33:17.781 +05:00 [INF] User 7 fetched 5 tasks.
+2026-08-26 10:33:17.787 +05:00 [INF] HTTP GET /api/tasks responded 200 in 17.5985 ms
+2026-08-26 10:33:17.790 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:33:17.814 +05:00 [INF] User 7 fetched 5 tasks.
+2026-08-26 10:33:17.821 +05:00 [INF] HTTP GET /api/tasks responded 200 in 31.3759 ms
+2026-08-26 10:33:50.442 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:33:50.498 +05:00 [INF] User 7 fetched 5 tasks.
+2026-08-26 10:33:50.506 +05:00 [INF] HTTP GET /api/tasks responded 200 in 64.0942 ms
+2026-08-26 10:33:50.508 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:33:50.526 +05:00 [INF] User 7 fetched 5 tasks.
+2026-08-26 10:33:50.537 +05:00 [INF] HTTP GET /api/tasks responded 200 in 28.7750 ms
+2026-08-26 10:35:33.328 +05:00 [INF] Creating new task for userId 7.
+2026-08-26 10:35:33.340 +05:00 [INF] HTTP POST /api/tasks responded 201 in 13.3072 ms
+2026-08-26 10:35:33.421 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:35:33.438 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:35:33.443 +05:00 [INF] HTTP GET /api/tasks responded 200 in 22.1295 ms
+2026-08-26 10:35:33.445 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:35:33.473 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:35:33.490 +05:00 [INF] HTTP GET /api/tasks responded 200 in 44.8815 ms
+2026-08-26 10:36:23.745 +05:00 [INF] Fetching task 9 for userId 7.
+2026-08-26 10:36:23.761 +05:00 [INF] HTTP GET /api/tasks/9 responded 200 in 18.9865 ms
+2026-08-26 10:36:23.765 +05:00 [INF] Fetching task 9 for userId 7.
+2026-08-26 10:36:23.772 +05:00 [INF] HTTP GET /api/tasks/9 responded 200 in 8.1565 ms
+2026-08-26 10:36:31.298 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:36:31.305 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:36:31.307 +05:00 [INF] HTTP GET /api/tasks responded 200 in 9.9747 ms
+2026-08-26 10:36:31.317 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:36:31.323 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:36:31.327 +05:00 [INF] HTTP GET /api/tasks responded 200 in 11.7374 ms
+2026-08-26 10:36:38.477 +05:00 [INF] Fetching task 9 for userId 7.
+2026-08-26 10:36:38.481 +05:00 [INF] HTTP GET /api/tasks/9 responded 200 in 4.0039 ms
+2026-08-26 10:36:38.486 +05:00 [INF] Fetching task 9 for userId 7.
+2026-08-26 10:36:38.489 +05:00 [INF] HTTP GET /api/tasks/9 responded 200 in 4.6094 ms
+2026-08-26 10:37:32.411 +05:00 [INF] User 7 fetching profile
+2026-08-26 10:37:32.426 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:37:32.435 +05:00 [INF] HTTP GET /api/users/profile responded 200 in 24.3597 ms
+2026-08-26 10:37:32.449 +05:00 [INF] User 7 fetching profile
+2026-08-26 10:37:32.465 +05:00 [INF] HTTP GET /api/users/profile responded 200 in 16.5665 ms
+2026-08-26 10:37:32.514 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:37:32.515 +05:00 [INF] HTTP GET /api/tasks responded 200 in 89.4121 ms
+2026-08-26 10:37:32.523 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:37:32.527 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:37:32.529 +05:00 [INF] HTTP GET /api/tasks responded 200 in 6.4839 ms
+2026-08-26 10:37:59.781 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:37:59.787 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:37:59.789 +05:00 [INF] HTTP GET /api/tasks responded 200 in 8.1591 ms
+2026-08-26 10:37:59.790 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:37:59.796 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:37:59.798 +05:00 [INF] HTTP GET /api/tasks responded 200 in 7.8215 ms
+2026-08-26 10:38:01.021 +05:00 [INF] Fetching task 6 for userId 7.
+2026-08-26 10:38:01.027 +05:00 [INF] HTTP GET /api/tasks/6 responded 200 in 6.1962 ms
+2026-08-26 10:38:01.029 +05:00 [INF] Fetching task 6 for userId 7.
+2026-08-26 10:38:01.033 +05:00 [INF] HTTP GET /api/tasks/6 responded 200 in 4.7321 ms
+2026-08-26 10:44:25.854 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:44:25.855 +05:00 [INF] Fetching task 6 for userId 7.
+2026-08-26 10:44:26.049 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:44:26.049 +05:00 [INF] HTTP GET /api/tasks/6 responded 200 in 197.6604 ms
+2026-08-26 10:44:26.052 +05:00 [INF] HTTP GET /api/tasks responded 200 in 200.3603 ms
+2026-08-26 10:44:26.052 +05:00 [INF] Fetching task 6 for userId 7.
+2026-08-26 10:44:26.054 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:44:26.057 +05:00 [INF] HTTP GET /api/tasks/6 responded 200 in 4.9710 ms
+2026-08-26 10:44:26.060 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:44:26.061 +05:00 [INF] HTTP GET /api/tasks responded 200 in 6.9323 ms
+2026-08-26 10:45:06.584 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:45:06.597 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:45:06.600 +05:00 [INF] HTTP GET /api/tasks responded 200 in 16.0110 ms
+2026-08-26 10:45:06.605 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:45:06.626 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:45:06.628 +05:00 [INF] HTTP GET /api/tasks responded 200 in 27.5224 ms
+2026-08-26 10:45:09.400 +05:00 [INF] Fetching task 5 for userId 7.
+2026-08-26 10:45:09.410 +05:00 [INF] HTTP GET /api/tasks/5 responded 200 in 10.4044 ms
+2026-08-26 10:45:09.412 +05:00 [INF] Fetching task 5 for userId 7.
+2026-08-26 10:45:09.417 +05:00 [INF] HTTP GET /api/tasks/5 responded 200 in 5.9906 ms
+2026-08-26 10:51:05.074 +05:00 [WRN] Failed to determine the https port for redirect.
+2026-08-26 10:51:05.473 +05:00 [INF] Fetching task 5 for userId 7.
+2026-08-26 10:51:05.491 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:51:06.732 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:51:06.769 +05:00 [INF] HTTP GET /api/tasks responded 200 in 1504.8014 ms
+2026-08-26 10:51:06.769 +05:00 [INF] HTTP GET /api/tasks/5 responded 200 in 1504.7920 ms
+2026-08-26 10:51:06.778 +05:00 [INF] Fetching task 5 for userId 7.
+2026-08-26 10:51:06.778 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:51:06.853 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:51:06.853 +05:00 [INF] HTTP GET /api/tasks/5 responded 200 in 80.0068 ms
+2026-08-26 10:51:06.855 +05:00 [INF] HTTP GET /api/tasks responded 200 in 81.6241 ms
+2026-08-26 10:51:14.215 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:51:14.226 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:51:14.232 +05:00 [INF] HTTP GET /api/tasks responded 200 in 17.9009 ms
+2026-08-26 10:51:14.236 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:51:14.243 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:51:14.248 +05:00 [INF] HTTP GET /api/tasks responded 200 in 10.2336 ms
+2026-08-26 10:51:15.146 +05:00 [INF] Fetching task 5 for userId 7.
+2026-08-26 10:51:15.157 +05:00 [INF] HTTP GET /api/tasks/5 responded 200 in 12.0798 ms
+2026-08-26 10:51:15.160 +05:00 [INF] Fetching task 5 for userId 7.
+2026-08-26 10:51:15.172 +05:00 [INF] HTTP GET /api/tasks/5 responded 200 in 12.8676 ms
+2026-08-26 10:51:16.779 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:51:16.788 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:51:16.791 +05:00 [INF] HTTP GET /api/tasks responded 200 in 11.9066 ms
+2026-08-26 10:51:16.794 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:51:16.802 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:51:16.805 +05:00 [INF] HTTP GET /api/tasks responded 200 in 11.8897 ms
+2026-08-26 10:51:18.936 +05:00 [INF] Fetching task 7 for userId 7.
+2026-08-26 10:51:18.944 +05:00 [INF] HTTP GET /api/tasks/7 responded 200 in 8.0852 ms
+2026-08-26 10:51:18.948 +05:00 [INF] Fetching task 7 for userId 7.
+2026-08-26 10:51:18.952 +05:00 [INF] HTTP GET /api/tasks/7 responded 200 in 4.9246 ms
+2026-08-26 10:51:22.712 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:51:22.724 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:51:22.729 +05:00 [INF] HTTP GET /api/tasks responded 200 in 17.8014 ms
+2026-08-26 10:51:22.732 +05:00 [INF] User 7 (IsAdmin: false) fetching tasks with filters.
+2026-08-26 10:51:22.736 +05:00 [INF] User 7 fetched 6 tasks.
+2026-08-26 10:51:22.740 +05:00 [INF] HTTP GET /api/tasks responded 200 in 8.7835 ms
