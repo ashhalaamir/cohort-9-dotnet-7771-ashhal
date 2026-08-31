@@ -10,9 +10,10 @@
 
 ---
 
-## 📋 Overview
+## 📋 Overview // [SWITCH BRANCH TO DEVELOP FOR THE PROJECT]
 
 This project is a complete task management system developed as part of the **10Pearls Shine Cohort 9 (.NET Fullstack)** internship. It enables users to organize, track, and manage tasks with role-based access control.
+BRANCH MMERGUNG STRATEGY: Each branch was corrected for Coderabbit fixes, approved and then merged with the following new branch. Final branch (feature/frontend-task-screens) was then merged with develop, which holds the full project.
 
 ### 🎯 Key Features
 
