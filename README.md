@@ -1,4 +1,4 @@
-# Task Management Tool
+# Task Management Tool Overview (FILES IN DEVELOP)
 
 > A full-stack task management web application built with ASP.NET Core and React.js
 
@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Overview // [SWITCH BRANCH TO DEVELOP FOR PROJECT FILES AND DETAILED SETUP INSTRUCTIONS]
+## 📋[SWITCH BRANCH TO DEVELOP FOR PROJECT FILES AND DETAILED SETUP INSTRUCTIONS GIVEN IN DEVELOP BRANCH'S README]
 
 This project is a complete task management system developed as part of the **10Pearls Shine Cohort 9 (.NET Fullstack)** internship. It enables users to organize, track, and manage tasks with role-based access control.
 
