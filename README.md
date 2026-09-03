@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Overview // [SWITCH BRANCH TO DEVELOP FOR THE PROJECT]
+## 📋 Overview // [SWITCH BRANCH TO DEVELOP FOR PROJECT FILES AND DETAILED SETUP INSTRUCTIONS]
 
 This project is a complete task management system developed as part of the **10Pearls Shine Cohort 9 (.NET Fullstack)** internship. It enables users to organize, track, and manage tasks with role-based access control.
 
