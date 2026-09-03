@@ -252,14 +252,18 @@ Step 2: Find Register Endpoint
 Look for POST /api/Auth/register and click to expand
 
 Step 3: Click "Try it out"
+
 Step 4: Enter Admin Credentials
+
 json
+
 {
   "username": "adminuser",
   "email": "admin@example.com",
   "password": "Admin123!",
   "role": "Admin"
 }
+
 Step 5: Click Execute
 The admin user will be created in the database.
 
