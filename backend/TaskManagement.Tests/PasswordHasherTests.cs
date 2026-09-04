@@ -18,7 +18,7 @@ public class PasswordHasherTests
         parts.Should().HaveCount(4);
 
         int.TryParse(parts[1], out var iterations).Should().BeTrue();
-        iterations.Should().BeGreaterOrEqualTo(600_000);
+        iterations.Should().BeGreaterThanOrEqualTo(600_000);
     }
 
     [Fact]

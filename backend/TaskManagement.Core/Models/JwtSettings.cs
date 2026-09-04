@@ -24,15 +24,12 @@ namespace TaskManagement.Core.Models
             if (string.IsNullOrWhiteSpace(Key))
                 throw new InvalidOperationException("JWT signing key is required and cannot be empty.");
 
-            if (Key.Length < minimumKeyLength)
-                throw new InvalidOperationException($"JWT signing key must be at least {minimumKeyLength} characters long.");
-
             if (Key == "YourSuperSecretKeyForDevelopment123!@#$%^&*()_+")
                 throw new InvalidOperationException("A valid JWT signing key must be provided via environment or secret store. The development placeholder is not allowed.");
 
             var keyBytes = Encoding.UTF8.GetByteCount(Key);
-            if (keyBytes < 32)
-                throw new InvalidOperationException("JWT signing key must be at least 32 UTF-8 bytes long.");
+            if (keyBytes < minimumKeyLength)
+                throw new InvalidOperationException($"JWT signing key must be at least {minimumKeyLength} UTF-8 bytes long.");
 
             if (string.IsNullOrWhiteSpace(Issuer))
                 throw new InvalidOperationException("JWT issuer is required and cannot be empty.");

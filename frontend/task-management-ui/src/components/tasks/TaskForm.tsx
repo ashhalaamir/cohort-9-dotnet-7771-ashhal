@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { tasksApi } from '../../api/tasksApi';
 import { usersApi } from '../../api/usersApi';
 import type { Task, User } from '../../types';
-import { ChevronRight, Save, X, User as UserIcon, Lock } from 'lucide-react';
+import { ChevronRight, Save, Lock } from 'lucide-react';
 
 const TaskForm: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,7 +12,7 @@ const TaskForm: React.FC = () => {
   const { user, isAdmin } = useAuth();
   const isEditMode = Boolean(id);
   
-  const [task, setTask] = useState<Task | null>(null);
+  const [, setTask] = useState<Task | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);

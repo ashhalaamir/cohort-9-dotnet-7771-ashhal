@@ -22,7 +22,7 @@ const TaskDetail: React.FC = () => {
   const navigate = useNavigate();
   const { user, isAdmin } = useAuth();
   const [task, setTask] = useState<Task | null>(null);
-  const [users, setUsers] = useState<User[]>([]);
+  const [, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isUpdatingStatus, setIsUpdatingStatus] = useState(false);

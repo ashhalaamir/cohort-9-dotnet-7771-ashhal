@@ -28,8 +28,6 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 };
 
 function AppRoutes() {
-  const { isAuthenticated } = useAuth();
-
   return (
     <Router>
       <Routes>

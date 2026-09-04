@@ -52,7 +52,7 @@ const getActivityColor = (count: number): string => {
 };
 
 const UserProfile: React.FC = () => {
-  const { user, isAdmin, logout } = useAuth();
+  const { isAdmin, logout } = useAuth();
   const [profile, setProfile] = useState<User | null>(null);
   const [taskCount, setTaskCount] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);

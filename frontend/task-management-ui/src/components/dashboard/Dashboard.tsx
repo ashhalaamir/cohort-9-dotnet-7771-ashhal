@@ -12,7 +12,6 @@ import {
   LayoutDashboard, 
   Clock, 
   CheckCircle2, 
-  Circle, 
   Plus,
   AlertCircle
 } from 'lucide-react';
