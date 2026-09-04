@@ -10,7 +10,7 @@
 
 ## 📋 Quick Start
 
-### Prerequisites
+### Prerequisites/ SKIP TO ONE CLICK COMMANDS IF ALREADY INSTALLED
 
 | Tool | Version | Installation |
 |------|---------|--------------|
@@ -20,6 +20,8 @@
 | Git | Latest | [Download](https://git-scm.com/) |
 
 ---
+
+### INSTALL INSTRUCTIONS
 
 ###1. Install SQL Server LocalDB
 The project uses SQL Server LocalDB for development. Follow these steps:
