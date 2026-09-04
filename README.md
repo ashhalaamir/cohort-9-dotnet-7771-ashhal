@@ -1,31 +1,73 @@
-# cohort-9-dotnet-7771-ashhal
-Cohort 9 — .NET Fullstack (.NET+ReactJS) assignment for Ashhal Aamir
+# Task Management Tool - Setup & Admin Creation Guide
 
-## Backend JWT Secret Configuration
+> ✅ **This project now runs on .NET 10.0** (Upgraded from .NET 8.0)
 
-The API requires a runtime JWT signing key and does not commit a production secret to source control.
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)
+![React](https://img.shields.io/badge/React-18.2.0-blue.svg)
 
-- The API project already has a `UserSecretsId` configured, so you can set development secrets without modifying checked-in files.
+---
 
-- In development, set the key with `dotnet user-secrets`:
-  ```powershell
-  cd backend/TaskManagement.API
-  dotnet user-secrets set "Jwt:Key" "<your-strong-secret>"
-  ```
-  - The JWT signing key must be at least 32 characters long and should be generated from a secure random source.
+## 📋 Quick Start
 
-- Alternatively, set an environment variable before starting the API:
-  - Windows PowerShell:
-    ```powershell
-    $env:Jwt__Key = "<your-strong-secret>"
-    dotnet run --project backend/TaskManagement.API/TaskManagement.API.csproj
-    ```
-  - Linux/macOS:
-    ```bash
-    export Jwt__Key="<your-strong-secret>"
-    dotnet run --project backend/TaskManagement.API/TaskManagement.API.csproj
-    ```
+### Prerequisites
 
-- In production, configure the secret in your deployment environment (App Service, Kubernetes secret, AWS Parameter Store, etc.) as `Jwt:Key` or `Jwt__Key`.
+| Tool | Version | Installation |
+|------|---------|--------------|
+| **.NET SDK** | **10.0** | [Download](https://dotnet.microsoft.com/download) |
+| Node.js | 18.0+ | [Download](https://nodejs.org/) |
+| **SQL Server** | **2019+ or LocalDB** | [Download](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) |
+| Git | Latest | [Download](https://git-scm.com/) |
 
-Do not commit a real signing key to source control. The application will fail startup if `Jwt:Key` is missing or empty.
+---
+
+## 🚀 One-Click Setup (Windows PowerShell)
+
+```powershell
+# Clone and setup
+git clone https://github.com/ashhalaamir/cohort-9-dotnet-7771-ashhal.git
+cd cohort-9-dotnet-7771-ashhal
+git checkout develop
+
+# Backend (Terminal 1)
+cd backend
+dotnet restore
+dotnet build
+dotnet tool install --global dotnet-ef
+dotnet ef database update --project TaskManagement.Infrastructure --startup-project TaskManagement.API
+dotnet run --project TaskManagement.API --urls="http://localhost:5000"
+
+Open a New Terminal Window for Frontend
+bash
+# Frontend (Terminal 2)
+cd frontend/task-management-ui
+npm install
+npm run dev
+
+Creating an Admin Account
+The frontend registration creates Regular Users by default. To create an Admin, use Swagger.
+
+Step 1: Open Swagger
+Open your browser and go to:
+http://localhost:5000/swagger
+
+Step 2: Find the Register Endpoint
+Scroll down to the Auth section and find:
+POST /api/Auth/register
+
+Step 3: Click "Try it out"
+Click the "Try it out" button.
+
+Step 4: Enter Admin Details
+Replace the example with:
+
+json
+{
+  "username": "adminuser",
+  "email": "admin@example.com",
+  "password": "Admin123!",
+  "role": "Admin"
+}
+
+Step 5: Execute
+Click the "Execute" button.
