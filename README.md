@@ -21,6 +21,64 @@
 
 ---
 
+###1. Install SQL Server LocalDB
+The project uses SQL Server LocalDB for development. Follow these steps:
+
+Step 1: Download SQL Server 2022 Express
+Go to: https://go.microsoft.com/fwlink/p/?linkid=2216019
+
+Download SQL2022-SSEI-Expr.exe
+
+Step 2: Run the Installer
+Run the installer as Administrator (right-click → "Run as administrator")
+
+Choose "Custom" installation type
+
+Click "Install" to start the installation
+
+Step 3: Select Features
+In the "Feature Selection" screen, make sure you check:
+
+✅ Database Engine Services (under "Instance Features") - REQUIRED
+
+✅ LocalDB (under "Shared Features") - CRITICAL
+
+💡 Note: You can uncheck other features (like Reporting Services, Integration Services) to save disk space.
+
+Step 4: Complete Installation
+Click "Next" through the rest of the screens
+
+Leave everything at default settings
+
+Click "Install" and wait for completion
+
+Step 5: Verify Installation
+Close and reopen PowerShell, then run:
+
+powershell
+sqllocaldb info
+You should see mssqllocaldb in the list of instances.
+
+### 2. Install Node.js (for Frontend)
+The frontend is built with React 19 and Vite 8, which require Node.js 20+ (v22 LTS recommended).
+
+Version Requirements
+Component	Minimum Version	Recommended Version
+Node.js	v20.0.0	v22.x LTS
+npm	v10.0.0	v10.x (included with Node.js)
+Windows Installation
+Option A: Download from Website (Recommended)
+
+Go to: https://nodejs.org/
+
+Download the LTS version (v22.x)
+
+Run the installer (this includes npm automatically)
+
+Follow the installation wizard (default settings are fine)
+
+Restart your terminal after installation
+
 ## 🚀 One-Click Setup (Windows PowerShell)
 
 ```powershell
