@@ -10,14 +10,14 @@
 
 ## 📋 Quick Start
 
-### Prerequisites/ SKIP TO ONE CLICK COMMANDS IF ALREADY INSTALLED
+### Prerequisites / SKIP TO ONE CLICK COMMANDS IF ALREADY INSTALLED
 
 | Tool | Version | Installation |
 |------|---------|--------------|
-| **.NET SDK** | **10.0** | [Download](https://dotnet.microsoft.com/download) |
-| Node.js | 18.0+ | [Download](https://nodejs.org/) |
-| **SQL Server** | **2019+ or LocalDB** | [Download]([(https://go.microsoft.com/fwlink/?linkid=2215160)) |
-| Git | Latest | [Download](https://git-scm.com/) |
+| **.NET SDK** | **10.0** | [Download .NET 10.0](https://dotnet.microsoft.com/download/dotnet/10.0) |
+| **Node.js** | 18.0+ | [Download Node.js](https://nodejs.org/) |
+| **SQL Server** | **2019+ or LocalDB** | [Download SQL Server 2022 Express](https://go.microsoft.com/fwlink/p/?linkid=2216019) |
+| **Git** | Latest | [Download Git](https://git-scm.com/) |
 
 ---
 
