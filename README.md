@@ -109,7 +109,7 @@ The frontend registration creates Regular Users by default. To create an Admin, 
 
 Step 1: Open Swagger
 Open your browser and go to:
-http://localhost:5000/swagger
+http://localhost:5000/swagger/index.html
 
 Step 2: Find the Register Endpoint
 Scroll down to the Auth section and find:
