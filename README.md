@@ -16,7 +16,7 @@
 |------|---------|--------------|
 | **.NET SDK** | **10.0** | [Download](https://dotnet.microsoft.com/download) |
 | Node.js | 18.0+ | [Download](https://nodejs.org/) |
-| **SQL Server** | **2019+ or LocalDB** | [Download]([https://www.microsoft.com/en-us/sql-server/sql-server-downloads](https://go.microsoft.com/fwlink/?linkid=2215160)) |
+| **SQL Server** | **2019+ or LocalDB** | [Download]([(https://go.microsoft.com/fwlink/?linkid=2215160)) |
 | Git | Latest | [Download](https://git-scm.com/) |
 
 ---
