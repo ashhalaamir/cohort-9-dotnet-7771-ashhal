@@ -3,7 +3,7 @@
 > A full-stack task management web application built with ASP.NET Core and React.js
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![.NET](https://img.shields.io/badge/.NET-8.0-purple.svg)
+![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)
 ![React](https://img.shields.io/badge/React-18.2.0-blue.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
